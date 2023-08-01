@@ -11,6 +11,8 @@ import {
     SearchLogo,
     Profile,
     ProfileBox,
+    ArrowDown,
+    ARROW_DOWN_URL,
 } from "../Styled/HeaderStyled";
 
 function Header() {
@@ -42,10 +44,11 @@ function Header() {
 
             <RightNavigation>
                 <Link to="/">
-                    <SearchLogo src={SEARCH_URL}></SearchLogo>
+                    <SearchLogo src={SEARCH_URL} />
                 </Link>
                 <ProfileBox>
                     <Profile>P</Profile>
+                    <ArrowDown src={ARROW_DOWN_URL} />
                 </ProfileBox>
             </RightNavigation>
         </Wrapper>

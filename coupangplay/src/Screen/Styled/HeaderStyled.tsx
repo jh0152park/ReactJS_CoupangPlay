@@ -3,6 +3,8 @@ import { styled } from "styled-components";
 export const LOGO_URL = "https://assets.coupangplay.com/images/logo.png";
 export const SEARCH_URL =
     "https://assets.coupangplay.com/images/svg/search.svg";
+export const ARROW_DOWN_URL =
+    "https://assets.coupangplay.com/images/svg/icon-arrow-down.svg";
 
 export const Wrapper = styled.div`
     width: 100%;
@@ -28,7 +30,6 @@ export const RightNavigation = styled.div`
     display: flex;
     align-items: center;
     justify-content: flex-end;
-    background-color: teal;
 `;
 
 export const Logo = styled.img`
@@ -65,7 +66,7 @@ export const Menu = styled.div`
 
 export const SearchLogo = styled.img`
     scale: 1.5;
-    margin-right: 20px;
+    margin-right: 30px;
 `;
 
 export const ProfileBox = styled.div`
@@ -75,17 +76,27 @@ export const ProfileBox = styled.div`
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    background-color: yellowgreen;
-    opacity: 0.2;
+    margin-right: 5px;
+
+    &:hover {
+        cursor: pointer;
+        img {
+            transform: rotateZ(180deg);
+        }
+    }
 `;
 
 export const Profile = styled.div`
-    width: 35px;
-    height: 35px;
+    width: 32px;
+    height: 32px;
     border-radius: 50%;
     border: 2px solid rgb(255, 255, 255);
     background-color: rgb(94, 42, 197);
     display: flex;
     justify-content: center;
     align-items: center;
+`;
+
+export const ArrowDown = styled.img`
+    scale: 1;
 `;
