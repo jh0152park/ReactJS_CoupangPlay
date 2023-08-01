@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import {
     LOGO_URL,
     LeftNavigation,
@@ -22,10 +23,15 @@ function Header() {
     return (
         <Wrapper>
             <LeftNavigation>
-                <Logo src={LOGO_URL}></Logo>
+                <Link to="/">
+                    <Logo src={LOGO_URL}></Logo>
+                </Link>
+
                 <Menus>
                     {menus.map((menu) => (
-                        <Menu>{menu}</Menu>
+                        <Link to={`/${menu}`}>
+                            <Menu>{menu}</Menu>
+                        </Link>
                     ))}
                 </Menus>
             </LeftNavigation>
