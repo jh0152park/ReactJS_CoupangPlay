@@ -7,6 +7,10 @@ import {
     Logo,
     Menu,
     Menus,
+    SEARCH_URL,
+    SearchLogo,
+    Profile,
+    ProfileBox,
 } from "../Styled/HeaderStyled";
 
 function Header() {
@@ -35,7 +39,15 @@ function Header() {
                     ))}
                 </Menus>
             </LeftNavigation>
-            <RightNavigation></RightNavigation>
+
+            <RightNavigation>
+                <Link to="/">
+                    <SearchLogo src={SEARCH_URL}></SearchLogo>
+                </Link>
+                <ProfileBox>
+                    <Profile>P</Profile>
+                </ProfileBox>
+            </RightNavigation>
         </Wrapper>
     );
 }
