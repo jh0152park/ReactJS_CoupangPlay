@@ -1,5 +1,5 @@
 import { AnimatePresence } from "framer-motion";
-import { createImagePath } from "../../API";
+import { createImagePath, getMovieDetail } from "../../API";
 import {
     Wrapper,
     IData,
@@ -9,19 +9,29 @@ import {
     LEFT_ARROW_URL,
     RightArrow,
     RIGHT_ARROW_URL,
+    Description,
+    Title,
+    Information,
+    Star,
 } from "../Styled/BannerStyled";
 import { useState } from "react";
+import { useQuery } from "react-query";
 
 function Banner({ results }: IData) {
     const [startIndex, setStartIndex] = useState(0);
     const [endIndex, setEndIndex] = useState(1);
     const [moving, setMoving] = useState(false);
     const [direction, setDirection] = useState(1);
+    const detail = useQuery("detail", () =>
+        getMovieDetail(results[startIndex].id)
+    );
+
+    let genre = "";
+    let runtime = "";
+    const maxLength = results.length;
 
     function onRightArrowClick() {
         if (moving) return;
-
-        const maxLength = results.length;
 
         if (endIndex === maxLength) {
             setStartIndex(0);
@@ -36,8 +46,6 @@ function Banner({ results }: IData) {
 
     function onLeftArrowClick() {
         if (moving) return;
-
-        const maxLength = results.length;
 
         if (startIndex === 0) {
             setStartIndex(maxLength - 1);
@@ -54,42 +62,64 @@ function Banner({ results }: IData) {
         setMoving(false);
     }
 
+    if (!detail.isLoading && detail.data) {
+        genre = detail.data.genres[0].name;
+        runtime = detail.data.runtime;
+    }
+
     return (
-        <Wrapper>
-            <AnimatePresence
-                initial={false}
-                onExitComplete={animationFinished}
-                custom={direction}
-            >
-                <LeftArrow
-                    onClick={onLeftArrowClick}
-                    src={LEFT_ARROW_URL}
-                ></LeftArrow>
-                {results.slice(startIndex, endIndex).map((result) => (
-                    <DisplayBox
-                        key={result.id}
-                        variants={MainBannerImageVariants}
-                        initial="start"
-                        animate="end"
-                        exit="exit"
+        <>
+            {detail.isLoading ? null : (
+                <Wrapper>
+                    <AnimatePresence
+                        initial={false}
+                        onExitComplete={animationFinished}
                         custom={direction}
-                        BGPhoto={createImagePath(
-                            result.backdrop_path
-                                ? result.backdrop_path
-                                : result.poster_path
-                        )}
-                        transition={{
-                            type: "tween",
-                            duration: 1,
-                        }}
-                    ></DisplayBox>
-                ))}
-                <RightArrow
-                    onClick={onRightArrowClick}
-                    src={RIGHT_ARROW_URL}
-                ></RightArrow>
-            </AnimatePresence>
-        </Wrapper>
+                    >
+                        <LeftArrow
+                            onClick={onLeftArrowClick}
+                            src={LEFT_ARROW_URL}
+                        ></LeftArrow>
+                        {results.slice(startIndex, endIndex).map((result) => (
+                            <DisplayBox
+                                key={result.id}
+                                variants={MainBannerImageVariants}
+                                initial="start"
+                                animate="end"
+                                exit="exit"
+                                custom={direction}
+                                BGPhoto={createImagePath(
+                                    result.backdrop_path
+                                        ? result.backdrop_path
+                                        : result.poster_path
+                                )}
+                                transition={{
+                                    type: "tween",
+                                    duration: 1,
+                                }}
+                            >
+                                <Description>
+                                    <Title>
+                                        {result.title
+                                            ? result.title
+                                            : result.name}
+                                    </Title>
+                                    <Information>
+                                        <Star>★</Star>
+                                        {result.vote_average} ◦ {genre} ◦{" "}
+                                        {runtime}분
+                                    </Information>
+                                </Description>
+                            </DisplayBox>
+                        ))}
+                        <RightArrow
+                            onClick={onRightArrowClick}
+                            src={RIGHT_ARROW_URL}
+                        ></RightArrow>
+                    </AnimatePresence>
+                </Wrapper>
+            )}
+        </>
     );
 }
 
