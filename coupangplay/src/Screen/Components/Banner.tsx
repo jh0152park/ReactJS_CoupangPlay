@@ -13,8 +13,9 @@ import {
     Title,
     Information,
     Star,
+    Play,
 } from "../Styled/BannerStyled";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useQuery } from "react-query";
 
 function Banner({ results }: IData) {
@@ -42,6 +43,7 @@ function Banner({ results }: IData) {
         }
         setMoving(true);
         setDirection(1);
+        detail.refetch();
     }
 
     function onLeftArrowClick() {
@@ -56,17 +58,26 @@ function Banner({ results }: IData) {
         }
         setMoving(true);
         setDirection(-1);
+        detail.refetch();
     }
 
     function animationFinished() {
         setMoving(false);
     }
 
-    if (!detail.isLoading && detail.data) {
-        genre = detail.data.genres[0].name;
-        runtime = detail.data.runtime;
+    function getMoreInfo() {
+        if (!detail.isLoading && detail.data) {
+            genre = detail.data.genres[0].name;
+            runtime = detail.data.runtime;
+        }
     }
 
+    useEffect(() => {
+        detail.refetch();
+        getMoreInfo();
+    }, [startIndex, endIndex, direction]);
+
+    getMoreInfo();
     return (
         <>
             {detail.isLoading ? null : (
@@ -109,6 +120,7 @@ function Banner({ results }: IData) {
                                         {result.vote_average} ◦ {genre} ◦{" "}
                                         {runtime}분
                                     </Information>
+                                    <Play>► 재생하기</Play>
                                 </Description>
                             </DisplayBox>
                         ))}
