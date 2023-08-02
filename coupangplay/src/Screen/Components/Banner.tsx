@@ -1,6 +1,11 @@
 import { AnimatePresence } from "framer-motion";
 import { createImagePath } from "../../API";
-import { Wrapper, IData, DisplayBox } from "../Styled/BannerStyled";
+import {
+    Wrapper,
+    IData,
+    DisplayBox,
+    MainBannerImageVariants,
+} from "../Styled/BannerStyled";
 import { useState } from "react";
 
 function Banner({ results }: IData) {
@@ -25,6 +30,10 @@ function Banner({ results }: IData) {
                 {results.slice(startIndex, endIndex).map((result) => (
                     <DisplayBox
                         key={result.id}
+                        variants={MainBannerImageVariants}
+                        initial="start"
+                        animate="end"
+                        exit="exit"
                         BGPhoto={createImagePath(
                             result.backdrop_path
                                 ? result.backdrop_path
@@ -33,7 +42,12 @@ function Banner({ results }: IData) {
                     ></DisplayBox>
                 ))}
             </AnimatePresence>
-            <button onClick={onButtonClick}>Click</button>
+            <button
+                style={{ position: "absolute", top: "700px" }}
+                onClick={onButtonClick}
+            >
+                Click
+            </button>
         </Wrapper>
     );
 }
