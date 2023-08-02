@@ -7,13 +7,15 @@ export const SEARCH_URL =
 export const ARROW_DOWN_URL =
     "https://assets.coupangplay.com/images/svg/icon-arrow-down.svg";
 
-export const Wrapper = styled.div`
+export const Wrapper = styled(motion.div)`
     width: 100%;
     height: 70px;
     display: flex;
     justify-content: space-between;
     align-items: center;
     box-sizing: border-box;
+    z-index: 99;
+    position: fixed;
 `;
 
 export const LeftNavigation = styled.div`
@@ -129,3 +131,12 @@ export const ProfileMenu = styled.div`
     align-items: center;
     font-weight: 100;
 `;
+
+export const HeaderVariants = {
+    top: {
+        backgroundColor: "rgba(0, 0, 0, 0)",
+    },
+    scroll: {
+        backgroundColor: "rgba(0, 0, 0, 1)",
+    },
+};

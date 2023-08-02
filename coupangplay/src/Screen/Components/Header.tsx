@@ -15,7 +15,10 @@ import {
     ARROW_DOWN_URL,
     ProfileMenuBox,
     ProfileMenu,
+    HeaderVariants,
 } from "../Styled/HeaderStyled";
+import { useAnimation, useScroll } from "framer-motion";
+import { useEffect } from "react";
 
 const menus = ["TV", "영화", "스포츠", "스토어", "키즈", "뉴스", "찜한 콘텐츠"];
 
@@ -29,8 +32,25 @@ const profileMenus = [
 ];
 
 function Header() {
+    const { scrollY } = useScroll();
+    const headerAnimation = useAnimation();
+
+    useEffect(() => {
+        scrollY.onChange(() => {
+            if (scrollY.get() > 80) {
+                headerAnimation.start("scroll");
+            } else {
+                headerAnimation.start("top");
+            }
+        });
+    }, [scrollY, headerAnimation]);
+
     return (
-        <Wrapper>
+        <Wrapper
+            variants={HeaderVariants}
+            animate={headerAnimation}
+            initial="top"
+        >
             <LeftNavigation>
                 <Link to="/">
                     <Logo src={LOGO_URL}></Logo>
