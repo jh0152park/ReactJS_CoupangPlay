@@ -16,9 +16,14 @@ export interface IData {
     results: IResult[];
 }
 
-export const Wrapper = styled(motion.div)<{ BGPhoto?: string }>`
+export const Wrapper = styled(motion.div)`
     width: 100%;
     height: 550px;
+`;
+
+export const DisplayBox = styled(motion.div)<{ BGPhoto?: string }>`
+    width: 100%;
+    height: 100%;
     background-image: url(${(p) => p.BGPhoto});
     background-size: cover;
 `;
