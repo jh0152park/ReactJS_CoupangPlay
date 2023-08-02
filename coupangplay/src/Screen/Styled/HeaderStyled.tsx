@@ -80,16 +80,6 @@ export const ProfileBox = styled(motion.div)`
     justify-content: flex-start;
     align-items: center;
     margin-right: 5px;
-
-    &:hover {
-        cursor: pointer;
-        img {
-            transform: rotateZ(180deg);
-        }
-        div {
-            opacity: 1;
-        }
-    }
 `;
 
 export const Profile = styled.div`
@@ -101,10 +91,26 @@ export const Profile = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
+    &:hover {
+        cursor: pointer;
+        ~ img {
+            transform: rotateZ(180deg);
+        }
+        ~ div {
+            opacity: 1;
+        }
+    }
 `;
 
 export const ArrowDown = styled(motion.img)`
     scale: 1;
+    &:hover {
+        cursor: pointer;
+        transform: rotateZ(180deg);
+        ~ div {
+            opacity: 1;
+        }
+    }
 `;
 
 export const ProfileMenuBox = styled(motion.div)`
