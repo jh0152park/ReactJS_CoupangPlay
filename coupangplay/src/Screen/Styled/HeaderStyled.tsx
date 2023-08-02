@@ -74,7 +74,7 @@ export const SearchLogo = styled.img`
 
 export const ProfileBox = styled(motion.div)`
     width: 65px;
-    height: 50px;
+    height: 70px;
     position: relative;
     display: flex;
     justify-content: flex-start;
@@ -126,6 +126,9 @@ export const ProfileMenuBox = styled(motion.div)`
     align-items: center;
     flex-direction: column;
     opacity: 0;
+    &:hover {
+        opacity: 0;
+    }
 `;
 
 export const ProfileMenu = styled.div`
