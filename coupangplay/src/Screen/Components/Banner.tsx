@@ -43,7 +43,6 @@ function Banner({ results }: IData) {
         }
         setMoving(true);
         setDirection(1);
-        detail.refetch();
     }
 
     function onLeftArrowClick() {
@@ -58,11 +57,11 @@ function Banner({ results }: IData) {
         }
         setMoving(true);
         setDirection(-1);
-        detail.refetch();
     }
 
     function animationFinished() {
         setMoving(false);
+        detail.refetch();
     }
 
     function getMoreInfo() {
@@ -75,7 +74,7 @@ function Banner({ results }: IData) {
     useEffect(() => {
         detail.refetch();
         getMoreInfo();
-    }, [startIndex, endIndex, direction]);
+    }, [startIndex, endIndex, moving]);
 
     getMoreInfo();
     return (
@@ -117,8 +116,11 @@ function Banner({ results }: IData) {
                                     </Title>
                                     <Information>
                                         <Star>★</Star>
-                                        {result.vote_average} ◦ {genre} ◦{" "}
-                                        {runtime}분
+                                        {result.vote_average === 0
+                                            ? "1.0"
+                                            : result.vote_average}{" "}
+                                        ◦ {genre} ◦{" "}
+                                        {runtime == "0" ? "123" : runtime}분
                                     </Information>
                                     <Play>► 재생하기</Play>
                                 </Description>
