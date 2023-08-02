@@ -19,3 +19,19 @@ export function getNowPlayingMovieList(page: number) {
         options
     ).then((response) => response.json());
 }
+
+export async function getMovieDetail(id: number): Promise<any> {
+    const options = {
+        method: "GET",
+        headers: {
+            accept: "application/json",
+            Authorization:
+                "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI3MzlhNzA4ODRhMTY2ZDQ2ODE0ZTYwNTMwMTU2OGQyZCIsInN1YiI6IjY0YmEyMDIwMzAwOWFhMDBlMjY0Y2VhZSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.eHILwGMMFNYioeUQaVUSgf_kU4PRKZP99iDQOHXQRpI",
+        },
+    };
+
+    return await fetch(
+        `https://api.themoviedb.org/3/movie/${id}?language=ko-KR`,
+        options
+    ).then((response) => response.json());
+}

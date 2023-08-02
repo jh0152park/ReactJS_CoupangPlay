@@ -74,3 +74,34 @@ export const RightArrow = styled.img`
         cursor: pointer;
     }
 `;
+
+export const Description = styled.div`
+    width: 520px;
+    height: 300px;
+    position: absolute;
+    background-color: darkgray;
+    bottom: 100px;
+    left: 60px;
+`;
+
+export const Title = styled.p`
+    text-align: left;
+    font-size: 60px;
+    margin-bottom: 20px;
+`;
+
+export const Information = styled.div`
+    width: 100%;
+    height: 10%;
+    background-color: black;
+    font-size: 25px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+`;
+
+export const Star = styled.span`
+    color: ${(props) => props.theme.coupangBlue};
+    font-size: 20px;
+    margin-right: 10px;
+`;
