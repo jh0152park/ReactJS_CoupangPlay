@@ -29,7 +29,12 @@ export const Wrapper = styled(motion.div)`
 `;
 
 export const DisplayBox = styled(motion.div)<{ BGPhoto?: string }>`
-    background-image: url(${(p) => p.BGPhoto});
+    background-image: linear-gradient(
+            270deg,
+            rgba(0, 0, 0, 0),
+            rgba(0, 0, 0, 1)
+        ),
+        url(${(p) => p.BGPhoto});
     background-size: cover;
     position: absolute;
     width: 100%;
@@ -79,9 +84,10 @@ export const Description = styled.div`
     width: 520px;
     height: 300px;
     position: absolute;
-    background-color: darkgray;
-    bottom: 100px;
+    bottom: 30px;
     left: 60px;
+    overflow: hidden;
+    box-sizing: border-box;
 `;
 
 export const Title = styled.p`
@@ -93,15 +99,27 @@ export const Title = styled.p`
 export const Information = styled.div`
     width: 100%;
     height: 10%;
-    background-color: black;
-    font-size: 25px;
+    font-size: 20px;
     display: flex;
     justify-content: flex-start;
     align-items: center;
+    margin-bottom: 25px;
 `;
 
 export const Star = styled.span`
     color: ${(props) => props.theme.coupangBlue};
     font-size: 20px;
     margin-right: 10px;
+`;
+
+export const Play = styled.div`
+    width: 300px;
+    height: 65px;
+    background-color: ${(props) => props.theme.coupangBlue};
+    color: ${(props) => props.theme.fontColor};
+    border-radius: 5px;
+    font-size: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 `;
