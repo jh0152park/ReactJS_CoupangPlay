@@ -26,7 +26,7 @@ function Banner({ results }: IData) {
 
     return (
         <Wrapper>
-            <AnimatePresence>
+            <AnimatePresence initial={false}>
                 {results.slice(startIndex, endIndex).map((result) => (
                     <DisplayBox
                         key={result.id}
@@ -39,6 +39,10 @@ function Banner({ results }: IData) {
                                 ? result.backdrop_path
                                 : result.poster_path
                         )}
+                        transition={{
+                            type: "tween",
+                            duration: 1,
+                        }}
                     ></DisplayBox>
                 ))}
             </AnimatePresence>
