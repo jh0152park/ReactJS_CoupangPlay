@@ -40,13 +40,15 @@ export const DisplayBox = styled(motion.div)<{ BGPhoto?: string }>`
 `;
 
 export const MainBannerImageVariants = {
-    start: {
-        x: window.outerWidth + 10,
+    start: (direction: number) => ({
+        x: (window.outerWidth + 10) * direction,
+    }),
+    end: {
+        x: 0,
     },
-    end: { x: 0 },
-    exit: {
-        x: -window.outerWidth - 10,
-    },
+    exit: (direction: number) => ({
+        x: (-window.outerWidth - 10) * direction,
+    }),
 };
 
 export const LeftArrow = styled.img`
@@ -56,6 +58,9 @@ export const LeftArrow = styled.img`
     top: 0;
     bottom: 0;
     margin: auto 0;
+    &:hover {
+        cursor: pointer;
+    }
 `;
 
 export const RightArrow = styled.img`
@@ -65,4 +70,7 @@ export const RightArrow = styled.img`
     top: 0;
     bottom: 0;
     margin: auto 0;
+    &:hover {
+        cursor: pointer;
+    }
 `;
