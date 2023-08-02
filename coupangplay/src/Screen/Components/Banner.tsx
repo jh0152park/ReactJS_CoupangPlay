@@ -5,6 +5,10 @@ import {
     IData,
     DisplayBox,
     MainBannerImageVariants,
+    LeftArrow,
+    LEFT_ARROW_URL,
+    RightArrow,
+    RIGHT_ARROW_URL,
 } from "../Styled/BannerStyled";
 import { useState } from "react";
 
@@ -16,17 +20,30 @@ function Banner({ results }: IData) {
         const maxLength = results.length;
 
         if (endIndex === maxLength) {
-            setEndIndex(1);
             setStartIndex(0);
+            setEndIndex(1);
         } else {
-            setEndIndex((prev) => prev + 1);
             setStartIndex((prev) => prev + 1);
+            setEndIndex((prev) => prev + 1);
+        }
+    }
+
+    function onLeftArrowClick() {
+        const maxLength = results.length;
+
+        if (startIndex === 0) {
+            setStartIndex(maxLength - 1);
+            setEndIndex(maxLength);
+        } else {
+            setStartIndex((prev) => prev - 1);
+            setEndIndex((prev) => prev - 1);
         }
     }
 
     return (
         <Wrapper>
             <AnimatePresence initial={false}>
+                <LeftArrow src={LEFT_ARROW_URL}></LeftArrow>
                 {results.slice(startIndex, endIndex).map((result) => (
                     <DisplayBox
                         key={result.id}
@@ -45,6 +62,10 @@ function Banner({ results }: IData) {
                         }}
                     ></DisplayBox>
                 ))}
+                <RightArrow
+                    onClick={onButtonClick}
+                    src={RIGHT_ARROW_URL}
+                ></RightArrow>
             </AnimatePresence>
             <button
                 style={{ position: "absolute", top: "700px" }}
