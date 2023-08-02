@@ -15,8 +15,12 @@ import { useState } from "react";
 function Banner({ results }: IData) {
     const [startIndex, setStartIndex] = useState(0);
     const [endIndex, setEndIndex] = useState(1);
+    const [moving, setMoving] = useState(false);
+    const [direction, setDirection] = useState(1);
 
-    function onButtonClick() {
+    function onRightArrowClick() {
+        if (moving) return;
+
         const maxLength = results.length;
 
         if (endIndex === maxLength) {
@@ -26,9 +30,13 @@ function Banner({ results }: IData) {
             setStartIndex((prev) => prev + 1);
             setEndIndex((prev) => prev + 1);
         }
+        setMoving(true);
+        setDirection(1);
     }
 
     function onLeftArrowClick() {
+        if (moving) return;
+
         const maxLength = results.length;
 
         if (startIndex === 0) {
@@ -38,12 +46,25 @@ function Banner({ results }: IData) {
             setStartIndex((prev) => prev - 1);
             setEndIndex((prev) => prev - 1);
         }
+        setMoving(true);
+        setDirection(-1);
+    }
+
+    function animationFinished() {
+        setMoving(false);
     }
 
     return (
         <Wrapper>
-            <AnimatePresence initial={false}>
-                <LeftArrow src={LEFT_ARROW_URL}></LeftArrow>
+            <AnimatePresence
+                initial={false}
+                onExitComplete={animationFinished}
+                custom={direction}
+            >
+                <LeftArrow
+                    onClick={onLeftArrowClick}
+                    src={LEFT_ARROW_URL}
+                ></LeftArrow>
                 {results.slice(startIndex, endIndex).map((result) => (
                     <DisplayBox
                         key={result.id}
@@ -51,6 +72,7 @@ function Banner({ results }: IData) {
                         initial="start"
                         animate="end"
                         exit="exit"
+                        custom={direction}
                         BGPhoto={createImagePath(
                             result.backdrop_path
                                 ? result.backdrop_path
@@ -63,16 +85,10 @@ function Banner({ results }: IData) {
                     ></DisplayBox>
                 ))}
                 <RightArrow
-                    onClick={onButtonClick}
+                    onClick={onRightArrowClick}
                     src={RIGHT_ARROW_URL}
                 ></RightArrow>
             </AnimatePresence>
-            <button
-                style={{ position: "absolute", top: "700px" }}
-                onClick={onButtonClick}
-            >
-                Click
-            </button>
         </Wrapper>
     );
 }
