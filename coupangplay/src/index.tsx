@@ -40,6 +40,7 @@ const GlobalStyle = createGlobalStyle`
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     background-color: ${(props) => props.theme.backgroundColor};
     color: ${(props) => props.theme.fontColor};
+    height: 200vh;
   }
   ol, ul {
     list-style: none;
