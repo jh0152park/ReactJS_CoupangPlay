@@ -17,26 +17,18 @@ import {
     ProfileMenu,
 } from "../Styled/HeaderStyled";
 
+const menus = ["TV", "영화", "스포츠", "스토어", "키즈", "뉴스", "찜한 콘텐츠"];
+
+const profileMenus = [
+    "프로필 관리",
+    "구매내역",
+    "할인쿠폰",
+    "리뷰 관리",
+    "의견 보내기",
+    "로그아웃",
+];
+
 function Header() {
-    const menus = [
-        "TV",
-        "영화",
-        "스포츠",
-        "스토어",
-        "키즈",
-        "뉴스",
-        "찜한 콘텐츠",
-    ];
-
-    const profileMenus = [
-        "프로필 관리",
-        "구매내역",
-        "할인쿠폰",
-        "리뷰 관리",
-        "의견 보내기",
-        "로그아웃",
-    ];
-
     return (
         <Wrapper>
             <LeftNavigation>

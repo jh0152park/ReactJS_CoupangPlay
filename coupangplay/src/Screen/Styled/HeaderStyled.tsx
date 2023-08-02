@@ -70,7 +70,7 @@ export const SearchLogo = styled.img`
     margin-right: 30px;
 `;
 
-export const ProfileBox = styled.div`
+export const ProfileBox = styled(motion.div)`
     width: 65px;
     height: 50px;
     position: relative;
@@ -83,6 +83,9 @@ export const ProfileBox = styled.div`
         cursor: pointer;
         img {
             transform: rotateZ(180deg);
+        }
+        div {
+            opacity: 1;
         }
     }
 `;
@@ -98,7 +101,7 @@ export const Profile = styled.div`
     align-items: center;
 `;
 
-export const ArrowDown = styled.img`
+export const ArrowDown = styled(motion.img)`
     scale: 1;
 `;
 
@@ -114,6 +117,7 @@ export const ProfileMenuBox = styled(motion.div)`
     justify-content: space-evenly;
     align-items: center;
     flex-direction: column;
+    opacity: 0;
 `;
 
 export const ProfileMenu = styled.div`
