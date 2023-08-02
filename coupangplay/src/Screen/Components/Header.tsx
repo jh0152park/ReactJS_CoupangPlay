@@ -13,6 +13,8 @@ import {
     ProfileBox,
     ArrowDown,
     ARROW_DOWN_URL,
+    ProfileMenuBox,
+    ProfileMenu,
 } from "../Styled/HeaderStyled";
 
 function Header() {
@@ -24,6 +26,15 @@ function Header() {
         "키즈",
         "뉴스",
         "찜한 콘텐츠",
+    ];
+
+    const profileMenus = [
+        "프로필 관리",
+        "구매내역",
+        "할인쿠폰",
+        "리뷰 관리",
+        "의견 보내기",
+        "로그아웃",
     ];
 
     return (
@@ -49,6 +60,11 @@ function Header() {
                 <ProfileBox>
                     <Profile>P</Profile>
                     <ArrowDown src={ARROW_DOWN_URL} />
+                    <ProfileMenuBox>
+                        {profileMenus.map((menu) => (
+                            <ProfileMenu>{menu}</ProfileMenu>
+                        ))}
+                    </ProfileMenuBox>
                 </ProfileBox>
             </RightNavigation>
         </Wrapper>

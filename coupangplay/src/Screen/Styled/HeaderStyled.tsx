@@ -1,3 +1,4 @@
+import { motion } from "framer-motion";
 import { styled } from "styled-components";
 
 export const LOGO_URL = "https://assets.coupangplay.com/images/logo.png";
@@ -99,4 +100,28 @@ export const Profile = styled.div`
 
 export const ArrowDown = styled.img`
     scale: 1;
+`;
+
+export const ProfileMenuBox = styled(motion.div)`
+    width: 130px;
+    height: 250px;
+    background-color: #262626;
+    position: absolute;
+    border-radius: 5px;
+    top: 60px;
+    right: 10px;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-direction: column;
+`;
+
+export const ProfileMenu = styled.div`
+    width: 100%;
+    height: 30px;
+    color: "#9B9B9B";
+    display: flex;
+    margin-left: 60px;
+    align-items: center;
+    font-weight: 100;
 `;
