@@ -28,10 +28,17 @@ export const DisplayBox = styled(motion.div)<{ BGPhoto?: string }>`
     position: absolute;
     width: 100%;
     height: 550px;
+    &:hover {
+        cursor: default;
+    }
 `;
 
 export const MainBannerImageVariants = {
-    start: { x: 500 },
+    start: {
+        x: window.outerWidth + 10,
+    },
     end: { x: 0 },
-    exit: { x: -500 },
+    exit: {
+        x: -window.outerWidth - 10,
+    },
 };
