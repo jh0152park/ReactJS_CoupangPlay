@@ -1,4 +1,4 @@
-import { AnimatePresence } from "framer-motion";
+import { AnimatePresence, delay } from "framer-motion";
 import { createImagePath, getMovieDetail } from "../../API";
 import {
     Wrapper,
@@ -78,6 +78,20 @@ function Banner({ results }: IData) {
         }
     }
 
+    function onDotClick(clickIndex: number) {
+        if (moving) return;
+        if (startIndex === clickIndex) return;
+
+        if (clickIndex > startIndex) {
+            setDirection(1);
+        } else {
+            setDirection(-1);
+        }
+        setMoving(true);
+        setStartIndex(clickIndex);
+        setEndIndex(clickIndex + 1);
+    }
+
     useEffect(() => {
         detail.refetch();
         getMoreInfo();
@@ -112,7 +126,7 @@ function Banner({ results }: IData) {
                                 )}
                                 transition={{
                                     type: "tween",
-                                    duration: 1,
+                                    duration: 1.5,
                                 }}
                             >
                                 <Description>
@@ -137,6 +151,9 @@ function Banner({ results }: IData) {
                                                 key={index}
                                                 layoutId="dots"
                                                 focus={index === startIndex}
+                                                onClick={() =>
+                                                    onDotClick(index)
+                                                }
                                             ></Dot>
                                         ))}
                                     </Dots>

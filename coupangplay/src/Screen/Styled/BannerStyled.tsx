@@ -47,13 +47,13 @@ export const DisplayBox = styled(motion.div)<{ BGPhoto?: string }>`
 
 export const MainBannerImageVariants = {
     start: (direction: number) => ({
-        x: (window.outerWidth + 10) * direction,
+        x: window.outerWidth * direction + 5,
     }),
     end: {
         x: 0,
     },
     exit: (direction: number) => ({
-        x: (-window.outerWidth - 10) * direction,
+        x: -window.outerWidth * direction - 5,
     }),
 };
 
