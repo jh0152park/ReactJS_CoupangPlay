@@ -14,6 +14,8 @@ import {
     Information,
     Star,
     Play,
+    Dots,
+    Dot,
 } from "../Styled/BannerStyled";
 import { useEffect, useState } from "react";
 import { useQuery } from "react-query";
@@ -29,7 +31,12 @@ function Banner({ results }: IData) {
 
     let genre = "";
     let runtime = "";
+    let dummyDots: number[] = [];
     const maxLength = results.length;
+
+    for (var i = 0; i < maxLength; i++) {
+        dummyDots.push(i);
+    }
 
     function onRightArrowClick() {
         if (moving) return;
@@ -123,6 +130,16 @@ function Banner({ results }: IData) {
                                         {runtime == "0" ? "123" : runtime}분
                                     </Information>
                                     <Play>► 재생하기</Play>
+
+                                    <Dots>
+                                        {dummyDots.map((index) => (
+                                            <Dot
+                                                key={index}
+                                                layoutId="dots"
+                                                focus={index === startIndex}
+                                            ></Dot>
+                                        ))}
+                                    </Dots>
                                 </Description>
                             </DisplayBox>
                         ))}

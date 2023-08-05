@@ -36,6 +36,7 @@ export const DisplayBox = styled(motion.div)<{ BGPhoto?: string }>`
         ),
         url(${(p) => p.BGPhoto});
     background-size: cover;
+    background-position: center center;
     position: absolute;
     width: 100%;
     height: 550px;
@@ -65,6 +66,7 @@ export const LeftArrow = styled.img`
     margin: auto 0;
     &:hover {
         cursor: pointer;
+        scale: 1.1;
     }
 `;
 
@@ -77,6 +79,7 @@ export const RightArrow = styled.img`
     margin: auto 0;
     &:hover {
         cursor: pointer;
+        scale: 1.1;
     }
 `;
 
@@ -124,5 +127,28 @@ export const Play = styled.div`
     align-items: center;
     &:hover {
         cursor: pointer;
+    }
+`;
+
+export const Dots = styled.div`
+    width: 100%;
+    height: 30px;
+    margin-top: 15px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 15px;
+`;
+
+export const Dot = styled(motion.div)<{ focus: boolean }>`
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: ${(props) =>
+        props.focus ? "rgba(255, 255, 255, 1)" : "rgba(255, 255, 255, 0.5)"};
+
+    &:hover {
+        cursor: pointer;
+        scale: 1.1;
     }
 `;
