@@ -138,6 +138,7 @@ export const Dots = styled.div`
     justify-content: flex-start;
     align-items: center;
     gap: 15px;
+    position: absolute;
 `;
 
 export const Dot = styled(motion.div)<{ focus: boolean }>`
