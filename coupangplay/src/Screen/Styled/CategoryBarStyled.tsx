@@ -63,3 +63,15 @@ export const RightArrow = styled.img`
         transition: opacity 0.2s linear;
     }
 `;
+
+export const GenresCategoriesVariants = {
+    start: (direction: number) => ({
+        x: window.outerWidth * direction + 5,
+    }),
+    end: {
+        x: 0,
+    },
+    exit: (direction: number) => ({
+        x: -window.outerWidth * direction - 5,
+    }),
+};
