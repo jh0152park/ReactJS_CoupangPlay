@@ -5,6 +5,7 @@ import {
     Frames,
     Header,
     LeftArrow,
+    Rank,
     RightArrow,
 } from "../Styled/TopMoviesStyled";
 
@@ -15,8 +16,10 @@ function TopMovies() {
 
             <Header>이번 주 인기작 TOP 20</Header>
             <Frames>
-                {[1, 2, 3, 4, 5, 6, 7].map((num) => (
-                    <Frame>{num}</Frame>
+                {[1, 2, 3, 4, 5, 16, 17].map((num) => (
+                    <Frame>
+                        <Rank>{num}</Rank>
+                    </Frame>
                 ))}
             </Frames>
 

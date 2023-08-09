@@ -67,5 +67,19 @@ export const Frame = styled(motion.div)`
     display: flex;
     justify-content: space-between;
     align-items: end;
-    background-color: pink;
+    box-sizing: border-box;
+    background-color: rgba(255, 192, 203, 0);
+`;
+
+export const Rank = styled(motion.div)`
+    width: 20%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: end;
+
+    color: black;
+    font-size: 50px;
+    font-weight: bold;
+    text-shadow: -1px 1px 8px ${(props) => props.theme.coupangBlue};
 `;
