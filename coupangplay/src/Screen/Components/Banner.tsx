@@ -6,9 +6,7 @@ import {
     DisplayBox,
     MainBannerImageVariants,
     LeftArrow,
-    LEFT_ARROW_URL,
     RightArrow,
-    RIGHT_ARROW_URL,
     Description,
     Title,
     Information,
@@ -19,6 +17,7 @@ import {
 } from "../Styled/BannerStyled";
 import { useEffect, useState } from "react";
 import { useQuery } from "react-query";
+import { LEFT_ARROW_URL, RIGHT_ARROW_URL } from "../../\bGlobalFeatures";
 
 function Banner({ results }: IData) {
     const [startIndex, setStartIndex] = useState(0);
