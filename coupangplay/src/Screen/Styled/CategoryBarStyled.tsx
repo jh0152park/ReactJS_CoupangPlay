@@ -66,12 +66,12 @@ export const RightArrow = styled.img`
 
 export const GenresCategoriesVariants = {
     start: (direction: number) => ({
-        x: window.outerWidth * direction + 5,
+        x: (window.outerWidth + 10) * direction,
     }),
     end: {
         x: 0,
     },
     exit: (direction: number) => ({
-        x: -window.outerWidth * direction - 5,
+        x: (-window.outerWidth - 10) * direction,
     }),
 };
