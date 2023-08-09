@@ -58,7 +58,7 @@ export const Frames = styled.div`
     grid-template-columns: repeat(7, 1fr);
     box-sizing: border-box;
     overflow: hidden;
-    gap: 10px;
+    gap: 15px;
     border: 1px solid blueviolet;
 `;
 
@@ -77,9 +77,18 @@ export const Rank = styled(motion.div)`
     display: flex;
     justify-content: center;
     align-items: end;
-
     color: black;
     font-size: 50px;
     font-weight: bold;
+    margin-right: 10px;
     text-shadow: -1px 1px 8px ${(props) => props.theme.coupangBlue};
+`;
+
+export const Poster = styled(motion.div)<{ BGPhoto?: string }>`
+    width: 80%;
+    height: 100%;
+    background-image: url(${(props) => props.BGPhoto});
+    background-size: cover;
+    background-position: center;
+    /* background-color: pink; */
 `;
