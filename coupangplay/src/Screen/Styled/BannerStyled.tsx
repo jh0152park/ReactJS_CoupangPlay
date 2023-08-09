@@ -16,12 +16,6 @@ export interface IData {
     results: IResult[];
 }
 
-export const LEFT_ARROW_URL =
-    "https://www.coupangplay.com/images/svg/slider-arrow-left.svg";
-
-export const RIGHT_ARROW_URL =
-    "https://www.coupangplay.com/images/svg/slider-arrow-right.svg";
-
 export const Wrapper = styled(motion.div)`
     width: 100%;
     height: 550px;
