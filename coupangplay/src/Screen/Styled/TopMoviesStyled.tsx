@@ -60,6 +60,7 @@ export const Frames = styled.div`
     overflow: hidden;
     gap: 15px;
     border: 1px solid blueviolet;
+    padding: 0 10px;
 `;
 
 export const Frame = styled(motion.div)`
