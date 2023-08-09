@@ -17,7 +17,7 @@ import {
 } from "../Styled/BannerStyled";
 import { useEffect, useState } from "react";
 import { useQuery } from "react-query";
-import { LEFT_ARROW_URL, RIGHT_ARROW_URL } from "../../\bGlobalFeatures";
+import { LEFT_ARROW_URL, RIGHT_ARROW_URL } from "../../GlobalFeatures";
 
 function Banner({ results }: IData) {
     const [startIndex, setStartIndex] = useState(0);
