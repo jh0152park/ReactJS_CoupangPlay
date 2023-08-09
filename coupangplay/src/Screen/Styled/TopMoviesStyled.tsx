@@ -3,7 +3,7 @@ import { styled } from "styled-components";
 
 export const Container = styled.div`
     width: 100%;
-    height: 200px;
+    height: 210px;
     padding: 0px 30px;
     border: 1px solid azure;
     box-sizing: border-box;
@@ -25,12 +25,12 @@ export const LeftArrow = styled.img`
     top: 0;
     bottom: 0;
     margin: auto 0;
-    /* opacity: 0; */
+
+    // used below marign top only at row of movies frames
+    margin-top: 95px;
     &:hover {
         cursor: pointer;
         scale: 1.1;
-        /* opacity: 1;
-        transition: opacity 0.2s linear; */
     }
 `;
 
@@ -42,12 +42,12 @@ export const RightArrow = styled.img`
     top: 0;
     bottom: 0;
     margin: auto 0;
-    /* opacity: 0; */
+
+    // used below marign top only at row of movies frames
+    margin-top: 95px;
     &:hover {
         cursor: pointer;
         scale: 1.1;
-        /* opacity: 1;
-        transition: opacity 0.2s linear; */
     }
 `;
 
@@ -59,8 +59,9 @@ export const Frames = styled.div`
     box-sizing: border-box;
     overflow: hidden;
     gap: 15px;
-    border: 1px solid blueviolet;
     padding: 0 10px;
+    margin-top: 10px;
+    border: 1px solid blueviolet;
 `;
 
 export const Frame = styled(motion.div)`
@@ -69,7 +70,7 @@ export const Frame = styled(motion.div)`
     justify-content: space-between;
     align-items: end;
     box-sizing: border-box;
-    background-color: rgba(255, 192, 203, 0);
+    background-color: rgba(255, 192, 203, 0.1);
 `;
 
 export const Rank = styled(motion.div)`
@@ -79,7 +80,7 @@ export const Rank = styled(motion.div)`
     justify-content: center;
     align-items: end;
     color: black;
-    font-size: 50px;
+    font-size: 40px;
     font-weight: bold;
     margin-right: 10px;
     text-shadow: -1px 1px 8px ${(props) => props.theme.coupangBlue};
@@ -91,5 +92,6 @@ export const Poster = styled(motion.div)<{ BGPhoto?: string }>`
     background-image: url(${(props) => props.BGPhoto});
     background-size: cover;
     background-position: center;
+    border-radius: 5px;
     /* background-color: pink; */
 `;
