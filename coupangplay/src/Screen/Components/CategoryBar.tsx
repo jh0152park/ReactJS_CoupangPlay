@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { LEFT_ARROW_URL, RIGHT_ARROW_URL } from "../../\bGlobalFeatures";
+import { LEFT_ARROW_URL, RIGHT_ARROW_URL } from "../../GlobalFeatures";
 import {
     Category,
     Container,
