@@ -88,7 +88,7 @@ export const Rank = styled(motion.div)`
 `;
 
 export const Poster = styled(motion.div)<{ BGPhoto?: string }>`
-    width: 75%;
+    width: 70%;
     height: 110%;
     background-image: url(${(props) => props.BGPhoto});
     background-size: cover;
