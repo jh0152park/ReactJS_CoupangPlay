@@ -74,24 +74,24 @@ export const Frame = styled(motion.div)`
 `;
 
 export const Rank = styled(motion.div)`
-    width: 20%;
+    width: 50%;
     height: 100%;
     display: flex;
     justify-content: center;
     align-items: end;
     color: black;
-    font-size: 40px;
+    font-size: 50px;
     font-weight: bold;
-    margin-right: 10px;
+
     text-shadow: -1px 1px 8px ${(props) => props.theme.coupangBlue};
+    /* background-color: pink; */
 `;
 
 export const Poster = styled(motion.div)<{ BGPhoto?: string }>`
-    width: 80%;
-    height: 100%;
+    width: 75%;
+    height: 110%;
     background-image: url(${(props) => props.BGPhoto});
     background-size: cover;
     background-position: center;
     border-radius: 5px;
-    /* background-color: pink; */
 `;
