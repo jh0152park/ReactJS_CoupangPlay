@@ -65,18 +65,6 @@ export const RightArrow = styled.img`
     }
 `;
 
-export const GenresCategoriesVariants = {
-    start: (direction: number) => ({
-        x: (window.outerWidth + 10) * direction,
-    }),
-    end: {
-        x: 0,
-    },
-    exit: (direction: number) => ({
-        x: (-window.outerWidth - 10) * direction,
-    }),
-};
-
 export const CategoriesContainer = styled.div`
     display: flex;
     justify-content: space-between;

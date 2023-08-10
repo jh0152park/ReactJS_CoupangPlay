@@ -27,6 +27,7 @@ function TopMovies() {
 
     const [startIndex, setStartIndex] = useState<number>(0);
     const [endIndex, setEndIndex] = useState<number>(7);
+    const [direction, setDirection] = useState<number>(1);
 
     function onLeftArrowClick() {
         console.log("left arrow clikced");
@@ -46,6 +47,7 @@ function TopMovies() {
             default:
                 break;
         }
+        setDirection(-1);
     }
 
     function onRightArrowClick() {
@@ -66,6 +68,7 @@ function TopMovies() {
             default:
                 break;
         }
+        setDirection(1);
     }
 
     return (

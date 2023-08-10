@@ -4,17 +4,16 @@ import {
     CategoriesContainer,
     Category,
     Container,
-    GenresCategoriesVariants,
     LeftArrow,
     RightArrow,
 } from "../Styled/CategoryBarStyled";
 import { CATEGORIES } from "../Types/CategoryBarTypes";
 import { AnimatePresence } from "framer-motion";
+import { SlideVariants } from "../../ProjectCommon";
 
 function CategoryBar() {
     const [categoryIndex, setCategoryIndex] = useState<number>(0);
     const [direction, setDirection] = useState<number>(1);
-    const [moving, setMoving] = useState<boolean>(false);
     const categories = [CATEGORIES.slice(0, 10), CATEGORIES.slice(10, 23)];
 
     function updateIndex() {
@@ -24,14 +23,12 @@ function CategoryBar() {
     function onLeftArrowClick() {
         updateIndex();
         setDirection(-1);
-        setMoving(true);
         console.log("left arrow clicked");
     }
 
     function onRightArrowClick() {
         updateIndex();
         setDirection(1);
-
         console.log("right arrow clicked");
     }
 
@@ -50,7 +47,7 @@ function CategoryBar() {
                                 key={category}
                                 layoutId={category}
                                 length={category.length * 20}
-                                variants={GenresCategoriesVariants}
+                                variants={SlideVariants}
                                 initial="start"
                                 animate="end"
                                 exit="exit"
