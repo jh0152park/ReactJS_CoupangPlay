@@ -39,7 +39,7 @@ function CategoryBar() {
         <>
             <AnimatePresence initial={false} custom={direction} mode="wait">
                 <Container>
-                    <LeftArrow
+                    {/* <LeftArrow
                         onClick={onLeftArrowClick}
                         src={LEFT_ARROW_URL}
                     ></LeftArrow>
@@ -68,7 +68,7 @@ function CategoryBar() {
                     <RightArrow
                         onClick={onRightArrowClick}
                         src={RIGHT_ARROW_URL}
-                    ></RightArrow>
+                    ></RightArrow> */}
                 </Container>
             </AnimatePresence>
         </>

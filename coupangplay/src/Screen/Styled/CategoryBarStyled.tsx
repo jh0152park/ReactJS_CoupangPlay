@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 import { styled } from "styled-components";
 
 export const Container = styled(motion.div)`
-    width: 90%;
+    width: 100%;
     height: 120px;
     display: flex;
     justify-content: flex-start;
@@ -10,6 +10,8 @@ export const Container = styled(motion.div)`
     padding: 0px 60px;
     overflow: hidden;
     position: relative;
+    box-sizing: border-box;
+    background-color: red;
 `;
 
 export const Category = styled(motion.div)<{ length: number }>`
@@ -81,5 +83,4 @@ export const CategoriesContainer = styled.div`
     justify-content: space-between;
     align-items: center;
     width: 100%;
-    background-color: red;
 `;
