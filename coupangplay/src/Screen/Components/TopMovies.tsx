@@ -17,6 +17,7 @@ import {
 import { createImagePath, getPopularMovieList } from "../../API";
 import { IData } from "../Styled/BannerStyled";
 import { useState } from "react";
+import { AnimatePresence } from "framer-motion";
 
 function TopMovies() {
     const PopularMovies = useQuery<IData>("popularMovies1", () =>
@@ -26,16 +27,6 @@ function TopMovies() {
 
     const [startIndex, setStartIndex] = useState<number>(0);
     const [endIndex, setEndIndex] = useState<number>(7);
-
-    /*
-    start and end index have to gonna change as below.
-
-    - initial: start 0 / end 7
-    - 2step: start 7 / end 14
-    - 3step: start 13 / end 20
-
-    after that gonna to initial state
-    */
 
     function onLeftArrowClick() {
         console.log("left arrow clikced");
@@ -86,22 +77,25 @@ function TopMovies() {
                 ></LeftArrow>
 
                 <Header>이번 주 인기작 TOP 20</Header>
-                <Frames>
-                    {Results?.slice(startIndex, endIndex).map(
-                        (movie, index) => (
-                            <Frame>
-                                <Rank>{index + startIndex + 1}</Rank>
-                                <Poster
-                                    BGPhoto={createImagePath(
-                                        movie.poster_path
-                                            ? movie.poster_path
-                                            : movie.backdrop_path
-                                    )}
-                                ></Poster>
-                            </Frame>
-                        )
-                    )}
-                </Frames>
+
+                <AnimatePresence>
+                    <Frames>
+                        {Results?.slice(startIndex, endIndex).map(
+                            (movie, index) => (
+                                <Frame>
+                                    <Rank>{index + startIndex + 1}</Rank>
+                                    <Poster
+                                        BGPhoto={createImagePath(
+                                            movie.poster_path
+                                                ? movie.poster_path
+                                                : movie.backdrop_path
+                                        )}
+                                    ></Poster>
+                                </Frame>
+                            )
+                        )}
+                    </Frames>
+                </AnimatePresence>
 
                 <RightArrow
                     onClick={onRightArrowClick}

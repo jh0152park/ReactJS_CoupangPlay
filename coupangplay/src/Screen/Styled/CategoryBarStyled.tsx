@@ -75,3 +75,11 @@ export const GenresCategoriesVariants = {
         x: (-window.outerWidth - 10) * direction,
     }),
 };
+
+export const CategoriesContainer = styled.div`
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    background-color: red;
+`;

@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { LEFT_ARROW_URL, RIGHT_ARROW_URL } from "../../GlobalFeatures";
 import {
+    CategoriesContainer,
     Category,
     Container,
     GenresCategoriesVariants,
@@ -43,24 +44,26 @@ function CategoryBar() {
                         src={LEFT_ARROW_URL}
                     ></LeftArrow>
 
-                    {categories[categoryIndex].map((category) => (
-                        <Category
-                            key={category}
-                            layoutId={category}
-                            length={category.length * 15}
-                            variants={GenresCategoriesVariants}
-                            initial="start"
-                            animate="end"
-                            exit="exit"
-                            custom={direction}
-                            transition={{
-                                type: "tween",
-                                duration: 1,
-                            }}
-                        >
-                            {category}
-                        </Category>
-                    ))}
+                    <CategoriesContainer>
+                        {categories[categoryIndex].map((category) => (
+                            <Category
+                                key={category}
+                                layoutId={category}
+                                length={category.length * 15}
+                                variants={GenresCategoriesVariants}
+                                initial="start"
+                                animate="end"
+                                exit="exit"
+                                custom={direction}
+                                transition={{
+                                    type: "tween",
+                                    duration: 1,
+                                }}
+                            >
+                                {category}
+                            </Category>
+                        ))}
+                    </CategoriesContainer>
 
                     <RightArrow
                         onClick={onRightArrowClick}
