@@ -11,7 +11,6 @@ export const Container = styled(motion.div)`
     overflow: hidden;
     position: relative;
     box-sizing: border-box;
-    background-color: red;
 `;
 
 export const Category = styled(motion.div)<{ length: number }>`
