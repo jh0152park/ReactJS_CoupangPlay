@@ -1,5 +1,6 @@
 import { useHistory, useLocation, useParams } from "react-router-dom";
 import {
+    Background,
     BackgroundImage,
     MovieDetail,
     Overlay,
@@ -70,12 +71,16 @@ function Detail({ y }: { y: number }) {
                                     type: "tween",
                                 }}
                             >
-                                <BackgroundImage>
+                                <Background>
                                     {videoKey !== "n/a" &&
                                     videoKey !== undefined ? (
                                         <Youtube videoKey={videoKey}></Youtube>
-                                    ) : null}
-                                </BackgroundImage>
+                                    ) : (
+                                        <BackgroundImage
+                                            BGPhoto={clickedMovieBGLink}
+                                        ></BackgroundImage>
+                                    )}
+                                </Background>
                             </MovieDetail>
                         </Overlay>
                     ) : null}
