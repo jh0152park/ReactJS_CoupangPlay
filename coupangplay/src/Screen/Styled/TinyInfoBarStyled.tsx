@@ -1,6 +1,7 @@
+import { motion } from "framer-motion";
 import { styled } from "styled-components";
 
-export const Container = styled.div`
+export const Container = styled(motion.div)`
     width: 100%;
     height: 30%;
     position: absolute;
@@ -11,6 +12,8 @@ export const Container = styled.div`
     background-color: #151515;
     box-sizing: border-box;
     padding: 3px 5px;
+
+    opacity: 0;
 `;
 
 export const Title = styled.div`
@@ -73,3 +76,13 @@ export const NormalButton = styled.div`
     justify-content: center;
     align-items: center;
 `;
+
+export const InfobarVariants = {
+    hover: {
+        opacity: 1,
+        transition: {
+            duration: 0.3,
+            type: "tween",
+        },
+    },
+};

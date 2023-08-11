@@ -10,6 +10,7 @@ import {
     RightButton,
     PlayButton,
     NormalButton,
+    InfobarVariants,
 } from "../Styled/TinyInfoBarStyled";
 import { getMovieDetail } from "../../API";
 
@@ -29,7 +30,7 @@ export function InfoBar({ data }: { data: IResult }) {
     }
 
     return (
-        <Container>
+        <Container variants={InfobarVariants} whileHover="hover">
             <Title>{title}</Title>
             <Description>
                 <Star>★</Star>
