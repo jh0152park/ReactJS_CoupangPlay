@@ -1,7 +1,8 @@
 import YouTube from "react-youtube";
 
-function Youtube({ key }: { key: string }) {
-    const videoId = key;
+function Youtube({ videoKey }: { videoKey: string }) {
+    console.log(videoKey);
+    const videoId = videoKey;
     const option = {
         height: "360",
         width: "700",
@@ -11,10 +12,21 @@ function Youtube({ key }: { key: string }) {
     };
 
     console.log(videoId);
-    console.log(key);
+
     console.log("youtube run");
 
-    return <YouTube videoId={videoId} opts={option}></YouTube>;
+    return (
+        <YouTube
+            videoId={videoId}
+            opts={option}
+            onEnd={(e) => {
+                e.target.stopVideo(0);
+            }}
+            onReady={(e) => {
+                e.target.playVideo(true);
+            }}
+        ></YouTube>
+    );
 }
 
 export default Youtube;
