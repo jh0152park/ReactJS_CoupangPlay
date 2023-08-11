@@ -33,7 +33,7 @@ export const Category = styled.div<{ length: number }>`
 export const LeftArrow = styled.img`
     color: white;
     position: absolute;
-    z-index: 99;
+    z-index: 98;
     left: 0;
     top: 0;
     bottom: 0;
@@ -50,7 +50,7 @@ export const LeftArrow = styled.img`
 export const RightArrow = styled.img`
     color: white;
     position: absolute;
-    z-index: 99;
+    z-index: 98;
     right: 0;
     top: 0;
     bottom: 0;

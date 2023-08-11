@@ -23,6 +23,7 @@ export const Title = styled.span`
     height: 20px;
     font-size: 20px;
     text-align: left;
+    margin-top: 10px;
 `;
 
 export const Description = styled.div`
@@ -32,7 +33,7 @@ export const Description = styled.div`
     justify-content: flex-start;
     align-items: center;
     font-size: 15px;
-    margin-top: -5px;
+    margin-top: -10px;
 `;
 
 export const Star = styled.span`
