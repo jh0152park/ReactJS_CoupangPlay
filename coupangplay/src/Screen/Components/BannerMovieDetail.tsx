@@ -1,8 +1,8 @@
 import { useHistory, useLocation, useParams } from "react-router-dom";
 import {
     MovieDetail,
+    MovieDetailVariants,
     Overlay,
-    OverlayVariants,
 } from "../Styled/BannerMovieDetailStyled";
 import { useRecoilValue, useSetRecoilState } from "recoil";
 import { BannerClickMovieState, BannerDetailState } from "../../GlobalFeatures";
@@ -25,22 +25,19 @@ function Detail({ y }: { y: number }) {
     return (
         <>
             {isRealClicked ? (
-                <AnimatePresence>
-                    <Overlay
+                <Overlay
+                    onClick={handleClickOutside}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                >
+                    <MovieDetail
+                        style={{ top: y + 200 }}
                         layoutId={currntPath}
-                        onClick={handleClickOutside}
-                        variants={OverlayVariants}
-                        initial="initial"
-                        animate="animate"
-                        exit="exit"
                         transition={{
                             type: "tween",
-                            duration: 0.5,
                         }}
-                    >
-                        <MovieDetail style={{ top: y + 200 }}></MovieDetail>
-                    </Overlay>
-                </AnimatePresence>
+                    ></MovieDetail>
+                </Overlay>
             ) : null}
         </>
     );

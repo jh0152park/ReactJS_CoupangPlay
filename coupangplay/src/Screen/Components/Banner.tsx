@@ -193,7 +193,11 @@ function Banner({ results }: IData) {
                     </AnimatePresence>
                 </Wrapper>
             )}
-            {showDetail ? <Detail y={scrollY.get()}></Detail> : null}
+            {showDetail ? (
+                <AnimatePresence>
+                    <Detail y={scrollY.get()}></Detail>
+                </AnimatePresence>
+            ) : null}
         </>
     );
 }
