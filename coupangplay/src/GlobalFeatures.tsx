@@ -1,3 +1,5 @@
+import { atom } from "recoil";
+
 export const LEFT_ARROW_URL =
     "https://www.coupangplay.com/images/svg/slider-arrow-left.svg";
 
@@ -22,3 +24,8 @@ export interface IResult {
 export interface IData {
     results: IResult[];
 }
+
+export const MouseOnTop20State = atom<boolean>({
+    key: "mouseOnTop20",
+    default: false,
+});

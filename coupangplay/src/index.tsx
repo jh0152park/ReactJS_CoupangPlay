@@ -3,6 +3,7 @@ import App from "./App";
 import { ThemeProvider, createGlobalStyle } from "styled-components";
 import { theme } from "./Theme";
 import { QueryClient, QueryClientProvider } from "react-query";
+import { RecoilBridge, RecoilRoot } from "recoil";
 
 const GlobalStyle = createGlobalStyle`
   /* http://meyerweb.com/eric/tools/css/reset/ 
@@ -70,11 +71,13 @@ const root = ReactDOM.createRoot(
 );
 root.render(
     <>
-        <QueryClientProvider client={client}>
-            <ThemeProvider theme={theme}>
-                <GlobalStyle />
-                <App />
-            </ThemeProvider>
-        </QueryClientProvider>
+        <RecoilRoot>
+            <QueryClientProvider client={client}>
+                <ThemeProvider theme={theme}>
+                    <GlobalStyle />
+                    <App />
+                </ThemeProvider>
+            </QueryClientProvider>
+        </RecoilRoot>
     </>
 );

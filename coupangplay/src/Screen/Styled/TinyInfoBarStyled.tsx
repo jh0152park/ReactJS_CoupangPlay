@@ -6,31 +6,33 @@ export const Container = styled(motion.div)`
     height: 30%;
     position: absolute;
     bottom: 0;
-    display: block;
-    justify-content: flex-start;
+    display: flex;
+    justify-content: space-between;
     align-items: flex-start;
+    flex-direction: column;
     background-color: #151515;
     box-sizing: border-box;
-    padding: 3px 5px;
-
+    padding: 5px 5px;
     opacity: 0;
 `;
 
-export const Title = styled.div`
+export const Title = styled.span`
     box-sizing: border-box;
     overflow: hidden;
     width: 100%;
-    height: 20%;
-    font-size: 12px;
-    margin-top: 5px;
+    height: 20px;
+    font-size: 20px;
+    text-align: left;
 `;
 
 export const Description = styled.div`
-    margin: 5px 0px;
+    width: 100%;
+    height: 30%;
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    font-size: 10px;
+    font-size: 15px;
+    margin-top: -5px;
 `;
 
 export const Star = styled.span`
@@ -40,9 +42,11 @@ export const Star = styled.span`
 
 export const ButtonContainer = styled.div`
     width: 100%;
+    height: 30%;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    margin-top: -5px;
 `;
 
 export const LeftButton = styled.div`
@@ -55,23 +59,23 @@ export const LeftButton = styled.div`
 export const RightButton = styled.div``;
 
 export const PlayButton = styled.div`
-    width: 18px;
-    height: 18px;
+    width: 30px;
+    height: 30px;
     border-radius: 50%;
     background-color: ${(props) => props.theme.coupangBlue};
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 9px;
+    font-size: 15px;
 `;
 
 export const NormalButton = styled.div`
-    width: 15px;
-    height: 15px;
+    width: 30px;
+    height: 30px;
     border-radius: 50%;
     color: whitesmoke;
     border: 1px solid #9e9e9e;
-    font-size: 10px;
+    font-size: 15px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -81,6 +85,7 @@ export const InfobarVariants = {
     hover: {
         opacity: 1,
         transition: {
+            delay: 0.5,
             duration: 0.3,
             type: "tween",
         },

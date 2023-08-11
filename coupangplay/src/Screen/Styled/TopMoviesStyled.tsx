@@ -3,10 +3,10 @@ import { styled } from "styled-components";
 
 export const Container = styled.div`
     width: 100%;
-    height: 210px;
+    height: 250px;
     /* border: 1px solid azure; */
     box-sizing: border-box;
-    overflow: hidden;
+    /* overflow: hidden; */
     position: relative;
 `;
 
@@ -55,17 +55,21 @@ export const RightArrow = styled.img`
 
 export const Frames = styled(motion.div)`
     width: 95%;
-    height: 180px;
+    height: 200px;
     display: grid;
     grid-template-columns: repeat(7, 1fr);
     gap: 15px;
     margin-top: 10px;
     box-sizing: border-box;
-    overflow: hidden;
+    /* overflow: hidden; */
     left: 0;
     right: 0;
     margin: 0 auto;
     position: absolute;
+
+    /* div: {
+        transform-origin: top right;
+    } */
 
     /* border: 1px solid blueviolet; */
 `;
@@ -76,7 +80,7 @@ export const Frame = styled.div`
     justify-content: flex-start;
     align-items: end;
     box-sizing: border-box;
-    overflow-x: hidden;
+    /* overflow-x: hidden; */
     /* background-color: rgba(255, 192, 203, 0.1); */
 `;
 
@@ -96,7 +100,7 @@ export const Rank = styled.div`
 
 export const Poster = styled(motion.div)<{ BGPhoto?: string }>`
     width: 55%;
-    height: 110%;
+    height: 100%;
     background-image: url(${(props) => props.BGPhoto});
     background-size: cover;
     background-position: center;
@@ -105,6 +109,10 @@ export const Poster = styled(motion.div)<{ BGPhoto?: string }>`
     /* box-sizing: border-box;
     overflow: auto; */
     border: none;
+
+    &:hover {
+        cursor: pointer;
+    }
 `;
 
 export const PosterBadige = styled(motion.div)`
@@ -114,7 +122,7 @@ export const PosterBadige = styled(motion.div)`
     background-color: black;
     border: 1px solid gray;
     position: absolute;
-    top: 23px;
+    top: 5px;
     left: 5px;
     border-radius: 5px;
     display: flex;
@@ -136,12 +144,12 @@ export const PosterVariants = {
     hover: {
         cursor: "pointer",
         zIndex: 99,
-        width: "700px",
-        height: "210px",
+        width: "300px",
+        height: "300px",
         transition: {
-            delay: 0.5,
+            delay: 0.3,
+            duration: 0.3,
             type: "tween",
-            duration: 0.5,
         },
     },
 };

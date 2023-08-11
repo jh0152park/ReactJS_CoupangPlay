@@ -1,6 +1,7 @@
 export function createImagePath(image: string, size?: number) {
     let URL = "https://image.tmdb.org/t/p/";
-    URL += size ? `w${size}` : "original" + "/" + image;
+    URL += (size ? `w${size}` : "original") + "/" + image;
+
     return URL;
 }
 
