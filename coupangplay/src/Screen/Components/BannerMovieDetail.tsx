@@ -42,7 +42,8 @@ function Detail({ y }: { y: number }) {
                 if (
                     i.site.toLowerCase() === "youtube" &&
                     (i.type.toLowerCase() === "teaser" ||
-                        i.type.toLowerCase() === "tailer")
+                        i.type.toLowerCase() === "trailer" ||
+                        i.type.toLowerCase() === "clip")
                 ) {
                     console.log(i);
                     return i.key;

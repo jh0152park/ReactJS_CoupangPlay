@@ -31,8 +31,8 @@ export const Background = styled.div`
 `;
 
 export const BackgroundImage = styled.div<{ BGPhoto: string }>`
-    width: 100%;
-    height: 60%;
+    width: 700px;
+    height: 360px;
     box-sizing: border-box;
     overflow: hidden;
     background-image: linear-gradient(
