@@ -23,9 +23,24 @@ export const MovieDetail = styled(motion.div)`
     box-sizing: border-box;
 `;
 
-export const BackgroundImage = styled.div`
+export const Background = styled.div`
     width: 100%;
     height: 60%;
     box-sizing: border-box;
     overflow: hidden;
+`;
+
+export const BackgroundImage = styled.div<{ BGPhoto: string }>`
+    width: 100%;
+    height: 60%;
+    box-sizing: border-box;
+    overflow: hidden;
+    background-image: linear-gradient(
+            270deg,
+            rgba(0, 0, 0, 0),
+            rgba(0, 0, 0, 1)
+        ),
+        url(${(p) => p.BGPhoto});
+    background-size: cover;
+    background-position: top center;
 `;
