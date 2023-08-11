@@ -4,7 +4,7 @@ import { styled } from "styled-components";
 export const Container = styled.div`
     width: 100%;
     height: 210px;
-    border: 1px solid azure;
+    /* border: 1px solid azure; */
     box-sizing: border-box;
     overflow: hidden;
     position: relative;
@@ -15,7 +15,7 @@ export const Header = styled.div`
     height: 20px;
     font-size: 18px;
     padding-left: 40px;
-    border: 1px solid azure;
+    /* border: 1px solid azure; */
 `;
 
 export const LeftArrow = styled.img`
@@ -66,7 +66,7 @@ export const Frames = styled(motion.div)`
     margin: 0 auto;
     position: absolute;
 
-    border: 1px solid blueviolet;
+    /* border: 1px solid blueviolet; */
 `;
 
 export const Frame = styled.div`
@@ -76,7 +76,7 @@ export const Frame = styled.div`
     align-items: end;
     box-sizing: border-box;
     overflow-x: hidden;
-    background-color: rgba(255, 192, 203, 0.1);
+    /* background-color: rgba(255, 192, 203, 0.1); */
 `;
 
 export const Rank = styled.div`
@@ -89,40 +89,41 @@ export const Rank = styled.div`
     font-size: 50px;
     font-weight: bold;
     text-shadow: -1px 1px 8px ${(props) => props.theme.coupangBlue};
+    margin-right: -20px;
     /* background-color: pink; */
 `;
 
 export const Poster = styled.div<{ BGPhoto?: string }>`
-    width: 70%;
+    width: 55%;
     height: 110%;
     background-image: url(${(props) => props.BGPhoto});
     background-size: cover;
     background-position: center;
     border-radius: 5px;
+    position: relative;
+    &:hover {
+        cursor: pointer;
+    }
 `;
 
-export const RowVariants = {
-    start: {
-        x: window.outerWidth + 5,
-    },
-    end: {
-        x: 0,
-    },
-    exit: {
-        x: -window.outerWidth - 5,
-    },
-};
-
-export const TestRow = styled(motion.div)`
-    width: 100%;
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    gap: 10px;
+export const PosterBadige = styled.div`
+    width: 60px;
+    height: 22px;
+    font-size: 13px;
+    background-color: black;
+    border: 1px solid gray;
     position: absolute;
-`;
+    top: 23px;
+    left: 5px;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
-export const TestBox = styled(motion.div)`
-    height: 200px;
-    background-color: whitesmoke;
-    border-radius: 10px;
+    > span {
+        color: ${(props) => props.theme.coupangBlue};
+        &::after {
+            content: " ";
+        }
+    }
 `;

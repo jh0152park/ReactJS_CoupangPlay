@@ -7,11 +7,9 @@ import {
     Header,
     LeftArrow,
     Poster,
+    PosterBadige,
     Rank,
     RightArrow,
-    RowVariants,
-    TestBox,
-    TestRow,
 } from "../Styled/TopMoviesStyled";
 import { createImagePath, getPopularMovieList } from "../../API";
 import { IData } from "../Styled/BannerStyled";
@@ -106,7 +104,7 @@ function TopMovies() {
                         custom={direction}
                         transition={{
                             type: "tween",
-                            duration: 1,
+                            duration: 0.7,
                         }}
                     >
                         {Results?.slice(startIndex, endIndex).map(
@@ -119,7 +117,12 @@ function TopMovies() {
                                                 ? movie.poster_path
                                                 : movie.backdrop_path
                                         )}
-                                    ></Poster>
+                                    >
+                                        <PosterBadige>
+                                            <span>쿠플 </span>
+                                            &nbsp; 독점
+                                        </PosterBadige>
+                                    </Poster>
                                 </Frame>
                             )
                         )}
