@@ -20,29 +20,11 @@ export const MovieDetail = styled(motion.div)`
     background-color: #171717;
     border-radius: 10px;
     position: absolute;
+    box-sizing: border-box;
 `;
 
-export const MovieDetailVariants = {
-    initial: {
-        opacity: 0,
-        transition: {
-            type: "tween",
-            duration: 1,
-        },
-    },
-    animate: {
-        x: 0,
-        opacity: 1,
-        transition: {
-            type: "tween",
-            duration: 1,
-        },
-    },
-    exit: {
-        opacity: 0,
-        transition: {
-            type: "tween",
-            duration: 1,
-        },
-    },
-};
+export const BackgroundImage = styled.div`
+    width: 100%;
+    height: 60%;
+    background-color: yellowgreen;
+`;

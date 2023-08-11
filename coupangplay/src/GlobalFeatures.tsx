@@ -39,3 +39,8 @@ export const BannerClickMovieState = atom<number>({
     key: "bannerClickMovie",
     default: -1,
 });
+
+export const BannerClickMovieBGLink = atom<string>({
+    key: "bannerClickMovieBGLink",
+    default: "",
+});
