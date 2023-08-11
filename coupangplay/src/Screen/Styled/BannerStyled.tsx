@@ -68,7 +68,7 @@ export const Description = styled.div`
     position: absolute;
     bottom: 30px;
     left: 60px;
-    overflow: hidden;
+    /* overflow: hidden; */
     box-sizing: border-box;
 `;
 
@@ -106,6 +106,8 @@ export const Play = styled.div`
     align-items: center;
     &:hover {
         cursor: pointer;
+        scale: 1.05;
+        transition: all 0.1s linear;
     }
 `;
 

@@ -29,3 +29,8 @@ export const MouseOnTop20State = atom<boolean>({
     key: "mouseOnTop20",
     default: false,
 });
+
+export const BannerDetailState = atom<boolean>({
+    key: "bannerDetail",
+    default: false,
+});
