@@ -26,5 +26,6 @@ export const MovieDetail = styled(motion.div)`
 export const BackgroundImage = styled.div`
     width: 100%;
     height: 60%;
-    background-color: yellowgreen;
+    box-sizing: border-box;
+    overflow: hidden;
 `;

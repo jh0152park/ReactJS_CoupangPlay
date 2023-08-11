@@ -43,10 +43,12 @@ function Detail({ y }: { y: number }) {
                     (i.type.toLowerCase() === "teaser" ||
                         i.type.toLowerCase() === "tailer")
                 ) {
+                    console.log(i);
                     return i.key;
                 }
             }
         }
+        return "n/a";
     }
 
     videoKey = getVideoKey();
@@ -69,8 +71,9 @@ function Detail({ y }: { y: number }) {
                                 }}
                             >
                                 <BackgroundImage>
-                                    {videoKey ? (
-                                        <Youtube key={videoKey}></Youtube>
+                                    {videoKey !== "n/a" &&
+                                    videoKey !== undefined ? (
+                                        <Youtube videoKey={videoKey}></Youtube>
                                     ) : null}
                                 </BackgroundImage>
                             </MovieDetail>
