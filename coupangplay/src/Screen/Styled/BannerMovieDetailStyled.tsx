@@ -10,6 +10,8 @@ export const Overlay = styled(motion.div)`
     justify-content: center;
     align-items: center;
     z-index: 99;
+    background-color: rgba(0, 0, 0, 0.5);
+    opacity: 0;
 `;
 
 export const MovieDetail = styled(motion.div)`
@@ -20,18 +22,27 @@ export const MovieDetail = styled(motion.div)`
     position: absolute;
 `;
 
-export const OverlayVariants = {
+export const MovieDetailVariants = {
     initial: {
-        backgroundColor: "rgba(0, 0, 0, 0)",
-    },
-    animate: {
-        backgroundColor: "rgba(0, 0, 0, 0.5)",
-    },
-    exit: {
-        backgroundColor: "rgba(0, 0, 0, 0)",
+        opacity: 0,
         transition: {
             type: "tween",
-            duration: 0.5,
+            duration: 1,
+        },
+    },
+    animate: {
+        x: 0,
+        opacity: 1,
+        transition: {
+            type: "tween",
+            duration: 1,
+        },
+    },
+    exit: {
+        opacity: 0,
+        transition: {
+            type: "tween",
+            duration: 1,
         },
     },
 };
