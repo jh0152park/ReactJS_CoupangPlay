@@ -10,8 +10,6 @@ export const Container = styled.div`
     overflow: hidden;
     position: relative;
     box-sizing: border-box;
-
-    border: 1px solid pink;
 `;
 
 export const Category = styled.div<{ length: number }>`
@@ -76,6 +74,4 @@ export const CategoriesContainer = styled(motion.div)`
     right: 0;
     margin: 0 auto;
     position: absolute;
-
-    border: 1px solid blue;
 `;

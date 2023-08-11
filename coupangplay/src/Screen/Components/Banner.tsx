@@ -112,7 +112,7 @@ function Banner({ results }: IData) {
                         ></LeftArrow>
                         {results.slice(startIndex, endIndex).map((result) => (
                             <DisplayBox
-                                key={result.id}
+                                key={startIndex}
                                 variants={MainBannerImageVariants}
                                 initial="start"
                                 animate="end"
@@ -148,7 +148,6 @@ function Banner({ results }: IData) {
                                         {dummyDots.map((index) => (
                                             <Dot
                                                 key={index}
-                                                layoutId="dots"
                                                 focus={index === startIndex}
                                                 onClick={() =>
                                                     onDotClick(index)
