@@ -12,6 +12,7 @@ import {
 } from "../../GlobalFeatures";
 import { useQuery } from "react-query";
 import { getMovieVideoInfo } from "../../API";
+import Youtube from "./Yotube";
 
 function Detail({ y }: { y: number }) {
     const History = useHistory();
@@ -24,7 +25,7 @@ function Detail({ y }: { y: number }) {
     const currentPathId = currntPath.split("main")[1];
     const isRealClicked = clickedMovieId === +currentPathId;
 
-    let videoKey = "";
+    let videoKey: string = "";
     const { data, isLoading } = useQuery(["movieVideo", currentPathId], () =>
         getMovieVideoInfo(+currentPathId)
     );
@@ -35,20 +36,21 @@ function Detail({ y }: { y: number }) {
     }
 
     function getVideoKey() {
-        if (!isLoading && data) {
-            for (var i of data.results) {
+        if (!isLoading && data?.results) {
+            for (var i of data?.results) {
                 if (
                     i.site.toLowerCase() === "youtube" &&
-                    (i.type.toLowerCase() === "Teaser" ||
-                        i.type.toLowerCase() === "Trailer")
-                )
-                    videoKey = i.key;
-                return;
+                    (i.type.toLowerCase() === "teaser" ||
+                        i.type.toLowerCase() === "tailer")
+                ) {
+                    return i.key;
+                }
             }
         }
     }
 
-    getVideoKey();
+    videoKey = getVideoKey();
+    console.log(videoKey);
     return (
         <>
             {isLoading ? null : (
@@ -66,7 +68,11 @@ function Detail({ y }: { y: number }) {
                                     type: "tween",
                                 }}
                             >
-                                <BackgroundImage></BackgroundImage>
+                                <BackgroundImage>
+                                    {videoKey ? (
+                                        <Youtube key={videoKey}></Youtube>
+                                    ) : null}
+                                </BackgroundImage>
                             </MovieDetail>
                         </Overlay>
                     ) : null}
