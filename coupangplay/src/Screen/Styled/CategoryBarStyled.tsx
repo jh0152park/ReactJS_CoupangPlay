@@ -1,19 +1,20 @@
 import { motion } from "framer-motion";
 import { styled } from "styled-components";
 
-export const Container = styled(motion.div)`
+export const Container = styled.div`
     width: 100%;
     height: 120px;
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    padding: 0px 60px;
     overflow: hidden;
     position: relative;
     box-sizing: border-box;
+
+    border: 1px solid pink;
 `;
 
-export const Category = styled(motion.div)<{ length: number }>`
+export const Category = styled.div<{ length: number }>`
     color: ${(props) => props.theme.coupangBlue};
     background-color: rgba(10, 45, 66, 1);
     margin-right: 15px;
@@ -69,5 +70,12 @@ export const CategoriesContainer = styled(motion.div)`
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width: 100%;
+    width: 95%;
+    height: 45px;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    position: absolute;
+
+    border: 1px solid blue;
 `;
