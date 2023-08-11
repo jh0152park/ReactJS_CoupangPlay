@@ -3,8 +3,11 @@ import {
     Background,
     BackgroundImage,
     Description,
+    Extra,
     MovieDetail,
     Overlay,
+    Overview,
+    SubTitle,
     Summary,
     Title,
 } from "../Styled/BannerMovieDetailStyled";
@@ -41,7 +44,7 @@ function Detail({ y }: { y: number }) {
     let score = 0; // vote_average
     let runtime = 0; //minutes
     let release = ""; // release date
-    let homepage = "";
+    let production = "";
     let overview = "";
     const { data: movieDetail, isLoading: DetailLoading } = useQuery(
         ["movieDetail", currentPathId],
@@ -78,6 +81,14 @@ function Detail({ y }: { y: number }) {
         return gen.slice(0, gen.length - 2);
     }
 
+    function getProduction() {
+        let pro = "";
+        for (var i of movieDetail?.production_companies) {
+            pro += i.name + ", ";
+        }
+        return pro.slice(0, pro.length - 2);
+    }
+
     function updateDetail() {
         if (!DetailLoading && movieDetail) {
             title = movieDetail.title;
@@ -86,8 +97,8 @@ function Detail({ y }: { y: number }) {
             score = movieDetail.vote_average.toFixed(2);
             runtime = movieDetail.runtime;
             release = movieDetail.release_date;
-            homepage = movieDetail.homepage;
             overview = movieDetail.overview;
+            production = getProduction();
         }
     }
 
@@ -131,7 +142,27 @@ function Detail({ y }: { y: number }) {
                                             {genre} ◦{" "}
                                             {runtime === 0 ? "123" : runtime}분
                                         </Summary>
-                                        <Description></Description>
+                                        <Description>
+                                            <Overview>{overview}</Overview>
+                                            <Extra>
+                                                <span>
+                                                    <SubTitle>Genres:</SubTitle>
+                                                    &nbsp;&nbsp;{genres}
+                                                </span>
+                                                <span>
+                                                    <SubTitle>
+                                                        Release:
+                                                    </SubTitle>
+                                                    &nbsp;&nbsp;{release}
+                                                </span>
+                                                <span>
+                                                    <SubTitle>
+                                                        Productions:
+                                                    </SubTitle>
+                                                    &nbsp;&nbsp;{production}
+                                                </span>
+                                            </Extra>
+                                        </Description>
                                     </>
                                 ) : null}
                             </MovieDetail>

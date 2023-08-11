@@ -65,6 +65,7 @@ export const Summary = styled.div`
     justify-content: flex-start;
     align-items: center;
     padding-left: 20px;
+    padding-top: 5px;
     box-sizing: border-box;
 `;
 
@@ -73,5 +74,33 @@ export const Description = styled.div`
     height: 170px;
     overflow: hidden;
     box-sizing: border-box;
-    background-color: yellowgreen;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+`;
+
+export const Overview = styled.div`
+    width: 60%;
+    height: 100%;
+    overflow: hidden;
+    box-sizing: border-box;
+    padding: 18px 20px;
+`;
+
+export const Extra = styled.div`
+    width: 40%;
+    height: 100%;
+    overflow: hidden;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 10px;
+    padding-top: 15px;
+    font-size: 15px;
+`;
+
+export const SubTitle = styled.span`
+    color: rgba(255, 255, 255, 0.7);
 `;
