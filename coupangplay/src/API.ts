@@ -64,7 +64,7 @@ export async function getMovieVideoInfo(id: number) {
     };
 
     return fetch(
-        `https://api.themoviedb.org/3/movie/${id}/videos?language=ko-KR`,
+        `https://api.themoviedb.org/3/movie/${id}/videos?language=en-US`,
         options
     ).then((response) => response.json());
 }
