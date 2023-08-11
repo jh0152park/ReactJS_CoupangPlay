@@ -16,13 +16,14 @@ export const Header = styled.div`
     font-size: 18px;
     padding-left: 40px;
     margin-bottom: 10px;
+    box-sizing: border-box;
     /* border: 1px solid azure; */
 `;
 
 export const LeftArrow = styled.img`
     color: white;
     position: absolute;
-    z-index: 99;
+    z-index: 98;
     left: 0;
     top: 0;
     bottom: 0;
@@ -39,7 +40,7 @@ export const LeftArrow = styled.img`
 export const RightArrow = styled.img`
     color: white;
     position: absolute;
-    z-index: 99;
+    z-index: 98;
     right: 0;
     top: 0;
     bottom: 0;
@@ -143,7 +144,7 @@ export const PosterVariants = {
     },
     hover: {
         cursor: "pointer",
-        zIndex: 99,
+        zIndex: 98,
         width: "300px",
         height: "300px",
         transition: {

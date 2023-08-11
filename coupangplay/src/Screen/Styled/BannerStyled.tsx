@@ -62,7 +62,7 @@ export const RightArrow = styled.img`
     }
 `;
 
-export const Description = styled.div`
+export const Description = styled(motion.div)`
     width: 520px;
     height: 300px;
     position: absolute;
@@ -94,7 +94,7 @@ export const Star = styled.span`
     margin-right: 10px;
 `;
 
-export const Play = styled.div`
+export const Play = styled(motion.div)`
     width: 300px;
     height: 65px;
     background-color: ${(props) => props.theme.coupangBlue};
@@ -104,12 +104,20 @@ export const Play = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-    &:hover {
+
+    /* &:hover {
         cursor: pointer;
-        scale: 1.05;
-        transition: all 0.1s linear;
-    }
+        opacity: 0.8;
+        transition: opacity 0.1s linear;
+    } */
 `;
+
+export const PlayVariants = {
+    hover: {
+        cursor: "pointer",
+        opacity: 0.8,
+    },
+};
 
 export const Dots = styled.div`
     width: 100%;

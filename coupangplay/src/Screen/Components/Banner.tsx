@@ -13,10 +13,12 @@ import {
     Play,
     Dots,
     Dot,
+    PlayVariants,
 } from "../Styled/BannerStyled";
 import { useEffect, useState } from "react";
 import { useQuery } from "react-query";
 import {
+    BannerClickMovieState,
     BannerDetailState,
     IData,
     LEFT_ARROW_URL,
@@ -24,10 +26,11 @@ import {
 } from "../../GlobalFeatures";
 import { useHistory } from "react-router-dom";
 import Detail from "./BannerMovieDetail";
-import { useRecoilState } from "recoil";
+import { useRecoilState, useSetRecoilState } from "recoil";
 
 function Banner({ results }: IData) {
     const History = useHistory();
+    const setBannerClickMovieId = useSetRecoilState(BannerClickMovieState);
     const [showDetail, setShowDetail] = useRecoilState(BannerDetailState);
     const [startIndex, setStartIndex] = useState(0);
     const [endIndex, setEndIndex] = useState(1);
@@ -104,18 +107,13 @@ function Banner({ results }: IData) {
     function handlePlayButtonClick(id: number) {
         setShowDetail(true);
         History.push("/main" + id);
+        setBannerClickMovieId(id);
     }
 
     useEffect(() => {
         detail.refetch();
         getMoreInfo();
     }, [startIndex, endIndex, moving]);
-
-    // useEffect(() => {
-    //     scrollY.onChange(() => {
-    //         console.log("mouse y: " + scrollY.get());
-    //     });
-    // }, [scrollY]);
 
     getMoreInfo();
     return (
@@ -164,6 +162,9 @@ function Banner({ results }: IData) {
                                         {runtime == "0" ? "123" : runtime}분
                                     </Information>
                                     <Play
+                                        variants={PlayVariants}
+                                        whileHover="hover"
+                                        layoutId={"main" + result.id + ""}
                                         onClick={() =>
                                             handlePlayButtonClick(result.id)
                                         }

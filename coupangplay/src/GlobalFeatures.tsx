@@ -34,3 +34,8 @@ export const BannerDetailState = atom<boolean>({
     key: "bannerDetail",
     default: false,
 });
+
+export const BannerClickMovieState = atom<number>({
+    key: "bannerClickMovie",
+    default: -1,
+});
