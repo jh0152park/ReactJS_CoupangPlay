@@ -44,3 +44,34 @@ export const BackgroundImage = styled.div<{ BGPhoto: string }>`
     background-size: cover;
     background-position: top center;
 `;
+
+export const Title = styled.div`
+    width: 100%;
+    height: 50px;
+    overflow: hidden;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    font-size: 30px;
+    padding-left: 20px;
+`;
+
+export const Summary = styled.div`
+    width: 100%;
+    height: 20px;
+    overflow: hidden;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding-left: 20px;
+    box-sizing: border-box;
+`;
+
+export const Description = styled.div`
+    width: 100%;
+    height: 170px;
+    overflow: hidden;
+    box-sizing: border-box;
+    background-color: yellowgreen;
+`;

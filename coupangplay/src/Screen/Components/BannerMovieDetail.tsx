@@ -2,8 +2,11 @@ import { useHistory, useLocation, useParams } from "react-router-dom";
 import {
     Background,
     BackgroundImage,
+    Description,
     MovieDetail,
     Overlay,
+    Summary,
+    Title,
 } from "../Styled/BannerMovieDetailStyled";
 import { useRecoilValue, useSetRecoilState } from "recoil";
 import {
@@ -12,8 +15,9 @@ import {
     BannerDetailState,
 } from "../../GlobalFeatures";
 import { useQuery } from "react-query";
-import { getMovieVideoInfo } from "../../API";
+import { getMovieDetail, getMovieVideoInfo } from "../../API";
 import Youtube from "./Yotube";
+import { Star } from "../Styled/BannerStyled";
 
 function Detail({ y }: { y: number }) {
     const History = useHistory();
@@ -29,6 +33,19 @@ function Detail({ y }: { y: number }) {
     let videoKey: string = "";
     const { data, isLoading } = useQuery(["movieVideo", currentPathId], () =>
         getMovieVideoInfo(+currentPathId)
+    );
+
+    let title = "";
+    let genre = "";
+    let genres = "";
+    let score = 0; // vote_average
+    let runtime = 0; //minutes
+    let release = ""; // release date
+    let homepage = "";
+    let overview = "";
+    const { data: movieDetail, isLoading: DetailLoading } = useQuery(
+        ["movieDetail", currentPathId],
+        () => getMovieDetail(+currentPathId)
     );
 
     function handleClickOutside() {
@@ -53,11 +70,33 @@ function Detail({ y }: { y: number }) {
         return "n/a";
     }
 
+    function getGenres() {
+        let gen = "";
+        for (var i of movieDetail?.genres) {
+            gen += i.name + ", ";
+        }
+        return gen.slice(0, gen.length - 2);
+    }
+
+    function updateDetail() {
+        if (!DetailLoading && movieDetail) {
+            title = movieDetail.title;
+            genre = movieDetail.genres[0].name;
+            genres = getGenres();
+            score = movieDetail.vote_average.toFixed(2);
+            runtime = movieDetail.runtime;
+            release = movieDetail.release_date;
+            homepage = movieDetail.homepage;
+            overview = movieDetail.overview;
+        }
+    }
+
     videoKey = getVideoKey();
-    console.log(videoKey);
+    updateDetail();
+    console.log(movieDetail);
     return (
         <>
-            {isLoading ? null : (
+            {isLoading || DetailLoading ? null : (
                 <>
                     {isRealClicked ? (
                         <Overlay
@@ -82,6 +121,19 @@ function Detail({ y }: { y: number }) {
                                         ></BackgroundImage>
                                     )}
                                 </Background>
+
+                                {movieDetail ? (
+                                    <>
+                                        <Title>{title}</Title>
+                                        <Summary>
+                                            <Star>★</Star>
+                                            {score === 0 ? "1.0" : score} ◦{" "}
+                                            {genre} ◦{" "}
+                                            {runtime === 0 ? "123" : runtime}분
+                                        </Summary>
+                                        <Description></Description>
+                                    </>
+                                ) : null}
                             </MovieDetail>
                         </Overlay>
                     ) : null}
@@ -92,25 +144,3 @@ function Detail({ y }: { y: number }) {
 }
 
 export default Detail;
-
-{
-    /* <>
-            {isRealClicked ? (
-                <Overlay
-                    onClick={handleClickOutside}
-                    animate={{ opacity: 1 }}
-                    exit={{ opacity: 0 }}
-                >
-                    <MovieDetail
-                        style={{ top: y + 200 }}
-                        layoutId={currntPath}
-                        transition={{
-                            type: "tween",
-                        }}
-                    >
-                        <BackgroundImage></BackgroundImage>
-                    </MovieDetail>
-                </Overlay>
-            ) : null}
-        </> */
-}
