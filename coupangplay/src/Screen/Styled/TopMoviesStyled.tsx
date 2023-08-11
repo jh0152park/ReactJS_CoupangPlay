@@ -15,6 +15,7 @@ export const Header = styled.div`
     height: 20px;
     font-size: 18px;
     padding-left: 40px;
+    margin-bottom: 10px;
     /* border: 1px solid azure; */
 `;
 
@@ -93,7 +94,7 @@ export const Rank = styled.div`
     /* background-color: pink; */
 `;
 
-export const Poster = styled.div<{ BGPhoto?: string }>`
+export const Poster = styled(motion.div)<{ BGPhoto?: string }>`
     width: 55%;
     height: 110%;
     background-image: url(${(props) => props.BGPhoto});
@@ -101,12 +102,12 @@ export const Poster = styled.div<{ BGPhoto?: string }>`
     background-position: center;
     border-radius: 5px;
     position: relative;
-    &:hover {
-        cursor: pointer;
-    }
+    /* box-sizing: border-box;
+    overflow: auto; */
+    border: none;
 `;
 
-export const PosterBadige = styled.div`
+export const PosterBadige = styled(motion.div)`
     width: 60px;
     height: 22px;
     font-size: 13px;
@@ -127,3 +128,20 @@ export const PosterBadige = styled.div`
         }
     }
 `;
+
+export const PosterVariants = {
+    normal: {
+        scale: 1,
+    },
+    hover: {
+        cursor: "pointer",
+        zIndex: 99,
+        width: "700px",
+        height: "210px",
+        transition: {
+            delay: 0.5,
+            type: "tween",
+            duration: 0.5,
+        },
+    },
+};

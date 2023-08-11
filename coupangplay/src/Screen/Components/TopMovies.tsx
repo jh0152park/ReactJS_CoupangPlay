@@ -8,6 +8,7 @@ import {
     LeftArrow,
     Poster,
     PosterBadige,
+    PosterVariants,
     Rank,
     RightArrow,
 } from "../Styled/TopMoviesStyled";
@@ -118,6 +119,8 @@ function TopMovies() {
                                                 ? movie.poster_path
                                                 : movie.backdrop_path
                                         )}
+                                        variants={PosterVariants}
+                                        whileHover="hover"
                                     >
                                         <PosterBadige>
                                             <span>쿠플 </span>
