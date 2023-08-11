@@ -34,29 +34,27 @@ function CategoryBar() {
 
     return (
         <>
-            <AnimatePresence initial={false} custom={direction} mode="wait">
+            <AnimatePresence initial={false} custom={direction}>
                 <Container>
                     <LeftArrow
                         onClick={onLeftArrowClick}
                         src={LEFT_ARROW_URL}
                     ></LeftArrow>
 
-                    <CategoriesContainer>
+                    <CategoriesContainer
+                        key={categoryIndex}
+                        variants={SlideVariants}
+                        initial="start"
+                        animate="end"
+                        exit="exit"
+                        custom={direction}
+                        transition={{
+                            type: "tween",
+                            duration: 1,
+                        }}
+                    >
                         {categories[categoryIndex].map((category) => (
-                            <Category
-                                key={category}
-                                layoutId={category}
-                                length={category.length * 20}
-                                variants={SlideVariants}
-                                initial="start"
-                                animate="end"
-                                exit="exit"
-                                custom={direction}
-                                transition={{
-                                    type: "tween",
-                                    duration: 1,
-                                }}
-                            >
+                            <Category length={category.length * 20}>
                                 {category}
                             </Category>
                         ))}

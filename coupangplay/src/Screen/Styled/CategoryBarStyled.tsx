@@ -65,7 +65,7 @@ export const RightArrow = styled.img`
     }
 `;
 
-export const CategoriesContainer = styled.div`
+export const CategoriesContainer = styled(motion.div)`
     display: flex;
     justify-content: space-between;
     align-items: center;

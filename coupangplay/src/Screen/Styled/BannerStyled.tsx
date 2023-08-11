@@ -18,7 +18,7 @@ export interface IData {
 
 export const Wrapper = styled(motion.div)`
     width: 100%;
-    height: 550px;
+    height: 700px;
     position: relative;
 `;
 
@@ -30,10 +30,10 @@ export const DisplayBox = styled(motion.div)<{ BGPhoto?: string }>`
         ),
         url(${(p) => p.BGPhoto});
     background-size: cover;
-    background-position: center center;
+    background-position: top center;
     position: absolute;
     width: 100%;
-    height: 550px;
+    height: 100%;
     &:hover {
         cursor: default;
     }

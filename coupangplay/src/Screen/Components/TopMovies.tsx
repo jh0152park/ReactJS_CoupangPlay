@@ -1,9 +1,5 @@
 import { useQuery } from "react-query";
-import {
-    LEFT_ARROW_URL,
-    QUESTION_MARK_URL,
-    RIGHT_ARROW_URL,
-} from "../../GlobalFeatures";
+import { LEFT_ARROW_URL, RIGHT_ARROW_URL } from "../../GlobalFeatures";
 import {
     Container,
     Frame,
@@ -13,11 +9,15 @@ import {
     Poster,
     Rank,
     RightArrow,
+    RowVariants,
+    TestBox,
+    TestRow,
 } from "../Styled/TopMoviesStyled";
 import { createImagePath, getPopularMovieList } from "../../API";
 import { IData } from "../Styled/BannerStyled";
 import { useState } from "react";
 import { AnimatePresence } from "framer-motion";
+import { SlideVariants } from "../../ProjectCommon";
 
 function TopMovies() {
     const PopularMovies = useQuery<IData>("popularMovies1", () =>
@@ -28,8 +28,11 @@ function TopMovies() {
     const [startIndex, setStartIndex] = useState<number>(0);
     const [endIndex, setEndIndex] = useState<number>(7);
     const [direction, setDirection] = useState<number>(1);
+    const [moving, setMoving] = useState<boolean>(false);
 
     function onLeftArrowClick() {
+        if (moving) return;
+
         console.log("left arrow clikced");
         switch (startIndex) {
             case 0:
@@ -48,9 +51,12 @@ function TopMovies() {
                 break;
         }
         setDirection(-1);
+        setMoving(true);
     }
 
     function onRightArrowClick() {
+        if (moving) return;
+
         console.log("right arrow clikced");
         switch (startIndex) {
             case 0:
@@ -69,6 +75,11 @@ function TopMovies() {
                 break;
         }
         setDirection(1);
+        setMoving(true);
+    }
+
+    function handleExitAnimation() {
+        setMoving(false);
     }
 
     return (
@@ -81,8 +92,23 @@ function TopMovies() {
 
                 <Header>이번 주 인기작 TOP 20</Header>
 
-                <AnimatePresence>
-                    <Frames>
+                <AnimatePresence
+                    initial={false}
+                    custom={direction}
+                    onExitComplete={handleExitAnimation}
+                >
+                    <Frames
+                        key={startIndex}
+                        variants={SlideVariants}
+                        initial="start"
+                        animate="end"
+                        exit="exit"
+                        custom={direction}
+                        transition={{
+                            type: "tween",
+                            duration: 10,
+                        }}
+                    >
                         {Results?.slice(startIndex, endIndex).map(
                             (movie, index) => (
                                 <Frame>
