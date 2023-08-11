@@ -1,29 +1,85 @@
 import { useHistory, useLocation, useParams } from "react-router-dom";
 import {
+    BackgroundImage,
     MovieDetail,
-    MovieDetailVariants,
     Overlay,
 } from "../Styled/BannerMovieDetailStyled";
 import { useRecoilValue, useSetRecoilState } from "recoil";
-import { BannerClickMovieState, BannerDetailState } from "../../GlobalFeatures";
-import { AnimatePresence } from "framer-motion";
+import {
+    BannerClickMovieBGLink,
+    BannerClickMovieState,
+    BannerDetailState,
+} from "../../GlobalFeatures";
+import { useQuery } from "react-query";
+import { getMovieVideoInfo } from "../../API";
 
 function Detail({ y }: { y: number }) {
     const History = useHistory();
+
     const setShowDetail = useSetRecoilState(BannerDetailState);
     const clickedMovieId = useRecoilValue(BannerClickMovieState);
+    const clickedMovieBGLink = useRecoilValue(BannerClickMovieBGLink);
+
     const currntPath = useLocation().pathname.slice(1);
     const currentPathId = currntPath.split("main")[1];
     const isRealClicked = clickedMovieId === +currentPathId;
+
+    let videoKey = "";
+    const { data, isLoading } = useQuery(["movieVideo", currentPathId], () =>
+        getMovieVideoInfo(+currentPathId)
+    );
 
     function handleClickOutside() {
         setShowDetail(false);
         History.goBack();
     }
 
-    console.log(currntPath);
+    function getVideoKey() {
+        if (!isLoading && data) {
+            for (var i of data.results) {
+                if (
+                    i.site.toLowerCase() === "youtube" &&
+                    (i.type.toLowerCase() === "Teaser" ||
+                        i.type.toLowerCase() === "Trailer")
+                )
+                    videoKey = i.key;
+                return;
+            }
+        }
+    }
+
+    getVideoKey();
     return (
         <>
+            {isLoading ? null : (
+                <>
+                    {isRealClicked ? (
+                        <Overlay
+                            onClick={handleClickOutside}
+                            animate={{ opacity: 1 }}
+                            exit={{ opacity: 0 }}
+                        >
+                            <MovieDetail
+                                style={{ top: y + 200 }}
+                                layoutId={currntPath}
+                                transition={{
+                                    type: "tween",
+                                }}
+                            >
+                                <BackgroundImage></BackgroundImage>
+                            </MovieDetail>
+                        </Overlay>
+                    ) : null}
+                </>
+            )}
+        </>
+    );
+}
+
+export default Detail;
+
+{
+    /* <>
             {isRealClicked ? (
                 <Overlay
                     onClick={handleClickOutside}
@@ -36,11 +92,10 @@ function Detail({ y }: { y: number }) {
                         transition={{
                             type: "tween",
                         }}
-                    ></MovieDetail>
+                    >
+                        <BackgroundImage></BackgroundImage>
+                    </MovieDetail>
                 </Overlay>
             ) : null}
-        </>
-    );
+        </> */
 }
-
-export default Detail;

@@ -18,6 +18,7 @@ import {
 import { useEffect, useState } from "react";
 import { useQuery } from "react-query";
 import {
+    BannerClickMovieBGLink,
     BannerClickMovieState,
     BannerDetailState,
     IData,
@@ -30,8 +31,11 @@ import { useRecoilState, useSetRecoilState } from "recoil";
 
 function Banner({ results }: IData) {
     const History = useHistory();
+
     const setBannerClickMovieId = useSetRecoilState(BannerClickMovieState);
+    const setBannerClickMovieBGLink = useSetRecoilState(BannerClickMovieBGLink);
     const [showDetail, setShowDetail] = useRecoilState(BannerDetailState);
+
     const [startIndex, setStartIndex] = useState(0);
     const [endIndex, setEndIndex] = useState(1);
     const [moving, setMoving] = useState(false);
@@ -104,10 +108,11 @@ function Banner({ results }: IData) {
         setEndIndex(clickIndex + 1);
     }
 
-    function handlePlayButtonClick(id: number) {
+    function handlePlayButtonClick(id: number, BGLink: string) {
         setShowDetail(true);
         History.push("/main" + id);
         setBannerClickMovieId(id);
+        setBannerClickMovieBGLink(BGLink);
     }
 
     useEffect(() => {
@@ -166,7 +171,14 @@ function Banner({ results }: IData) {
                                         whileHover="hover"
                                         layoutId={"main" + result.id + ""}
                                         onClick={() =>
-                                            handlePlayButtonClick(result.id)
+                                            handlePlayButtonClick(
+                                                result.id,
+                                                createImagePath(
+                                                    result.backdrop_path
+                                                        ? result.backdrop_path
+                                                        : result.poster_path
+                                                )
+                                            )
                                         }
                                     >
                                         ► 재생하기
