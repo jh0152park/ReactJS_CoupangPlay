@@ -106,7 +106,7 @@ function TopMovies() {
                         custom={direction}
                         transition={{
                             type: "tween",
-                            duration: 10,
+                            duration: 1,
                         }}
                     >
                         {Results?.slice(startIndex, endIndex).map(

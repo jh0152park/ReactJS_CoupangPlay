@@ -34,13 +34,13 @@ function CategoryBar() {
 
     return (
         <>
-            <AnimatePresence initial={false} custom={direction}>
-                <Container>
-                    <LeftArrow
-                        onClick={onLeftArrowClick}
-                        src={LEFT_ARROW_URL}
-                    ></LeftArrow>
+            <Container>
+                <LeftArrow
+                    onClick={onLeftArrowClick}
+                    src={LEFT_ARROW_URL}
+                ></LeftArrow>
 
+                <AnimatePresence initial={false} custom={direction}>
                     <CategoriesContainer
                         key={categoryIndex}
                         variants={SlideVariants}
@@ -59,13 +59,13 @@ function CategoryBar() {
                             </Category>
                         ))}
                     </CategoriesContainer>
+                </AnimatePresence>
 
-                    <RightArrow
-                        onClick={onRightArrowClick}
-                        src={RIGHT_ARROW_URL}
-                    ></RightArrow>
-                </Container>
-            </AnimatePresence>
+                <RightArrow
+                    onClick={onRightArrowClick}
+                    src={RIGHT_ARROW_URL}
+                ></RightArrow>
+            </Container>
         </>
     );
 }
