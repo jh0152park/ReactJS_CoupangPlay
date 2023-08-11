@@ -1,5 +1,10 @@
 import { useQuery } from "react-query";
-import { IData, LEFT_ARROW_URL, RIGHT_ARROW_URL } from "../../GlobalFeatures";
+import {
+    IData,
+    LEFT_ARROW_URL,
+    MouseOnTop20State,
+    RIGHT_ARROW_URL,
+} from "../../GlobalFeatures";
 import {
     Container,
     Frame,
@@ -18,6 +23,7 @@ import { useState } from "react";
 import { AnimatePresence } from "framer-motion";
 import { SlideVariants } from "../../ProjectCommon";
 import InfoBar from "./TinyInfoBar";
+import { useSetRecoilState } from "recoil";
 
 function TopMovies() {
     const PopularMovies = useQuery<IData>("popularMovies1", () =>
@@ -29,6 +35,8 @@ function TopMovies() {
     const [endIndex, setEndIndex] = useState<number>(7);
     const [direction, setDirection] = useState<number>(1);
     const [moving, setMoving] = useState<boolean>(false);
+
+    const setMouseOnPoster = useSetRecoilState(MouseOnTop20State);
 
     function onLeftArrowClick() {
         if (moving) return;
@@ -82,6 +90,14 @@ function TopMovies() {
         setMoving(false);
     }
 
+    function MouseOnPoster() {
+        setMouseOnPoster(true);
+    }
+
+    function MouseOutPoster() {
+        setMouseOnPoster(false);
+    }
+
     return (
         <>
             <Container>
@@ -117,15 +133,23 @@ function TopMovies() {
                                         BGPhoto={createImagePath(
                                             movie.poster_path
                                                 ? movie.poster_path
-                                                : movie.backdrop_path
+                                                : movie.backdrop_path,
+                                            300
                                         )}
                                         variants={PosterVariants}
                                         whileHover="hover"
+                                        onMouseEnter={MouseOnPoster}
+                                        onMouseLeave={MouseOutPoster}
+                                        // style={{
+                                        //     originX: 1,
+                                        //     originY: 0,
+                                        // }}
                                     >
                                         <PosterBadige>
                                             <span>쿠플 </span>
                                             &nbsp; 독점
                                         </PosterBadige>
+
                                         <InfoBar data={movie}></InfoBar>
                                     </Poster>
                                 </Frame>
