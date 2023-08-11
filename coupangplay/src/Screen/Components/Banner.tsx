@@ -1,4 +1,4 @@
-import { AnimatePresence, delay } from "framer-motion";
+import { AnimatePresence, delay, useScroll } from "framer-motion";
 import { createImagePath, getMovieDetail } from "../../API";
 import {
     Wrapper,
@@ -16,9 +16,19 @@ import {
 } from "../Styled/BannerStyled";
 import { useEffect, useState } from "react";
 import { useQuery } from "react-query";
-import { IData, LEFT_ARROW_URL, RIGHT_ARROW_URL } from "../../GlobalFeatures";
+import {
+    BannerDetailState,
+    IData,
+    LEFT_ARROW_URL,
+    RIGHT_ARROW_URL,
+} from "../../GlobalFeatures";
+import { useHistory } from "react-router-dom";
+import Detail from "./BannerMovieDetail";
+import { useRecoilState } from "recoil";
 
 function Banner({ results }: IData) {
+    const History = useHistory();
+    const [showDetail, setShowDetail] = useRecoilState(BannerDetailState);
     const [startIndex, setStartIndex] = useState(0);
     const [endIndex, setEndIndex] = useState(1);
     const [moving, setMoving] = useState(false);
@@ -31,6 +41,7 @@ function Banner({ results }: IData) {
     let runtime = "";
     let dummyDots: number[] = [];
     const maxLength = results.length;
+    const { scrollY } = useScroll();
 
     for (var i = 0; i < maxLength; i++) {
         dummyDots.push(i);
@@ -90,10 +101,21 @@ function Banner({ results }: IData) {
         setEndIndex(clickIndex + 1);
     }
 
+    function handlePlayButtonClick(id: number) {
+        setShowDetail(true);
+        History.push("/main" + id);
+    }
+
     useEffect(() => {
         detail.refetch();
         getMoreInfo();
     }, [startIndex, endIndex, moving]);
+
+    // useEffect(() => {
+    //     scrollY.onChange(() => {
+    //         console.log("mouse y: " + scrollY.get());
+    //     });
+    // }, [scrollY]);
 
     getMoreInfo();
     return (
@@ -141,7 +163,13 @@ function Banner({ results }: IData) {
                                         ◦ {genre} ◦{" "}
                                         {runtime == "0" ? "123" : runtime}분
                                     </Information>
-                                    <Play>► 재생하기</Play>
+                                    <Play
+                                        onClick={() =>
+                                            handlePlayButtonClick(result.id)
+                                        }
+                                    >
+                                        ► 재생하기
+                                    </Play>
 
                                     <Dots>
                                         {dummyDots.map((index) => (
@@ -164,6 +192,7 @@ function Banner({ results }: IData) {
                     </AnimatePresence>
                 </Wrapper>
             )}
+            {showDetail ? <Detail y={scrollY.get()}></Detail> : null}
         </>
     );
 }
