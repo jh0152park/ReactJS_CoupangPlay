@@ -1,5 +1,5 @@
 import { useQuery } from "react-query";
-import { LEFT_ARROW_URL, RIGHT_ARROW_URL } from "../../GlobalFeatures";
+import { IData, LEFT_ARROW_URL, RIGHT_ARROW_URL } from "../../GlobalFeatures";
 import {
     Container,
     Frame,
@@ -12,10 +12,11 @@ import {
     RightArrow,
 } from "../Styled/TopMoviesStyled";
 import { createImagePath, getPopularMovieList } from "../../API";
-import { IData } from "../Styled/BannerStyled";
+
 import { useState } from "react";
 import { AnimatePresence } from "framer-motion";
 import { SlideVariants } from "../../ProjectCommon";
+import InfoBar from "./TinyInfoBar";
 
 function TopMovies() {
     const PopularMovies = useQuery<IData>("popularMovies1", () =>
@@ -122,6 +123,7 @@ function TopMovies() {
                                             <span>쿠플 </span>
                                             &nbsp; 독점
                                         </PosterBadige>
+                                        <InfoBar data={movie}></InfoBar>
                                     </Poster>
                                 </Frame>
                             )

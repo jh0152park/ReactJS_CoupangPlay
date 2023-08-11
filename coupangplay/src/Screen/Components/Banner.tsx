@@ -2,7 +2,6 @@ import { AnimatePresence, delay } from "framer-motion";
 import { createImagePath, getMovieDetail } from "../../API";
 import {
     Wrapper,
-    IData,
     DisplayBox,
     MainBannerImageVariants,
     LeftArrow,
@@ -17,7 +16,7 @@ import {
 } from "../Styled/BannerStyled";
 import { useEffect, useState } from "react";
 import { useQuery } from "react-query";
-import { LEFT_ARROW_URL, RIGHT_ARROW_URL } from "../../GlobalFeatures";
+import { IData, LEFT_ARROW_URL, RIGHT_ARROW_URL } from "../../GlobalFeatures";
 
 function Banner({ results }: IData) {
     const [startIndex, setStartIndex] = useState(0);
