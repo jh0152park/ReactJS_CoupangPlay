@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { IResult, LEFT_ARROW_URL, RIGHT_ARROW_URL } from "../../GlobalFeatures";
 import {
     Container,
@@ -13,6 +13,7 @@ import { AnimatePresence } from "framer-motion";
 import { createImagePath } from "../../API";
 import { SlideVariants } from "../../ProjectCommon";
 import InfoBar from "./InfoBar";
+import { useHistory, useLocation } from "react-router-dom";
 
 function Slider({ title, results }: { title: string; results: IResult[] }) {
     const [startIndex, setStartIndex] = useState(0);
@@ -20,6 +21,9 @@ function Slider({ title, results }: { title: string; results: IResult[] }) {
 
     const [direction, setDirection] = useState<number>(1);
     const [moving, setMoving] = useState<boolean>(false);
+
+    const History = useHistory();
+    const Location = useLocation();
 
     function onRightArrowClick() {
         if (moving) return;
@@ -67,7 +71,9 @@ function Slider({ title, results }: { title: string; results: IResult[] }) {
         setMoving(false);
     }
 
-    console.log(results);
+    useEffect(() => {
+        console.log(Location);
+    }, [Location]);
 
     return (
         <Container>
@@ -108,6 +114,11 @@ function Slider({ title, results }: { title: string; results: IResult[] }) {
                                 variants={FrameVariants}
                                 whileHover="hover"
                                 transition={{ type: "tween" }}
+                                onClick={() => {
+                                    History.push(
+                                        `/movies/details/${result.id}`
+                                    );
+                                }}
                             >
                                 <InfoBar movieId={result.id}></InfoBar>
                             </Frame>

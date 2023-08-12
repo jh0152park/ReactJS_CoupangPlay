@@ -24,6 +24,7 @@ import { AnimatePresence } from "framer-motion";
 import { SlideVariants } from "../../ProjectCommon";
 import InfoBar from "./TinyInfoBar";
 import { useSetRecoilState } from "recoil";
+import { useHistory } from "react-router-dom";
 
 function TopMovies() {
     const PopularMovies = useQuery<IData>("popularMovies1", () =>
@@ -37,6 +38,8 @@ function TopMovies() {
     const [moving, setMoving] = useState<boolean>(false);
 
     const setMouseOnPoster = useSetRecoilState(MouseOnTop20State);
+
+    const History = useHistory();
 
     function onLeftArrowClick() {
         if (moving) return;
@@ -140,10 +143,11 @@ function TopMovies() {
                                         whileHover="hover"
                                         onMouseEnter={MouseOnPoster}
                                         onMouseLeave={MouseOutPoster}
-                                        // style={{
-                                        //     originX: 1,
-                                        //     originY: 0,
-                                        // }}
+                                        onClick={() => {
+                                            History.push(
+                                                `/movies/details/${movie.id}`
+                                            );
+                                        }}
                                     >
                                         <PosterBadige>
                                             <span>쿠플 </span>
