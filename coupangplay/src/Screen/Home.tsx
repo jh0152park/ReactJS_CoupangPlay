@@ -4,7 +4,6 @@ import { getNowPlayingMovieList } from "../API";
 import CategoryBar from "./Components/CategoryBar";
 import TopMovies from "./Components/TopMovies";
 import Slider from "./Components/Slider";
-import { IData } from "../GlobalFeatures";
 
 function Home() {
     const MainMovies = useQuery(["mainMovies", "home"], () =>
@@ -28,6 +27,14 @@ function Home() {
                     results={LikeMovies.data?.results}
                 ></Slider>
             )}
+            {/* <MovieDetail></MovieDetail> */}
+            {/* {DetailMatch ? (
+                <Switch>
+                    <Route path={`/movies/details/${MovieId}`}>
+                        <MovieDetail></MovieDetail>
+                    </Route>
+                </Switch>
+            ) : null} */}
         </>
     );
 }
