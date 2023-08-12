@@ -1,10 +1,17 @@
-import { AnimatePresence } from "framer-motion";
-import { Container, InfoBarVariant } from "../Styled/InfoBarStyled";
+import {
+    Container,
+    InfoBarVariant,
+    Title,
+    Description,
+} from "../Styled/InfoBarStyled";
 
-function InfoBar() {
+function InfoBar({ movieTitle, score }: { movieTitle: string; score: number }) {
     return (
         <>
-            <Container variants={InfoBarVariant}></Container>
+            <Container variants={InfoBarVariant}>
+                <Title>{movieTitle}</Title>
+                <Description>{score}</Description>
+            </Container>
         </>
     );
 }

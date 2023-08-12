@@ -22,6 +22,7 @@ function Slider({ title, results }: { title: string; results: IResult[] }) {
     const [moving, setMoving] = useState<boolean>(false);
 
     function onRightArrowClick() {
+        if (moving) return;
         switch (startIndex) {
             case 0:
                 setStartIndex(6);
@@ -42,6 +43,7 @@ function Slider({ title, results }: { title: string; results: IResult[] }) {
     }
 
     function onLeftArrowClick() {
+        if (moving) return;
         switch (startIndex) {
             case 0:
                 setStartIndex(12);
@@ -107,7 +109,10 @@ function Slider({ title, results }: { title: string; results: IResult[] }) {
                                 whileHover="hover"
                                 transition={{ type: "tween" }}
                             >
-                                <InfoBar></InfoBar>
+                                <InfoBar
+                                    movieTitle={result.title}
+                                    score={result.vote_average}
+                                ></InfoBar>
                             </Frame>
                         ))}
                 </Frames>
