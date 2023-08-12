@@ -14,10 +14,6 @@ function Home() {
         getNowPlayingMovieList(2)
     );
 
-    if (!LikeMovies.isLoading) {
-        console.log(LikeMovies.data?.results);
-    }
-
     return (
         <>
             {MainMovies.isLoading ? null : (

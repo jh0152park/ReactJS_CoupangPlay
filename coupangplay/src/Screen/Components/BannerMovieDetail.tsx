@@ -65,7 +65,6 @@ function Detail({ y }: { y: number }) {
                         i.type.toLowerCase() === "trailer" ||
                         i.type.toLowerCase() === "clip")
                 ) {
-                    console.log(i);
                     return i.key;
                 }
             }
@@ -104,7 +103,6 @@ function Detail({ y }: { y: number }) {
 
     videoKey = getVideoKey();
     updateDetail();
-    console.log(movieDetail);
     return (
         <>
             {isLoading || DetailLoading ? null : (

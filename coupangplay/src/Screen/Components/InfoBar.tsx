@@ -12,7 +12,6 @@ import {
     RightButton,
 } from "../Styled/InfoBarStyled";
 import { getMovieDetail } from "../../API";
-import { useState } from "react";
 
 function InfoBar({ movieId }: { movieId: number }) {
     let score = 0;
@@ -21,14 +20,12 @@ function InfoBar({ movieId }: { movieId: number }) {
     let runtime = "";
     let release = "";
 
-    // const [update, setUpdate] = useState<boolean>(false);
     const detail = useQuery<any>(["detail_Info", movieId], () =>
         getMovieDetail(movieId)
     );
 
     function updateDetilInfo() {
         if (!detail.isLoading && detail.data) {
-            console.log(detail.data);
             score = detail.data.vote_average.toFixed(2);
             title = detail.data.title;
             genre = detail.data.genres[0].name;
