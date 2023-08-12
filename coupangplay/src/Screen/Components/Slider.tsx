@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { IData, LEFT_ARROW_URL, RIGHT_ARROW_URL } from "../../GlobalFeatures";
+import { IResult, LEFT_ARROW_URL, RIGHT_ARROW_URL } from "../../GlobalFeatures";
 import {
     Container,
     Frame,
@@ -10,15 +10,14 @@ import {
 } from "../Styled/SliderStyled";
 import { AnimatePresence } from "framer-motion";
 import { createImagePath } from "../../API";
+import { SlideVariants } from "../../ProjectCommon";
 
-// interface IInput {
-//     title: string;
-//     results: IData;
-// }
-
-function Slider({ title, results }: { title: string; results: any[] }) {
+function Slider({ title, results }: { title: string; results: IResult[] }) {
     const [startIndex, setStartIndex] = useState(0);
     const [endIndex, setEndIndex] = useState(6);
+
+    const [direction, setDirection] = useState<number>(1);
+    const [moving, setMoving] = useState<boolean>(false);
 
     function onRightArrowClick() {
         switch (startIndex) {
@@ -37,6 +36,7 @@ function Slider({ title, results }: { title: string; results: any[] }) {
             default:
                 break;
         }
+        setDirection(1);
     }
 
     function onLeftArrowClick() {
@@ -56,6 +56,11 @@ function Slider({ title, results }: { title: string; results: any[] }) {
             default:
                 break;
         }
+        setDirection(-1);
+    }
+
+    function handleExitAnimation() {
+        setMoving(false);
     }
 
     console.log(results);
@@ -69,8 +74,23 @@ function Slider({ title, results }: { title: string; results: any[] }) {
 
             <Header>{title}</Header>
 
-            <AnimatePresence>
-                <Frames>
+            <AnimatePresence
+                initial={false}
+                custom={direction}
+                onExitComplete={handleExitAnimation}
+            >
+                <Frames
+                    key={startIndex}
+                    variants={SlideVariants}
+                    initial="start"
+                    animate="end"
+                    exit="exit"
+                    custom={direction}
+                    transition={{
+                        type: "tween",
+                        duration: 0.7,
+                    }}
+                >
                     {results
                         .slice(startIndex, endIndex)
                         .map((result, index) => (
