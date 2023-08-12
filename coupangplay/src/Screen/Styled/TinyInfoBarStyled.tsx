@@ -14,6 +14,8 @@ export const Container = styled(motion.div)`
     box-sizing: border-box;
     padding: 5px 5px;
     opacity: 0;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
 `;
 
 export const Title = styled.span`

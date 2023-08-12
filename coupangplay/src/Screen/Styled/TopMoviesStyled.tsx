@@ -14,7 +14,7 @@ export const Header = styled.div`
     width: 100%;
     height: 20px;
     font-size: 18px;
-    padding-left: 40px;
+    padding-left: 50px;
     margin-bottom: 10px;
     box-sizing: border-box;
     /* border: 1px solid azure; */

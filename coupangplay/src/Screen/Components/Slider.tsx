@@ -3,6 +3,7 @@ import { IResult, LEFT_ARROW_URL, RIGHT_ARROW_URL } from "../../GlobalFeatures";
 import {
     Container,
     Frame,
+    FrameVariants,
     Frames,
     Header,
     LeftArrow,
@@ -11,6 +12,7 @@ import {
 import { AnimatePresence } from "framer-motion";
 import { createImagePath } from "../../API";
 import { SlideVariants } from "../../ProjectCommon";
+import InfoBar from "./InfoBar";
 
 function Slider({ title, results }: { title: string; results: IResult[] }) {
     const [startIndex, setStartIndex] = useState(0);
@@ -101,7 +103,12 @@ function Slider({ title, results }: { title: string; results: IResult[] }) {
                                         ? result.backdrop_path
                                         : result.poster_path
                                 )}
-                            ></Frame>
+                                variants={FrameVariants}
+                                whileHover="hover"
+                                initial="initial"
+                            >
+                                <InfoBar></InfoBar>
+                            </Frame>
                         ))}
                 </Frames>
             </AnimatePresence>
