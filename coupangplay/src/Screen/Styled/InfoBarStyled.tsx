@@ -9,13 +9,18 @@ export const Container = styled(motion.div)`
     overflow: hidden;
     position: absolute;
     bottom: 0;
+    opacity: 0;
     border-bottom-left-radius: 2px;
     border-bottom-right-radius: 2px;
 `;
 
 export const InfoBarVariant = {
-    initial: { backgroundColor: "blue" },
     hover: {
-        backgroundColor: "red",
+        opacity: 1,
+        transition: {
+            delay: 0.7,
+            duration: 0.3,
+            type: "tween",
+        },
     },
 };

@@ -33,6 +33,13 @@ export const Frames = styled(motion.div)`
     position: absolute;
     /* overflow: hidden; */
     /* border: 1px solid pink; */
+
+    div:first-child {
+        transform-origin: center left;
+    }
+    div:last-child {
+        transform-origin: center right;
+    }
 `;
 
 export const LeftArrow = styled.img`
@@ -80,12 +87,14 @@ export const Frame = styled(motion.div)<{ BGPhoto?: string }>`
 `;
 
 export const FrameVariants = {
-    initial: {
-        scale: 1,
-    },
-    animate: {},
-    exit: {},
     hover: {
-        scale: 1.3,
+        zIndex: 99,
+        scale: 1.5,
+        y: -60,
+        transition: {
+            delay: 0.7,
+            duration: 0.3,
+            type: "tween",
+        },
     },
 };
