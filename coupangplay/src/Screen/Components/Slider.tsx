@@ -109,10 +109,7 @@ function Slider({ title, results }: { title: string; results: IResult[] }) {
                                 whileHover="hover"
                                 transition={{ type: "tween" }}
                             >
-                                <InfoBar
-                                    movieTitle={result.title}
-                                    score={result.vote_average}
-                                ></InfoBar>
+                                <InfoBar movieId={result.id}></InfoBar>
                             </Frame>
                         ))}
                 </Frames>

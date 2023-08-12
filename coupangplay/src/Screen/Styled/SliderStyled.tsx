@@ -89,7 +89,7 @@ export const Frame = styled(motion.div)<{ BGPhoto?: string }>`
 export const FrameVariants = {
     hover: {
         zIndex: 99,
-        scale: 1.5,
+        scale: 1.3,
         y: -60,
         transition: {
             delay: 0.7,

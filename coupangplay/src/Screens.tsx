@@ -8,7 +8,7 @@ export function Screens() {
             <Header />
 
             <Switch>
-                <Route path="/">
+                <Route path={["/", "/영화"]}>
                     <Home></Home>
                 </Route>
             </Switch>
