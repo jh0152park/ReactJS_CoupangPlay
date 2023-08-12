@@ -6,17 +6,17 @@ export const Container = styled.div`
     height: 250px;
     box-sizing: border-box;
     position: relative;
-    border: 1px solid azure;
+    /* border: 1px solid azure; */
 `;
 
 export const Header = styled.div`
     width: 100%;
     height: 20px;
     font-size: 18px;
-    padding-left: 40px;
+    padding-left: 50px;
     margin-bottom: 10px;
     box-sizing: border-box;
-    border: 1px solid azure;
+    /* border: 1px solid azure; */
 `;
 
 export const Frames = styled(motion.div)`
@@ -24,7 +24,7 @@ export const Frames = styled(motion.div)`
     height: 200px;
     display: grid;
     grid-template-columns: repeat(6, 1fr);
-    gap: 15px;
+    gap: 10px;
     margin-top: 10px;
     box-sizing: border-box;
     left: 0;
@@ -32,7 +32,7 @@ export const Frames = styled(motion.div)`
     margin: 0 auto;
     position: absolute;
     /* overflow: hidden; */
-    border: 1px solid pink;
+    /* border: 1px solid pink; */
 `;
 
 export const LeftArrow = styled.img`
@@ -65,13 +65,27 @@ export const RightArrow = styled.img`
     }
 `;
 
-export const Frame = styled.div<{ BGPhoto?: string }>`
+export const Frame = styled(motion.div)<{ BGPhoto?: string }>`
     height: 100%;
-    border-radius: 10px;
-    background-color: plum;
+    border-radius: 5px;
+    /* background-color: plum; */
     position: relative;
     box-sizing: border-box;
     background-image: url(${(props) => props.BGPhoto});
     background-size: cover;
     background-position: top center;
+    &:hover {
+        cursor: pointer;
+    }
 `;
+
+export const FrameVariants = {
+    initial: {
+        scale: 1,
+    },
+    animate: {},
+    exit: {},
+    hover: {
+        scale: 1.3,
+    },
+};
