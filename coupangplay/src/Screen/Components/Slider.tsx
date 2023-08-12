@@ -105,7 +105,7 @@ function Slider({ title, results }: { title: string; results: IResult[] }) {
                                 )}
                                 variants={FrameVariants}
                                 whileHover="hover"
-                                initial="initial"
+                                transition={{ type: "tween" }}
                             >
                                 <InfoBar></InfoBar>
                             </Frame>
