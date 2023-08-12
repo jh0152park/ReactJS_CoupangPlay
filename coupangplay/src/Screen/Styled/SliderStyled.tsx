@@ -35,19 +35,6 @@ export const Frames = styled(motion.div)`
     border: 1px solid pink;
 `;
 
-export const Frame = styled.div`
-    height: 100%;
-    border-radius: 10px;
-    background-color: plum;
-    position: relative;
-    /* display: flex;
-    justify-content: flex-start;
-    align-items: end;
-    box-sizing: border-box; */
-    /* overflow-x: hidden; */
-    /* background-color: rgba(255, 192, 203, 0.1); */
-`;
-
 export const LeftArrow = styled.img`
     color: white;
     position: absolute;
@@ -76,4 +63,15 @@ export const RightArrow = styled.img`
         cursor: pointer;
         scale: 1.1;
     }
+`;
+
+export const Frame = styled.div<{ BGPhoto?: string }>`
+    height: 100%;
+    border-radius: 10px;
+    background-color: plum;
+    position: relative;
+    box-sizing: border-box;
+    background-image: url(${(props) => props.BGPhoto});
+    background-size: cover;
+    background-position: top center;
 `;
