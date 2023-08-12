@@ -39,6 +39,10 @@ export const Logo = styled.img`
     width: 40px;
     height: 35px;
     margin-right: 18px;
+    &:hover {
+        scale: 1.1;
+        transition: scale 0.2s linear;
+    }
 `;
 
 export const Menus = styled.div`
