@@ -26,6 +26,7 @@ import {
     BannerClickMovieState,
     BannerDetailState,
 } from "../../ProjectCommon";
+import { MovieDetail, Overlay } from "../Styled/BannerMovieDetailStyled";
 
 function Banner({ results }: IData) {
     const History = useHistory();
@@ -34,6 +35,7 @@ function Banner({ results }: IData) {
     const setBannerClickMovieBGLink = useSetRecoilState(BannerClickMovieBGLink);
     const [showDetail, setShowDetail] = useRecoilState(BannerDetailState);
 
+    const [playButton, setPlayButton] = useState<boolean>(false);
     const [startIndex, setStartIndex] = useState(0);
     const [endIndex, setEndIndex] = useState(1);
     const [moving, setMoving] = useState(false);
@@ -107,10 +109,13 @@ function Banner({ results }: IData) {
     }
 
     function handlePlayButtonClick(id: number, BGLink: string) {
-        setShowDetail(true);
-        History.push("/main" + id);
+        setPlayButton(true);
         setBannerClickMovieId(id);
         setBannerClickMovieBGLink(BGLink);
+    }
+
+    function handleClickOutside() {
+        setPlayButton(false);
     }
 
     useEffect(() => {
@@ -168,6 +173,7 @@ function Banner({ results }: IData) {
                                         variants={PlayVariants}
                                         whileHover="hover"
                                         layoutId={"main" + result.id + ""}
+                                        // layoutId="test"
                                         onClick={() =>
                                             handlePlayButtonClick(
                                                 result.id,
@@ -194,6 +200,30 @@ function Banner({ results }: IData) {
                                         ))}
                                     </Dots>
                                 </Description>
+
+                                {playButton ? (
+                                    <AnimatePresence>
+                                        <Overlay
+                                            onClick={handleClickOutside}
+                                            animate={{ opacity: 1 }}
+                                            exit={{ opacity: 0 }}
+                                        >
+                                            <MovieDetail
+                                                style={{
+                                                    top: scrollY.get() + 200,
+                                                }}
+                                                layoutId={
+                                                    "main" + result.id + ""
+                                                }
+                                                transition={{
+                                                    type: "tween",
+                                                }}
+                                            >
+                                                <Detail id={result.id}></Detail>
+                                            </MovieDetail>
+                                        </Overlay>
+                                    </AnimatePresence>
+                                ) : null}
                             </DisplayBox>
                         ))}
                         <RightArrow
@@ -203,11 +233,7 @@ function Banner({ results }: IData) {
                     </AnimatePresence>
                 </Wrapper>
             )}
-            {showDetail ? (
-                <AnimatePresence>
-                    <Detail y={scrollY.get()}></Detail>
-                </AnimatePresence>
-            ) : null}
+            {/* {showDetail ? <Detail y={scrollY.get()}></Detail> : null} */}
         </>
     );
 }
