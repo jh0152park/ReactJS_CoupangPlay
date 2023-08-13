@@ -27,14 +27,6 @@ function Home() {
                     results={LikeMovies.data?.results}
                 ></Slider>
             )}
-            {/* <MovieDetail></MovieDetail> */}
-            {/* {DetailMatch ? (
-                <Switch>
-                    <Route path={`/movies/details/${MovieId}`}>
-                        <MovieDetail></MovieDetail>
-                    </Route>
-                </Switch>
-            ) : null} */}
         </>
     );
 }

@@ -1,16 +1,7 @@
-function MovieDetail() {
-    return (
-        <div
-            style={{
-                width: "100%",
-                height: "100vh",
-                backgroundColor: "red",
-                zIndex: 99,
-                position: "absolute",
-                top: 0,
-            }}
-        ></div>
-    );
+import { Wrapper } from "./Styled/Detail/DetailBannerStyled";
+
+function MovieDetail({ id }: { id: string | number }) {
+    return <Wrapper></Wrapper>;
 }
 
 export default MovieDetail;
