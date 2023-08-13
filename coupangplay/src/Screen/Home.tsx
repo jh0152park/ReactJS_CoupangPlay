@@ -9,6 +9,7 @@ import {
 import CategoryBar from "./Components/CategoryBar";
 import TopMovies from "./Components/TopMovies";
 import Slider from "./Components/Slider";
+import Footer from "./Components/Footer";
 
 function Home() {
     const MainMovies = useQuery(["mainMovies", "home"], () =>
@@ -62,6 +63,7 @@ function Home() {
                     results={UpComingMovies.data?.results}
                 ></Slider>
             )}
+            <Footer></Footer>
         </>
     );
 }
