@@ -17,17 +17,15 @@ import {
 } from "../Styled/BannerStyled";
 import { useEffect, useState } from "react";
 import { useQuery } from "react-query";
+import { IData, LEFT_ARROW_URL, RIGHT_ARROW_URL } from "../../GlobalFeatures";
+import { useHistory } from "react-router-dom";
+import Detail from "./BannerMovieDetail";
+import { useRecoilState, useSetRecoilState } from "recoil";
 import {
     BannerClickMovieBGLink,
     BannerClickMovieState,
     BannerDetailState,
-    IData,
-    LEFT_ARROW_URL,
-    RIGHT_ARROW_URL,
-} from "../../GlobalFeatures";
-import { useHistory } from "react-router-dom";
-import Detail from "./BannerMovieDetail";
-import { useRecoilState, useSetRecoilState } from "recoil";
+} from "../../ProjectCommon";
 
 function Banner({ results }: IData) {
     const History = useHistory();

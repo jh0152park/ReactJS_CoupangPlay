@@ -1,10 +1,5 @@
 import { useQuery } from "react-query";
-import {
-    IData,
-    LEFT_ARROW_URL,
-    MouseOnTop20State,
-    RIGHT_ARROW_URL,
-} from "../../GlobalFeatures";
+import { IData, LEFT_ARROW_URL, RIGHT_ARROW_URL } from "../../GlobalFeatures";
 import {
     Container,
     Frame,
@@ -21,7 +16,7 @@ import { createImagePath, getPopularMovieList } from "../../API";
 
 import { useState } from "react";
 import { AnimatePresence } from "framer-motion";
-import { SlideVariants } from "../../ProjectCommon";
+import { MouseOnTop20State, SlideVariants } from "../../ProjectCommon";
 import InfoBar from "./TinyInfoBar";
 import { useSetRecoilState } from "recoil";
 import { useHistory } from "react-router-dom";

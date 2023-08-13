@@ -12,15 +12,16 @@ import {
     Title,
 } from "../Styled/BannerMovieDetailStyled";
 import { useRecoilValue, useSetRecoilState } from "recoil";
-import {
-    BannerClickMovieBGLink,
-    BannerClickMovieState,
-    BannerDetailState,
-} from "../../GlobalFeatures";
+
 import { useQuery } from "react-query";
 import { getMovieDetail, getMovieVideoInfo } from "../../API";
 import Youtube from "./Yotube";
 import { Star } from "../Styled/BannerStyled";
+import {
+    BannerClickMovieBGLink,
+    BannerClickMovieState,
+    BannerDetailState,
+} from "../../ProjectCommon";
 
 function Detail({ y }: { y: number }) {
     const History = useHistory();
