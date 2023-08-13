@@ -8,10 +8,11 @@ import {
     ButtonContainer,
     LeftButton,
     PlayButton,
-    NormalButton,
     RightButton,
+    Img,
 } from "../Styled/InfoBarStyled";
 import { getMovieDetail } from "../../API";
+import { ADD_BUTTON_URL, INFO_BUTTON_URL } from "../../GlobalFeatures";
 
 function InfoBar({ movieId }: { movieId: number }) {
     let score = 0;
@@ -47,10 +48,10 @@ function InfoBar({ movieId }: { movieId: number }) {
                     <ButtonContainer>
                         <LeftButton>
                             <PlayButton>&nbsp;►</PlayButton>
-                            <NormalButton>+</NormalButton>
+                            <Img src={ADD_BUTTON_URL}></Img>
                         </LeftButton>
                         <RightButton>
-                            <NormalButton>i</NormalButton>
+                            <Img src={INFO_BUTTON_URL}></Img>
                         </RightButton>
                     </ButtonContainer>
                 </Container>
