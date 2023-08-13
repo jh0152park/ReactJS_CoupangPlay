@@ -123,3 +123,14 @@ export const Text = styled.p`
     color: rgb(245, 245, 245, 0.5);
     font-size: 12px;
 `;
+
+//20% / 25%
+
+export const Overview = styled.div`
+    width: 100%;
+    height: 25%;
+    overflow: hidden;
+    font-size: 20px;
+    line-height: 1.5;
+    border: 1px solid cyan;
+`;
