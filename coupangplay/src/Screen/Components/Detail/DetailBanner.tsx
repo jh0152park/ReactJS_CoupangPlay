@@ -15,6 +15,7 @@ import {
     Logo,
     LogoImage,
     LogoTitle,
+    Overview,
     Play,
     Star,
     Summary,
@@ -137,6 +138,8 @@ function DetailBanner({ id }: { id: string | number }) {
                                 <Text>공유</Text>
                             </ButtonContainer>
                         </Buttons>
+
+                        <Overview>{overview.slice(0, 500) + "..."}</Overview>
                     </Description>
                 </DisplayBox>
             )}
