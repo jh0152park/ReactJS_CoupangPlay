@@ -8,7 +8,6 @@ function MovieDetail({ id }: { id: string | number }) {
             <Wrapper>
                 <DetailBanner id={id}></DetailBanner>
             </Wrapper>
-            )
         </>
     );
 }

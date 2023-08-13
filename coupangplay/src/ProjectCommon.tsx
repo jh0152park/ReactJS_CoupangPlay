@@ -36,3 +36,10 @@ export const LikeMovieState = atom<(number | string)[]>({
     key: "likeMovie",
     default: [],
 });
+
+export function convertMinutesToHoursAndMinutes(minutes: number): string {
+    const hours = Math.floor(minutes / 60); // 분을 시간으로 변환
+    const remainingMinutes = minutes % 60; // 시간으로 변환 후 남은 분
+
+    return `${hours}시간 ${remainingMinutes}분`;
+}
