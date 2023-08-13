@@ -33,7 +33,6 @@ export const Description = styled.div`
     bottom: 0;
     margin: auto 0;
     margin-left: 30px;
-    border: 1px solid darkgreen;
 `;
 
 export const Logo = styled.div`
@@ -44,7 +43,6 @@ export const Logo = styled.div`
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    border: 1px solid pink;
 `;
 
 export const LogoImage = styled.img`
@@ -67,7 +65,6 @@ export const Summary = styled.div`
     justify-content: flex-start;
     align-items: center;
     font-size: 20px;
-    border: 1px solid blue;
 `;
 
 export const Star = styled.span`
@@ -82,7 +79,6 @@ export const Buttons = styled.div`
     justify-content: flex-start;
     align-items: center;
     gap: 10px;
-    border: 1px solid red;
 `;
 
 export const Play = styled(motion.div)`
@@ -111,7 +107,6 @@ export const ButtonContainer = styled.div`
     align-items: center;
     flex-direction: column;
     gap: 5px;
-    border: 1px solid yellow;
 `;
 
 export const ButtonImg = styled.img`
@@ -124,13 +119,27 @@ export const Text = styled.p`
     font-size: 12px;
 `;
 
-//20% / 25%
-
 export const Overview = styled.div`
     width: 100%;
     height: 25%;
     overflow: hidden;
-    font-size: 20px;
+    font-size: 19px;
     line-height: 1.5;
-    border: 1px solid cyan;
+`;
+
+export const Extra = styled.div`
+    width: 100%;
+    height: 20%;
+    overflow: hidden;
+    font-size: 14px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-direction: column;
+    line-height: 1.5;
+    color: rgba(255, 255, 255, 0.8);
+
+    p span {
+        margin-right: 5px;
+    }
 `;
