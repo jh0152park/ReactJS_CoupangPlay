@@ -84,6 +84,11 @@ export const NormalButton = styled.div`
     align-items: center;
 `;
 
+export const Img = styled.img`
+    width: 30px;
+    height: 30px;
+`;
+
 export const InfobarVariants = {
     hover: {
         opacity: 1,

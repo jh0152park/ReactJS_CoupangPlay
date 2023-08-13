@@ -1,5 +1,5 @@
 import { useQuery } from "react-query";
-import { IResult } from "../../GlobalFeatures";
+import { ADD_BUTTON_URL, INFO_BUTTON_URL, IResult } from "../../GlobalFeatures";
 import {
     Container,
     Description,
@@ -11,6 +11,7 @@ import {
     PlayButton,
     NormalButton,
     InfobarVariants,
+    Img,
 } from "../Styled/TinyInfoBarStyled";
 import { getMovieDetail } from "../../API";
 import { useRecoilValue } from "recoil";
@@ -43,10 +44,10 @@ export function InfoBar({ data }: { data: IResult }) {
                     <ButtonContainer>
                         <LeftButton>
                             <PlayButton>&nbsp;►</PlayButton>
-                            <NormalButton>+</NormalButton>
+                            <Img src={ADD_BUTTON_URL}></Img>
                         </LeftButton>
                         <RightButton>
-                            <NormalButton>i</NormalButton>
+                            <Img src={INFO_BUTTON_URL}></Img>
                         </RightButton>
                     </ButtonContainer>
                 </Container>

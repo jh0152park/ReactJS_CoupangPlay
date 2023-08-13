@@ -9,6 +9,15 @@ export const RIGHT_ARROW_URL =
 export const QUESTION_MARK_URL =
     "https://cdn-icons-png.flaticon.com/512/9796/9796625.png";
 
+export const ADD_BUTTON_URL =
+    "https://assets.coupangplay.com/assets/icons/icon-mylist-add-hover.svg";
+
+export const INFO_BUTTON_URL =
+    "https://assets.coupangplay.com/assets/icons/icon-large-info-hover.svg";
+
+export const SHARE_BUTTON_URL =
+    "https://assets.coupangplay.com/assets/icons/icon-share.svg";
+
 export interface IResult {
     id: number;
     backdrop_path: string;

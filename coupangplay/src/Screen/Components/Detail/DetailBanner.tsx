@@ -2,14 +2,19 @@ import { useQuery } from "react-query";
 import { IDetail, IImages } from "../../../GlobalFeatures";
 import { createImagePath, getMovieDetail, getMovieImages } from "../../../API";
 import {
+    Button,
+    ButtonContainer,
     Buttons,
     Description,
     DisplayBox,
     Logo,
     LogoImage,
     LogoTitle,
+    Play,
+    Share,
     Star,
     Summary,
+    Text,
 } from "../../Styled/Detail/DetailBannerStyled";
 import { convertMinutesToHoursAndMinutes } from "../../../ProjectCommon";
 
@@ -115,7 +120,14 @@ function DetailBanner({ id }: { id: string | number }) {
                             {genre} ◦ {release_date}
                         </Summary>
 
-                        <Buttons></Buttons>
+                        <Buttons>
+                            <Play>► 재생하기</Play>
+                            <ButtonContainer>
+                                <Button></Button>
+                                <Text>찜한 콘텐츠</Text>
+                            </ButtonContainer>
+                            <ButtonContainer></ButtonContainer>
+                        </Buttons>
                     </Description>
                 </DisplayBox>
             )}

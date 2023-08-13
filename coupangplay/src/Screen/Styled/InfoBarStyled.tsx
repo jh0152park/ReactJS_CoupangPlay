@@ -86,14 +86,7 @@ export const PlayButton = styled.div`
     font-size: 15px;
 `;
 
-export const NormalButton = styled.div`
+export const Img = styled.img`
     width: 27px;
     height: 27px;
-    border-radius: 50%;
-    color: whitesmoke;
-    border: 1px solid #9e9e9e;
-    font-size: 15px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
 `;

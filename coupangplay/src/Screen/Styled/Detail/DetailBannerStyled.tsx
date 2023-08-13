@@ -1,3 +1,4 @@
+import { motion } from "framer-motion";
 import { styled } from "styled-components";
 
 export const Wrapper = styled.div`
@@ -60,7 +61,6 @@ export const LogoTitle = styled.p`
 `;
 
 export const Summary = styled.div`
-    width: 50%;
     height: 10%;
     box-sizing: border-box;
     display: flex;
@@ -75,12 +75,60 @@ export const Star = styled.span`
 `;
 
 export const Buttons = styled.div`
-    width: 60%;
+    width: 70%;
     height: 15%;
     box-sizing: border-box;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 30px;
     border: 1px solid red;
 `;
 
-export const LeftButton = styled.div``;
+export const Play = styled(motion.div)`
+    width: 60%;
+    height: 80%;
+    background-color: ${(props) => props.theme.coupangBlue};
+    color: ${(props) => props.theme.fontColor};
+    border-radius: 5px;
+    font-size: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
-export const RightButton = styled.div``;
+    &:hover {
+        cursor: pointer;
+        opacity: 0.8;
+        transition: opacity 0.1s linear;
+    }
+`;
+
+export const ButtonContainer = styled.div`
+    width: 15%;
+    height: 80%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 5px;
+    border: 1px solid yellow;
+`;
+
+export const Share = styled.div`
+    width: 15%;
+    height: 80%;
+    border: 1px solid green;
+`;
+
+export const Button = styled.div`
+    width: 30px;
+    height: 30px;
+    background-color: none;
+    border: 2px solid whitesmoke;
+    border-radius: 50%;
+`;
+
+export const Text = styled.p`
+    color: rgb(245, 245, 245, 0.5);
+    font-size: 10px;
+`;
