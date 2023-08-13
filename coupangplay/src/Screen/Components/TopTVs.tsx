@@ -144,7 +144,7 @@ function TopTVs() {
                                         onMouseLeave={MouseOutPoster}
                                         onClick={() => {
                                             History.push(
-                                                `/movies/details/${movie.id}`
+                                                `/tvs/details/${movie.id}`
                                             );
                                         }}
                                     >
