@@ -107,6 +107,12 @@ export const ButtonContainer = styled.div`
     align-items: center;
     flex-direction: column;
     gap: 5px;
+    &:hover {
+        cursor: pointer;
+        p {
+            color: rgb(245, 245, 245, 1);
+        }
+    }
 `;
 
 export const ButtonImg = styled.img`

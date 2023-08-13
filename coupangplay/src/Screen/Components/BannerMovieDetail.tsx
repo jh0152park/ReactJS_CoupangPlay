@@ -17,22 +17,11 @@ import { useQuery } from "react-query";
 import { getMovieDetail, getMovieVideoInfo } from "../../API";
 import Youtube from "./Yotube";
 import { Star } from "../Styled/BannerStyled";
-import {
-    BannerClickMovieBGLink,
-    BannerClickMovieState,
-    BannerDetailState,
-} from "../../ProjectCommon";
+import { BannerClickMovieBGLink } from "../../ProjectCommon";
 
-function Detail({ y }: { y: number }) {
-    const History = useHistory();
-
-    const setShowDetail = useSetRecoilState(BannerDetailState);
-    const clickedMovieId = useRecoilValue(BannerClickMovieState);
+function Detail({ id }: { id: number | string }) {
+    const currentPathId = id;
     const clickedMovieBGLink = useRecoilValue(BannerClickMovieBGLink);
-
-    const currntPath = useLocation().pathname.slice(1);
-    const currentPathId = currntPath.split("main")[1];
-    const isRealClicked = clickedMovieId === +currentPathId;
 
     let videoKey: string = "";
     const { data, isLoading } = useQuery(["movieVideo", currentPathId], () =>
@@ -51,11 +40,6 @@ function Detail({ y }: { y: number }) {
         ["movieDetail", currentPathId],
         () => getMovieDetail(+currentPathId)
     );
-
-    function handleClickOutside() {
-        setShowDetail(false);
-        History.goBack();
-    }
 
     function getVideoKey() {
         if (!isLoading && data?.results) {
@@ -104,72 +88,51 @@ function Detail({ y }: { y: number }) {
 
     videoKey = getVideoKey();
     updateDetail();
+
     return (
         <>
             {isLoading || DetailLoading ? null : (
                 <>
-                    {isRealClicked ? (
-                        <Overlay
-                            onClick={handleClickOutside}
-                            animate={{ opacity: 1 }}
-                            exit={{ opacity: 0 }}
-                        >
-                            <MovieDetail
-                                style={{ top: y + 200 }}
-                                layoutId={currntPath}
-                                transition={{
-                                    type: "tween",
-                                }}
-                            >
-                                <Background>
-                                    {videoKey !== "n/a" &&
-                                    videoKey !== undefined ? (
-                                        <Youtube
-                                            videoKey={videoKey}
-                                            width="700"
-                                            height="360"
-                                        ></Youtube>
-                                    ) : (
-                                        <BackgroundImage
-                                            BGPhoto={clickedMovieBGLink}
-                                        ></BackgroundImage>
-                                    )}
-                                </Background>
+                    <Background>
+                        {videoKey !== "n/a" && videoKey !== undefined ? (
+                            <Youtube
+                                videoKey={videoKey}
+                                width="700"
+                                height="360"
+                            ></Youtube>
+                        ) : (
+                            <BackgroundImage
+                                BGPhoto={clickedMovieBGLink}
+                            ></BackgroundImage>
+                        )}
+                    </Background>
 
-                                {movieDetail ? (
-                                    <>
-                                        <Title>{title}</Title>
-                                        <Summary>
-                                            <Star>★</Star>
-                                            {score === 0 ? "1.0" : score} ◦{" "}
-                                            {genre} ◦{" "}
-                                            {runtime === 0 ? "123" : runtime}분
-                                        </Summary>
-                                        <Description>
-                                            <Overview>{overview}</Overview>
-                                            <Extra>
-                                                <span>
-                                                    <SubTitle>Genres:</SubTitle>
-                                                    &nbsp;&nbsp;{genres}
-                                                </span>
-                                                <span>
-                                                    <SubTitle>
-                                                        Release:
-                                                    </SubTitle>
-                                                    &nbsp;&nbsp;{release}
-                                                </span>
-                                                <span>
-                                                    <SubTitle>
-                                                        Productions:
-                                                    </SubTitle>
-                                                    &nbsp;&nbsp;{production}
-                                                </span>
-                                            </Extra>
-                                        </Description>
-                                    </>
-                                ) : null}
-                            </MovieDetail>
-                        </Overlay>
+                    {movieDetail ? (
+                        <>
+                            <Title>{title}</Title>
+                            <Summary>
+                                <Star>★</Star>
+                                {score === 0 ? "1.0" : score} ◦ {genre} ◦{" "}
+                                {runtime === 0 ? "123" : runtime}분
+                            </Summary>
+                            <Description>
+                                <Overview>{overview}</Overview>
+                                <Extra>
+                                    <span>
+                                        <SubTitle>Genres:</SubTitle>
+                                        &nbsp;&nbsp;{genres}
+                                    </span>
+                                    <span>
+                                        <SubTitle>Release:</SubTitle>
+                                        &nbsp;&nbsp;{release}
+                                    </span>
+                                    <span>
+                                        <SubTitle>Productions:</SubTitle>
+                                        &nbsp;&nbsp;{production}
+                                    </span>
+                                </Extra>
+                            </Description>
+                        </>
                     ) : null}
                 </>
             )}
