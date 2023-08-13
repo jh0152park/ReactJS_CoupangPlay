@@ -38,7 +38,7 @@ export const RightNavigation = styled.div`
 export const Logo = styled.img`
     width: 40px;
     height: 35px;
-    margin-right: 18px;
+    margin-right: 10px;
     &:hover {
         scale: 1.1;
         transition: scale 0.2s linear;
@@ -46,18 +46,20 @@ export const Logo = styled.img`
 `;
 
 export const Menus = styled.div`
+    min-width: 600px;
+    max-width: 600px;
+    /* background-color: pink; */
     height: 100%;
     display: grid;
-    gap: 0px;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1.5fr;
 
-    div:last-child {
+    /* div:last-child {
         width: 100px;
-    }
+    } */
 `;
 
 export const Menu = styled.div`
-    width: 80px;
+    /* width: 80px; */
     height: 50px;
     display: flex;
     align-items: center;
