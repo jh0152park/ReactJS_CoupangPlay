@@ -2,17 +2,21 @@ import { useQuery } from "react-query";
 import { IDetail, IImages } from "../../../GlobalFeatures";
 import { createImagePath, getMovieDetail, getMovieImages } from "../../../API";
 import {
+    Buttons,
     Description,
     DisplayBox,
     Logo,
     LogoImage,
     LogoTitle,
+    Star,
+    Summary,
 } from "../../Styled/Detail/DetailBannerStyled";
 import { convertMinutesToHoursAndMinutes } from "../../../ProjectCommon";
 
 function DetailBanner({ id }: { id: string | number }) {
     let backdrop_path = "";
     let poster_path = "";
+    let genre = "";
     let genres = "";
     let homepage = "";
     let overview = "";
@@ -20,7 +24,7 @@ function DetailBanner({ id }: { id: string | number }) {
     let runtime = "";
     let title = "";
     let vote_average = 0;
-    let vote_count = 0;
+    let vote_count = "";
     let productions = "";
     let logo_path = "";
 
@@ -58,6 +62,7 @@ function DetailBanner({ id }: { id: string | number }) {
         if (!detail.isLoading && detail.data) {
             backdrop_path = detail.data.backdrop_path;
             poster_path = detail.data.poster_path;
+            genre = detail.data.genres[0].name;
             genres = getGenres();
             homepage = detail.data.homepage;
             overview = detail.data.overview;
@@ -65,7 +70,7 @@ function DetailBanner({ id }: { id: string | number }) {
             runtime = convertMinutesToHoursAndMinutes(detail.data.runtime);
             title = detail.data.title;
             vote_average = parseFloat(detail.data.vote_average.toFixed(1));
-            vote_count = detail.data.vote_count;
+            vote_count = detail.data.vote_count.toLocaleString();
             productions = getProduction();
         }
     }
@@ -103,6 +108,14 @@ function DetailBanner({ id }: { id: string | number }) {
                                 <LogoTitle>{title}</LogoTitle>
                             )}
                         </Logo>
+
+                        <Summary>
+                            <Star>★</Star>
+                            &nbsp;{vote_average} ({vote_count}) ◦ {runtime} ◦
+                            {genre} ◦ {release_date}
+                        </Summary>
+
+                        <Buttons></Buttons>
                     </Description>
                 </DisplayBox>
             )}

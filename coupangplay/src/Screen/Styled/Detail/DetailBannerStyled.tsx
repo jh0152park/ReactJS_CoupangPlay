@@ -25,12 +25,13 @@ export const DisplayBox = styled.div<{ BGPhoto?: string }>`
 
 export const Description = styled.div`
     width: 40%;
-    height: 50%;
+    height: 60%;
     position: absolute;
     left: 0;
     top: 0;
     bottom: 0;
     margin: auto 0;
+    margin-left: 30px;
     border: 1px solid darkgreen;
 `;
 
@@ -57,3 +58,29 @@ export const LogoTitle = styled.p`
     overflow: hidden;
     text-overflow: ellipsis;
 `;
+
+export const Summary = styled.div`
+    width: 50%;
+    height: 10%;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    font-size: 20px;
+    border: 1px solid blue;
+`;
+
+export const Star = styled.span`
+    color: ${(props) => props.theme.coupangBlue};
+`;
+
+export const Buttons = styled.div`
+    width: 60%;
+    height: 15%;
+    box-sizing: border-box;
+    border: 1px solid red;
+`;
+
+export const LeftButton = styled.div``;
+
+export const RightButton = styled.div``;
