@@ -11,10 +11,10 @@ import {
     RightButton,
     Img,
 } from "../Styled/InfoBarStyled";
-import { getMovieDetail } from "../../API";
+import { getMovieDetail, getTVDetail } from "../../API";
 import { ADD_BUTTON_URL, INFO_BUTTON_URL } from "../../GlobalFeatures";
 
-function InfoBar({ movieId }: { movieId: number }) {
+function TVInfoBar({ movieId }: { movieId: number }) {
     let score = 0;
     let title = "";
     let genre = "";
@@ -22,8 +22,11 @@ function InfoBar({ movieId }: { movieId: number }) {
     let release = "";
 
     const detail = useQuery<any>(["detail_Info", movieId], () =>
-        getMovieDetail(movieId)
+        getTVDetail(movieId)
     );
+
+    console.log("tv info bar");
+    console.log(detail.data);
 
     function updateDetilInfo() {
         if (!detail.isLoading && detail.data) {
@@ -41,14 +44,18 @@ function InfoBar({ movieId }: { movieId: number }) {
             } catch {
                 score = detail.data.vote_average;
             }
-            title = detail.data.title;
+            title = detail.data.name;
             try {
                 genre = detail.data.genres[0].name;
             } catch {
                 genre = "시리즈";
             }
             runtime = detail.data.runtime;
-            release = detail.data.release_date.split("-")[0];
+            try {
+                release = detail.data.last_air_date.split("-")[0];
+            } catch {
+                release = detail.data.release_date.split("-")[0];
+            }
         }
     }
 
@@ -77,4 +84,4 @@ function InfoBar({ movieId }: { movieId: number }) {
     );
 }
 
-export default InfoBar;
+export default TVInfoBar;

@@ -37,6 +37,11 @@ export const LikeMovieState = atom<(number | string)[]>({
     default: [],
 });
 
+export const LiveTVState = atom<(number | string)[]>({
+    key: "likeTV",
+    default: [],
+});
+
 export function convertMinutesToHoursAndMinutes(minutes: number): string {
     const hours = Math.floor(minutes / 60); // 분을 시간으로 변환
     const remainingMinutes = minutes % 60; // 시간으로 변환 후 남은 분

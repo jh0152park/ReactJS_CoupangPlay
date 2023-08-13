@@ -1,5 +1,10 @@
 import { useEffect, useState } from "react";
-import { IResult, LEFT_ARROW_URL, RIGHT_ARROW_URL } from "../../GlobalFeatures";
+import {
+    IResult,
+    ITVResult,
+    LEFT_ARROW_URL,
+    RIGHT_ARROW_URL,
+} from "../../GlobalFeatures";
 import {
     Container,
     Frame,
@@ -14,8 +19,17 @@ import { createImagePath } from "../../API";
 import { SlideVariants } from "../../ProjectCommon";
 import InfoBar from "./InfoBar";
 import { useHistory, useLocation } from "react-router-dom";
+import TVInfoBar from "./TVInfoBar";
 
-function Slider({ title, results }: { title: string; results: IResult[] }) {
+function Slider({
+    title,
+    results,
+    type,
+}: {
+    title: string;
+    results: IResult[] | ITVResult[];
+    type: string;
+}) {
     const [startIndex, setStartIndex] = useState(0);
     const [endIndex, setEndIndex] = useState(6);
 
@@ -116,11 +130,17 @@ function Slider({ title, results }: { title: string; results: IResult[] }) {
                                 transition={{ type: "tween" }}
                                 onClick={() => {
                                     History.push(
-                                        `/movies/details/${result.id}`
+                                        type === "movie"
+                                            ? `/movies/details/${result.id}`
+                                            : `/tvs/details/${result.id}`
                                     );
                                 }}
                             >
-                                <InfoBar movieId={result.id}></InfoBar>
+                                {type === "movie" ? (
+                                    <InfoBar movieId={result.id}></InfoBar>
+                                ) : (
+                                    <TVInfoBar movieId={result.id}></TVInfoBar>
+                                )}
                             </Frame>
                         ))}
                 </Frames>

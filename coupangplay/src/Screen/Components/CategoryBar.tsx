@@ -14,20 +14,26 @@ import { SlideVariants } from "../../ProjectCommon";
 function CategoryBar() {
     const [categoryIndex, setCategoryIndex] = useState<number>(0);
     const [direction, setDirection] = useState<number>(1);
-    const categories = [CATEGORIES.slice(0, 10), CATEGORIES.slice(10, 23)];
+    const categories = [
+        CATEGORIES.slice(0, 10),
+        CATEGORIES.slice(10, 23),
+        CATEGORIES.slice(23, 36),
+    ];
 
     function updateIndex() {
         setCategoryIndex((prev) => (prev ? 0 : 1));
     }
 
     function onLeftArrowClick() {
-        updateIndex();
+        // updateIndex();
+        setCategoryIndex((prev) => (prev === 0 ? 2 : prev - 1));
         setDirection(-1);
         console.log("left arrow clicked");
     }
 
     function onRightArrowClick() {
-        updateIndex();
+        // updateIndex();
+        setCategoryIndex((prev) => (prev === 2 ? 0 : prev + 1));
         setDirection(1);
         console.log("right arrow clicked");
     }

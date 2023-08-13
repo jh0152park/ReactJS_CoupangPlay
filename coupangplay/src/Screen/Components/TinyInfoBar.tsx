@@ -27,9 +27,13 @@ export function InfoBar({ data }: { data: IResult }) {
     const release = data.release_date ? data.release_date : "1234-56-78";
     let genre = "";
     if (!detail.isLoading && detail.data) {
-        genre = detail.data.genres[0].name
-            ? detail.data.genres[0].name
-            : "코미디";
+        try {
+            genre = detail.data.genres[0].name
+                ? detail.data.genres[0].name
+                : "코미디";
+        } catch {
+            genre = "TV쇼";
+        }
     }
 
     return (
