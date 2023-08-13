@@ -1,6 +1,11 @@
 import { useQuery } from "react-query";
 import Banner from "./Components/Banner";
-import { getNowPlayingMovieList } from "../API";
+import {
+    getNowPlayingMovieList,
+    getPopularMovieList,
+    getTopRatedMovieList,
+    getUpComingMovieList,
+} from "../API";
 import CategoryBar from "./Components/CategoryBar";
 import TopMovies from "./Components/TopMovies";
 import Slider from "./Components/Slider";
@@ -11,6 +16,18 @@ function Home() {
     );
     const LikeMovies = useQuery(["likeMovies", "home"], () =>
         getNowPlayingMovieList(2)
+    );
+
+    const PopularMovies = useQuery(["popularMovies", "home"], () =>
+        getPopularMovieList(2)
+    );
+
+    const TopRatedMovies = useQuery(["topRatedMovies", "home"], () =>
+        getTopRatedMovieList(1)
+    );
+
+    const UpComingMovies = useQuery(["soonMovies", "home"], () =>
+        getUpComingMovieList(1)
     );
 
     return (
@@ -25,6 +42,24 @@ function Home() {
                 <Slider
                     title="내가 좋아할 만한 콘텐츠"
                     results={LikeMovies.data?.results}
+                ></Slider>
+            )}
+            {PopularMovies.isLoading && PopularMovies ? null : (
+                <Slider
+                    title="인기 콘텐츠"
+                    results={PopularMovies.data?.results}
+                ></Slider>
+            )}
+            {TopRatedMovies.isLoading && TopRatedMovies ? null : (
+                <Slider
+                    title="높은 평점의 콘텐츠"
+                    results={TopRatedMovies.data?.results}
+                ></Slider>
+            )}
+            {UpComingMovies.isLoading && UpComingMovies ? null : (
+                <Slider
+                    title="다가오는 기대작"
+                    results={UpComingMovies.data?.results}
                 ></Slider>
             )}
         </>

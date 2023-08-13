@@ -2,6 +2,7 @@ import { useQuery } from "react-query";
 import {
     IDetail,
     IImages,
+    LARGE_ADDED_BUTTON_URL,
     LARGE_ADD_BUTTON_URL,
     SHARE_BUTTON_URL,
 } from "../../../GlobalFeatures";
@@ -169,6 +170,10 @@ function DetailBanner({ id }: { id: string | number }) {
         }
     }
 
+    function isAdded() {
+        return likeMovieList.includes(id);
+    }
+
     updateDetail();
     computeLogoIamgePath();
     videoKey = getVideoKey();
@@ -210,7 +215,11 @@ function DetailBanner({ id }: { id: string | number }) {
                             </Play>
                             <ButtonContainer onClick={handleLikeButtonClick}>
                                 <ButtonImg
-                                    src={LARGE_ADD_BUTTON_URL}
+                                    src={
+                                        isAdded()
+                                            ? LARGE_ADDED_BUTTON_URL
+                                            : LARGE_ADD_BUTTON_URL
+                                    }
                                 ></ButtonImg>
                                 <Text>찜한 콘텐츠</Text>
                             </ButtonContainer>

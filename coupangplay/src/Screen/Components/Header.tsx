@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import {
     LOGO_URL,
     LeftNavigation,
@@ -35,6 +35,10 @@ function Header() {
     const { scrollY } = useScroll();
     const headerAnimation = useAnimation();
 
+    let Location = useLocation().pathname;
+
+    Location = Location === "/" ? "영화" : Location.slice(1);
+
     useEffect(() => {
         scrollY.onChange(() => {
             if (scrollY.get() > 80) {
@@ -59,7 +63,7 @@ function Header() {
                 <Menus>
                     {menus.map((menu) => (
                         <Link to={`/${menu}`}>
-                            <Menu>{menu}</Menu>
+                            <Menu location={Location === menu}>{menu}</Menu>
                         </Link>
                     ))}
                 </Menus>

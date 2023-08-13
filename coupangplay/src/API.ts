@@ -54,7 +54,7 @@ export async function getTopRatedMovieList(page: number) {
     ).then((response) => response.json());
 }
 
-export async function getUpcomingMovieList(page: number) {
+export async function getUpComingMovieList(page: number) {
     const options = {
         method: "GET",
         headers: {
