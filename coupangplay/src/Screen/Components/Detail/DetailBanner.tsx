@@ -31,11 +31,15 @@ import {
     Text,
     VideoFrame,
 } from "../../Styled/Detail/DetailBannerStyled";
-import { convertMinutesToHoursAndMinutes } from "../../../ProjectCommon";
+import {
+    LikeMovieState,
+    convertMinutesToHoursAndMinutes,
+} from "../../../ProjectCommon";
 import { useState } from "react";
 import { AnimatePresence } from "framer-motion";
 import { useLocation } from "react-router-dom";
 import Youtube from "../Yotube";
+import { useRecoilState, useSetRecoilState } from "recoil";
 
 function DetailBanner({ id }: { id: string | number }) {
     let backdrop_path = "";
@@ -68,6 +72,8 @@ function DetailBanner({ id }: { id: string | number }) {
     const [playVideo, setPlayVideo] = useState(false);
     const currntPath = useLocation().pathname.slice(1);
     const currentPathId = currntPath.split("/")[2];
+
+    const [likeMovieList, setLikeMovieList] = useRecoilState(LikeMovieState);
 
     let videoKey: string = "";
     const video = useQuery(["movie_detail_video", currentPathId], () =>
@@ -157,10 +163,16 @@ function DetailBanner({ id }: { id: string | number }) {
         return "n/a";
     }
 
+    function handleLikeButtonClick() {
+        if (!likeMovieList.includes(id)) {
+            setLikeMovieList((prev) => [...prev, id]);
+        }
+    }
+
     updateDetail();
     computeLogoIamgePath();
     videoKey = getVideoKey();
-    console.log(videoKey);
+
     return (
         <>
             {detail.isLoading ||
@@ -196,7 +208,7 @@ function DetailBanner({ id }: { id: string | number }) {
                             >
                                 ► 재생하기
                             </Play>
-                            <ButtonContainer>
+                            <ButtonContainer onClick={handleLikeButtonClick}>
                                 <ButtonImg
                                     src={LARGE_ADD_BUTTON_URL}
                                 ></ButtonImg>
