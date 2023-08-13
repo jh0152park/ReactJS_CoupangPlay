@@ -13,7 +13,7 @@ function SwitchScreen() {
             <Header />
             <Switch>
                 <Route path={`/movies/details/${MovieId}`}>
-                    <MovieDetail></MovieDetail>
+                    <MovieDetail id={MovieId}></MovieDetail>
                 </Route>
 
                 <Route path={["/", "/영화"]}>

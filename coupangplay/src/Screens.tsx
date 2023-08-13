@@ -11,13 +11,6 @@ export function Screens() {
     return (
         <BrowserRouter basename={process.env.PUBLIC_URL}>
             <SwitchScreen></SwitchScreen>
-            {/* <Header />
-
-            <Switch>
-                <Route path={["/", "/영화"]}>
-                    <Home></Home>
-                </Route>
-            </Switch> */}
         </BrowserRouter>
     );
 }
