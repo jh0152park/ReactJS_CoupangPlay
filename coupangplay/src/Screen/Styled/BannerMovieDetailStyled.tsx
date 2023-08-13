@@ -10,7 +10,7 @@ export const Overlay = styled(motion.div)`
     justify-content: center;
     align-items: center;
     z-index: 99;
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(0, 0, 0, 0.7);
     opacity: 0;
 `;
 

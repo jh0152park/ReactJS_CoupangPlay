@@ -1,10 +1,18 @@
 import YouTube from "react-youtube";
 
-function Youtube({ videoKey }: { videoKey: string }) {
+function Youtube({
+    videoKey,
+    width,
+    height,
+}: {
+    videoKey: string;
+    width: string;
+    height: string;
+}) {
     const videoId = videoKey;
     const option = {
-        height: "360",
-        width: "700",
+        height: height,
+        width: width,
         playerVars: {
             autoPlay: 1,
         },
