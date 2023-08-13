@@ -24,6 +24,21 @@ export const SHARE_BUTTON_URL =
 export const LARGE_ADDED_BUTTON_URL =
     "https://assets.coupangplay.com/assets/icons/icon-large-add-added.svg";
 
+export const COUPANGPLAY_ENTIRE_LOGO_URL =
+    "https://assets.coupangplay.com/images/logo_coupangplay2.png";
+
+export const YOUTUBE_LOGO_URL =
+    "https://assets.coupangplay.com/images/socials/social-yt.png";
+
+export const FB_LOGO_URL =
+    "https://assets.coupangplay.com/images/socials/social-fb.png";
+
+export const IG_LOGO_URL =
+    "https://assets.coupangplay.com/images/socials/social-ig.png";
+
+export const TWITTER_LOGO_URL =
+    "https://assets.coupangplay.com/images/socials/social-tw.png";
+
 export interface IResult {
     id: number;
     backdrop_path: string;
