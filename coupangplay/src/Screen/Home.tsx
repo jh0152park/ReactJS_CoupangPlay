@@ -43,24 +43,28 @@ function Home() {
                 <Slider
                     title="내가 좋아할 만한 콘텐츠"
                     results={LikeMovies.data?.results}
+                    type="movie"
                 ></Slider>
             )}
             {PopularMovies.isLoading && PopularMovies ? null : (
                 <Slider
                     title="인기 콘텐츠"
                     results={PopularMovies.data?.results}
+                    type="movie"
                 ></Slider>
             )}
             {TopRatedMovies.isLoading && TopRatedMovies ? null : (
                 <Slider
                     title="높은 평점의 콘텐츠"
                     results={TopRatedMovies.data?.results}
+                    type="movie"
                 ></Slider>
             )}
             {UpComingMovies.isLoading && UpComingMovies ? null : (
                 <Slider
                     title="다가오는 기대작"
                     results={UpComingMovies.data?.results}
+                    type="movie"
                 ></Slider>
             )}
             <Footer></Footer>

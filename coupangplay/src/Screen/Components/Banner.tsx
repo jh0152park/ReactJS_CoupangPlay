@@ -29,11 +29,8 @@ import {
 import { MovieDetail, Overlay } from "../Styled/BannerMovieDetailStyled";
 
 function Banner({ results }: IData) {
-    const History = useHistory();
-
     const setBannerClickMovieId = useSetRecoilState(BannerClickMovieState);
     const setBannerClickMovieBGLink = useSetRecoilState(BannerClickMovieBGLink);
-    const [showDetail, setShowDetail] = useRecoilState(BannerDetailState);
 
     const [playButton, setPlayButton] = useState<boolean>(false);
     const [startIndex, setStartIndex] = useState(0);
@@ -89,8 +86,13 @@ function Banner({ results }: IData) {
 
     function getMoreInfo() {
         if (!detail.isLoading && detail.data) {
-            genre = detail.data.genres[0].name;
+            try {
+                genre = detail.data.genres[0].name;
+            } catch {
+                genre = "시리즈";
+            }
             runtime = detail.data.runtime;
+            runtime = runtime == null ? "123" : runtime;
         }
     }
 

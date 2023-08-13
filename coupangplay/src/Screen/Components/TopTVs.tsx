@@ -27,12 +27,10 @@ import InfoBar from "./TinyInfoBar";
 import { useSetRecoilState } from "recoil";
 import { useHistory } from "react-router-dom";
 
-function TopMovies() {
-    const PopularMovies = useQuery<IData>("popularMovies1", () =>
-        getPopularMovieList(1)
-    );
+function TopTVs() {
+    const PopularTVs = useQuery<ITVData>("popularTVs1", () => getPopularTV(1));
 
-    const Results = PopularMovies.data?.results;
+    const Results = PopularTVs.data?.results;
     const [startIndex, setStartIndex] = useState<number>(0);
     const [endIndex, setEndIndex] = useState<number>(7);
     const [direction, setDirection] = useState<number>(1);
@@ -172,4 +170,4 @@ function TopMovies() {
     );
 }
 
-export default TopMovies;
+export default TopTVs;

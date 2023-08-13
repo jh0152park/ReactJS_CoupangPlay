@@ -81,6 +81,19 @@ export interface IDetail {
     production_companies: IProductionCompany[];
 }
 
+export interface ITVDetail {
+    backdrop_path: string;
+    poster_path: string;
+    genres: IGenre[];
+    homepage: string;
+    overview: string;
+    last_air_date: string;
+    name: string;
+    vote_average: number;
+    vote_count: number;
+    production_companies: IProductionCompany[];
+}
+
 export interface IBackdrops {
     aspect_ratio: number;
     height: number;
@@ -121,4 +134,8 @@ export interface ITVResult {
     popularity: number;
     vote_average: number;
     vote_count: number;
+}
+
+export interface ITVData {
+    results: ITVResult[];
 }
