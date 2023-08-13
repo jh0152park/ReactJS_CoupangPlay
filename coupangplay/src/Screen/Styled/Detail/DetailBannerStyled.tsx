@@ -143,3 +143,48 @@ export const Extra = styled.div`
         margin-right: 5px;
     }
 `;
+
+export const LeftArrow = styled.img`
+    position: absolute;
+    left: 10px;
+    top: 70px;
+    &:hover {
+        cursor: pointer;
+        scale: 1.1;
+    }
+`;
+
+export const Overlay = styled(motion.div)`
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 99;
+    background-color: rgba(0, 0, 0, 0.7);
+    opacity: 0;
+`;
+
+export const VideoFrame = styled(motion.div)`
+    width: 960px;
+    height: 540px;
+    background-color: black;
+    box-sizing: border-box;
+    overflow: hidden;
+    border-radius: 5px;
+`;
+
+export const BGImage = styled(motion.div)<{ BGPhoto: string }>`
+    width: 100%;
+    height: 100%;
+    background-image: linear-gradient(
+            270deg,
+            rgba(0, 0, 0, 0),
+            rgba(0, 0, 0, 1)
+        ),
+        url(${(p) => p.BGPhoto});
+    background-size: cover;
+    background-position: top center;
+`;

@@ -5,8 +5,15 @@ import {
     LARGE_ADD_BUTTON_URL,
     SHARE_BUTTON_URL,
 } from "../../../GlobalFeatures";
-import { createImagePath, getMovieDetail, getMovieImages } from "../../../API";
 import {
+    createImagePath,
+    getMovieDetail,
+    getMovieDetailEN,
+    getMovieImages,
+    getMovieVideoInfo,
+} from "../../../API";
+import {
+    BGImage,
     ButtonContainer,
     ButtonImg,
     Buttons,
@@ -16,13 +23,19 @@ import {
     Logo,
     LogoImage,
     LogoTitle,
+    Overlay,
     Overview,
     Play,
     Star,
     Summary,
     Text,
+    VideoFrame,
 } from "../../Styled/Detail/DetailBannerStyled";
 import { convertMinutesToHoursAndMinutes } from "../../../ProjectCommon";
+import { useState } from "react";
+import { AnimatePresence } from "framer-motion";
+import { useLocation } from "react-router-dom";
+import Youtube from "../Yotube";
 
 function DetailBanner({ id }: { id: string | number }) {
     let backdrop_path = "";
@@ -44,8 +57,21 @@ function DetailBanner({ id }: { id: string | number }) {
         getMovieDetail(id)
     );
 
+    const detail_eng = useQuery<IDetail>(["movie_detail_eng_page", id], () =>
+        getMovieDetailEN(id)
+    );
+
     const image = useQuery<IImages>(["movie_detail_image", id], () =>
         getMovieImages(id)
+    );
+
+    const [playVideo, setPlayVideo] = useState(false);
+    const currntPath = useLocation().pathname.slice(1);
+    const currentPathId = currntPath.split("/")[2];
+
+    let videoKey: string = "";
+    const video = useQuery(["movie_detail_video", currentPathId], () =>
+        getMovieVideoInfo(+currentPathId)
     );
 
     function getGenres(): string {
@@ -71,7 +97,12 @@ function DetailBanner({ id }: { id: string | number }) {
     }
 
     function updateDetail() {
-        if (!detail.isLoading && detail.data) {
+        if (
+            !detail.isLoading &&
+            detail.data &&
+            !detail_eng.isLoading &&
+            detail_eng.data
+        ) {
             backdrop_path = detail.data.backdrop_path;
             poster_path = detail.data.poster_path;
             genre = detail.data.genres[0].name;
@@ -85,6 +116,9 @@ function DetailBanner({ id }: { id: string | number }) {
             vote_average = parseFloat(detail.data.vote_average.toFixed(1));
             vote_count = detail.data.vote_count.toLocaleString();
             productions = getProduction();
+            if (overview === "") {
+                overview = detail_eng.data.overview;
+            }
         }
     }
 
@@ -99,13 +133,39 @@ function DetailBanner({ id }: { id: string | number }) {
         }
     }
 
-    console.log(image.data);
+    function handlePlayButtonClick() {
+        setPlayVideo(true);
+    }
+
+    function handleOutsideClick() {
+        setPlayVideo(false);
+    }
+
+    function getVideoKey() {
+        if (!video.isLoading && video.data?.results) {
+            for (var i of video.data?.results) {
+                if (
+                    i.site.toLowerCase() === "youtube" &&
+                    (i.type.toLowerCase() === "teaser" ||
+                        i.type.toLowerCase() === "trailer" ||
+                        i.type.toLowerCase() === "clip")
+                ) {
+                    return i.key;
+                }
+            }
+        }
+        return "n/a";
+    }
+
     updateDetail();
     computeLogoIamgePath();
-    console.log("logo_path: " + logo_path);
+    videoKey = getVideoKey();
+    console.log(videoKey);
     return (
         <>
-            {detail.isLoading || image.isLoading ? null : (
+            {detail.isLoading ||
+            image.isLoading ||
+            detail_eng.isLoading ? null : (
                 <DisplayBox
                     BGPhoto={createImagePath(
                         backdrop_path ? backdrop_path : poster_path
@@ -129,7 +189,13 @@ function DetailBanner({ id }: { id: string | number }) {
                         </Summary>
 
                         <Buttons>
-                            <Play>► 재생하기</Play>
+                            <Play
+                                onClick={handlePlayButtonClick}
+                                layoutId={currntPath}
+                                whileHover={{ opacity: "0.8" }}
+                            >
+                                ► 재생하기
+                            </Play>
                             <ButtonContainer>
                                 <ButtonImg
                                     src={LARGE_ADD_BUTTON_URL}
@@ -142,8 +208,7 @@ function DetailBanner({ id }: { id: string | number }) {
                             </ButtonContainer>
                         </Buttons>
 
-                        <Overview>{overview.slice(0, 550) + "..."}</Overview>
-                        {/* 장르 릴리즈데이트 홈페이지 프로덕션 */}
+                        <Overview>{`${overview.slice(0, 550)}...`}</Overview>
                         <Extra>
                             <p>
                                 <span>Genres:</span> {genres}
@@ -157,6 +222,34 @@ function DetailBanner({ id }: { id: string | number }) {
                             </p>
                         </Extra>
                     </Description>
+
+                    <AnimatePresence>
+                        {playVideo ? (
+                            <Overlay
+                                onClick={handleOutsideClick}
+                                initial={{ opacity: 0 }}
+                                animate={{ opacity: 1 }}
+                            >
+                                <VideoFrame layoutId={currntPath}>
+                                    {videoKey === "n/a" ? (
+                                        <BGImage
+                                            BGPhoto={createImagePath(
+                                                backdrop_path
+                                                    ? backdrop_path
+                                                    : poster_path
+                                            )}
+                                        ></BGImage>
+                                    ) : (
+                                        <Youtube
+                                            videoKey={videoKey}
+                                            width="960"
+                                            height="540"
+                                        ></Youtube>
+                                    )}
+                                </VideoFrame>
+                            </Overlay>
+                        ) : null}
+                    </AnimatePresence>
                 </DisplayBox>
             )}
         </>

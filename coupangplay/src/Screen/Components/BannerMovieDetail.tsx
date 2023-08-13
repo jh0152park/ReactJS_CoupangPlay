@@ -124,7 +124,11 @@ function Detail({ y }: { y: number }) {
                                 <Background>
                                     {videoKey !== "n/a" &&
                                     videoKey !== undefined ? (
-                                        <Youtube videoKey={videoKey}></Youtube>
+                                        <Youtube
+                                            videoKey={videoKey}
+                                            width="700"
+                                            height="360"
+                                        ></Youtube>
                                     ) : (
                                         <BackgroundImage
                                             BGPhoto={clickedMovieBGLink}
