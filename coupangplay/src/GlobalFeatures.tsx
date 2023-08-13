@@ -106,3 +106,19 @@ export interface IImages {
     backdrops: IBackdrops[];
     logos: ILogo[];
 }
+
+export interface ITVResult {
+    genre_ids: number[];
+    origin_country: string[];
+    backdrop_path: string;
+    first_air_date: string;
+    name: string;
+    original_language: string;
+    original_name: string;
+    overview: string;
+    poster_path: string;
+    id: number;
+    popularity: number;
+    vote_average: number;
+    vote_count: number;
+}
