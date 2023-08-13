@@ -71,7 +71,7 @@ export async function getUpcomingMovieList(page: number) {
 }
 
 // Get Movie Detail Information Functions
-export async function getMovieDetail(id: number) {
+export async function getMovieDetail(id: number | string) {
     const options = {
         method: "GET",
         headers: {
@@ -87,7 +87,7 @@ export async function getMovieDetail(id: number) {
     ).then((response) => response.json());
 }
 
-export async function getMovieVideoInfo(id: number) {
+export async function getMovieVideoInfo(id: number | string) {
     const options = {
         method: "GET",
         headers: {

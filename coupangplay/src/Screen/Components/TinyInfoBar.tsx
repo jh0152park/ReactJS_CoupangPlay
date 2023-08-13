@@ -1,5 +1,5 @@
 import { useQuery } from "react-query";
-import { IResult, MouseOnTop20State } from "../../GlobalFeatures";
+import { IResult } from "../../GlobalFeatures";
 import {
     Container,
     Description,
@@ -14,7 +14,7 @@ import {
 } from "../Styled/TinyInfoBarStyled";
 import { getMovieDetail } from "../../API";
 import { useRecoilValue } from "recoil";
-import { useEffect } from "react";
+import { MouseOnTop20State } from "../../ProjectCommon";
 
 export function InfoBar({ data }: { data: IResult }) {
     const MouseOnTopPoster = useRecoilValue(MouseOnTop20State);

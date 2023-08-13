@@ -25,22 +25,28 @@ export interface IData {
     results: IResult[];
 }
 
-export const MouseOnTop20State = atom<boolean>({
-    key: "mouseOnTop20",
-    default: false,
-});
+export interface IGenre {
+    id: number;
+    name: string;
+}
 
-export const BannerDetailState = atom<boolean>({
-    key: "bannerDetail",
-    default: false,
-});
+export interface IProductionCompany {
+    id: number;
+    logo_path: string;
+    name: string;
+    origin_country: string;
+}
 
-export const BannerClickMovieState = atom<number>({
-    key: "bannerClickMovie",
-    default: -1,
-});
-
-export const BannerClickMovieBGLink = atom<string>({
-    key: "bannerClickMovieBGLink",
-    default: "",
-});
+export interface IDetail {
+    backdrop_path: string;
+    poster_path: string;
+    genres: IGenre[];
+    homepage: string;
+    overview: string;
+    release_date: string;
+    runtime: number;
+    title: string;
+    vote_average: number;
+    vote_count: number;
+    production_companies: IProductionCompany[];
+}
