@@ -58,7 +58,7 @@ export const Menus = styled.div`
     } */
 `;
 
-export const Menu = styled.div`
+export const Menu = styled.div<{ location: boolean }>`
     /* width: 80px; */
     height: 50px;
     display: flex;
@@ -66,6 +66,9 @@ export const Menu = styled.div`
     justify-content: center;
     margin-top: 11px;
     font-size: 17px;
+
+    color: ${(props) =>
+        props.location ? props.theme.coupangBlue : props.theme.fontColor};
 
     &:hover {
         cursor: pointer;

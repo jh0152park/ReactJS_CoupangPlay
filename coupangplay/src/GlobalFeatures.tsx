@@ -21,6 +21,9 @@ export const INFO_BUTTON_URL =
 export const SHARE_BUTTON_URL =
     "https://assets.coupangplay.com/assets/icons/icon-share.svg";
 
+export const LARGE_ADDED_BUTTON_URL =
+    "https://assets.coupangplay.com/assets/icons/icon-large-add-added.svg";
+
 export interface IResult {
     id: number;
     backdrop_path: string;
