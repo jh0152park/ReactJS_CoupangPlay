@@ -12,6 +12,9 @@ export const QUESTION_MARK_URL =
 export const ADD_BUTTON_URL =
     "https://assets.coupangplay.com/assets/icons/icon-mylist-add-hover.svg";
 
+export const LARGE_ADD_BUTTON_URL =
+    "https://assets.coupangplay.com/assets/icons/icon-large-add.svg";
+
 export const INFO_BUTTON_URL =
     "https://assets.coupangplay.com/assets/icons/icon-large-info-hover.svg";
 

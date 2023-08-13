@@ -81,7 +81,7 @@ export const Buttons = styled.div`
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    gap: 30px;
+    gap: 10px;
     border: 1px solid red;
 `;
 
@@ -104,7 +104,7 @@ export const Play = styled(motion.div)`
 `;
 
 export const ButtonContainer = styled.div`
-    width: 15%;
+    width: 13%;
     height: 80%;
     display: flex;
     justify-content: center;
@@ -114,21 +114,12 @@ export const ButtonContainer = styled.div`
     border: 1px solid yellow;
 `;
 
-export const Share = styled.div`
-    width: 15%;
-    height: 80%;
-    border: 1px solid green;
-`;
-
-export const Button = styled.div`
-    width: 30px;
-    height: 30px;
-    background-color: none;
-    border: 2px solid whitesmoke;
-    border-radius: 50%;
+export const ButtonImg = styled.img`
+    width: 33px;
+    height: 33px;
 `;
 
 export const Text = styled.p`
     color: rgb(245, 245, 245, 0.5);
-    font-size: 10px;
+    font-size: 12px;
 `;

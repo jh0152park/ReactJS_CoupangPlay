@@ -1,9 +1,14 @@
 import { useQuery } from "react-query";
-import { IDetail, IImages } from "../../../GlobalFeatures";
+import {
+    IDetail,
+    IImages,
+    LARGE_ADD_BUTTON_URL,
+    SHARE_BUTTON_URL,
+} from "../../../GlobalFeatures";
 import { createImagePath, getMovieDetail, getMovieImages } from "../../../API";
 import {
-    Button,
     ButtonContainer,
+    ButtonImg,
     Buttons,
     Description,
     DisplayBox,
@@ -11,7 +16,6 @@ import {
     LogoImage,
     LogoTitle,
     Play,
-    Share,
     Star,
     Summary,
     Text,
@@ -123,10 +127,15 @@ function DetailBanner({ id }: { id: string | number }) {
                         <Buttons>
                             <Play>► 재생하기</Play>
                             <ButtonContainer>
-                                <Button></Button>
+                                <ButtonImg
+                                    src={LARGE_ADD_BUTTON_URL}
+                                ></ButtonImg>
                                 <Text>찜한 콘텐츠</Text>
                             </ButtonContainer>
-                            <ButtonContainer></ButtonContainer>
+                            <ButtonContainer>
+                                <ButtonImg src={SHARE_BUTTON_URL}></ButtonImg>
+                                <Text>공유</Text>
+                            </ButtonContainer>
                         </Buttons>
                     </Description>
                 </DisplayBox>
