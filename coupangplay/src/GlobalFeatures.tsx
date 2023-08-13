@@ -50,3 +50,29 @@ export interface IDetail {
     vote_count: number;
     production_companies: IProductionCompany[];
 }
+
+export interface IBackdrops {
+    aspect_ratio: number;
+    height: number;
+    vote_average: number;
+    vote_count: number;
+    width: number;
+    file_path: string;
+    iso_639_1: string | null;
+}
+
+export interface ILogo {
+    aspect_ratio: number;
+    height: number;
+    vote_average: number;
+    vote_count: number;
+    width: number;
+    iso_639_1: string | null;
+    file_path: string;
+}
+
+export interface IImages {
+    id: number;
+    backdrops: IBackdrops[];
+    logos: ILogo[];
+}

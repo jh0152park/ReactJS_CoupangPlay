@@ -1,7 +1,13 @@
 import { useQuery } from "react-query";
-import { IDetail } from "../../../GlobalFeatures";
-import { createImagePath, getMovieDetail } from "../../../API";
-import { DisplayBox } from "../../Styled/Detail/DetailBannerStyled";
+import { IDetail, IImages } from "../../../GlobalFeatures";
+import { createImagePath, getMovieDetail, getMovieImages } from "../../../API";
+import {
+    Description,
+    DisplayBox,
+    Logo,
+    LogoImage,
+    LogoTitle,
+} from "../../Styled/Detail/DetailBannerStyled";
 import { convertMinutesToHoursAndMinutes } from "../../../ProjectCommon";
 
 function DetailBanner({ id }: { id: string | number }) {
@@ -15,9 +21,15 @@ function DetailBanner({ id }: { id: string | number }) {
     let title = "";
     let vote_average = 0;
     let vote_count = 0;
+    let productions = "";
+    let logo_path = "";
 
     const detail = useQuery<IDetail>(["movie_detail_page", id], () =>
         getMovieDetail(id)
+    );
+
+    const image = useQuery<IImages>(["movie_detail_image", id], () =>
+        getMovieImages(id)
     );
 
     function getGenres(): string {
@@ -28,10 +40,10 @@ function DetailBanner({ id }: { id: string | number }) {
             }
             return gen.slice(0, gen.length - 2);
         }
-        return " ";
+        return "n/a";
     }
 
-    function getProduction() {
+    function getProduction(): string {
         if (!detail.isLoading && detail.data) {
             let pro = "";
             for (var i of detail.data.production_companies) {
@@ -39,6 +51,7 @@ function DetailBanner({ id }: { id: string | number }) {
             }
             return pro.slice(0, pro.length - 2);
         }
+        return "n/a";
     }
 
     function updateDetail() {
@@ -53,19 +66,45 @@ function DetailBanner({ id }: { id: string | number }) {
             title = detail.data.title;
             vote_average = parseFloat(detail.data.vote_average.toFixed(1));
             vote_count = detail.data.vote_count;
+            productions = getProduction();
         }
     }
 
-    //console.log(detail.data);
+    function computeLogoIamgePath() {
+        if (!image.isLoading && image.data) {
+            for (var i of image.data.logos) {
+                if (i.iso_639_1?.toLowerCase() === "en") {
+                    logo_path = i.file_path;
+                    return;
+                }
+            }
+        }
+    }
+
+    console.log(image.data);
     updateDetail();
+    computeLogoIamgePath();
+    console.log("logo_path: " + logo_path);
     return (
         <>
-            {detail.isLoading ? null : (
+            {detail.isLoading || image.isLoading ? null : (
                 <DisplayBox
                     BGPhoto={createImagePath(
                         backdrop_path ? backdrop_path : poster_path
                     )}
-                ></DisplayBox>
+                >
+                    <Description>
+                        <Logo>
+                            {logo_path ? (
+                                <LogoImage
+                                    src={createImagePath(logo_path)}
+                                ></LogoImage>
+                            ) : (
+                                <LogoTitle>{title}</LogoTitle>
+                            )}
+                        </Logo>
+                    </Description>
+                </DisplayBox>
             )}
         </>
     );
