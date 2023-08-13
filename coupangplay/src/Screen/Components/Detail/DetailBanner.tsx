@@ -12,6 +12,7 @@ import {
     Buttons,
     Description,
     DisplayBox,
+    Extra,
     Logo,
     LogoImage,
     LogoTitle,
@@ -30,6 +31,7 @@ function DetailBanner({ id }: { id: string | number }) {
     let genres = "";
     let homepage = "";
     let overview = "";
+    let release_year = "";
     let release_date = "";
     let runtime = "";
     let title = "";
@@ -76,7 +78,8 @@ function DetailBanner({ id }: { id: string | number }) {
             genres = getGenres();
             homepage = detail.data.homepage;
             overview = detail.data.overview;
-            release_date = detail.data.release_date.split("-")[0];
+            release_date = detail.data.release_date;
+            release_year = release_date.split("-")[0];
             runtime = convertMinutesToHoursAndMinutes(detail.data.runtime);
             title = detail.data.title;
             vote_average = parseFloat(detail.data.vote_average.toFixed(1));
@@ -122,7 +125,7 @@ function DetailBanner({ id }: { id: string | number }) {
                         <Summary>
                             <Star>★</Star>
                             &nbsp;{vote_average} ({vote_count}) ◦ {runtime} ◦
-                            {genre} ◦ {release_date}
+                            {genre} ◦ {release_year}
                         </Summary>
 
                         <Buttons>
@@ -139,7 +142,20 @@ function DetailBanner({ id }: { id: string | number }) {
                             </ButtonContainer>
                         </Buttons>
 
-                        <Overview>{overview.slice(0, 500) + "..."}</Overview>
+                        <Overview>{overview.slice(0, 550) + "..."}</Overview>
+                        {/* 장르 릴리즈데이트 홈페이지 프로덕션 */}
+                        <Extra>
+                            <p>
+                                <span>Genres:</span> {genres}
+                            </p>
+                            <p>
+                                <span>Release Date:</span> {release_date}
+                            </p>
+                            <p>
+                                <span>Production Companies:</span>{" "}
+                                {productions.slice(0, 80) + "..."}
+                            </p>
+                        </Extra>
                     </Description>
                 </DisplayBox>
             )}
