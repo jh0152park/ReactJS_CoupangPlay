@@ -3,6 +3,8 @@ import {
     BackgroundImage,
     Description,
     Extra,
+    MovieDetail,
+    Overlay,
     Overview,
     SubTitle,
     Summary,
@@ -11,18 +13,23 @@ import {
 import { useRecoilValue, useSetRecoilState } from "recoil";
 
 import { useQuery } from "react-query";
-import { getMovieDetail, getMovieVideoInfo } from "../../API";
+import {
+    getMovieDetail,
+    getMovieVideoInfo,
+    getTVDetail,
+    getTVVideoInfo,
+} from "../../API";
 import Youtube from "./Yotube";
 import { Star } from "../Styled/BannerStyled";
 import { BannerClickMovieBGLink } from "../../ProjectCommon";
 
-function Detail({ id }: { id: number | string }) {
+function TVDetail({ id }: { id: number | string }) {
     const currentPathId = id;
     const clickedMovieBGLink = useRecoilValue(BannerClickMovieBGLink);
 
     let videoKey: string = "";
-    const { data, isLoading } = useQuery(["movieVideo", currentPathId], () =>
-        getMovieVideoInfo(+currentPathId)
+    const { data, isLoading } = useQuery(["tvVideo", currentPathId], () =>
+        getTVVideoInfo(+currentPathId)
     );
 
     let title = "";
@@ -34,8 +41,8 @@ function Detail({ id }: { id: number | string }) {
     let production = "";
     let overview = "";
     const { data: movieDetail, isLoading: DetailLoading } = useQuery(
-        ["movieDetail", currentPathId],
-        () => getMovieDetail(+currentPathId)
+        ["tvDetail", currentPathId],
+        () => getTVDetail(+currentPathId)
     );
 
     function getVideoKey() {
@@ -72,12 +79,20 @@ function Detail({ id }: { id: number | string }) {
 
     function updateDetail() {
         if (!DetailLoading && movieDetail) {
-            title = movieDetail.title;
-            genre = movieDetail.genres[0].name;
-            genres = getGenres();
+            title = movieDetail.name;
+
+            if (movieDetail.genres.length > 0) {
+                genre = movieDetail.genres[0].name;
+                genres = getGenres();
+            } else {
+                genre = "TV쇼";
+                genres = genre;
+            }
+            if (movieDetail.episode_run_time.length > 0)
+                runtime = movieDetail.episode_run_time[0];
+            else runtime = 10;
             score = movieDetail.vote_average.toFixed(1);
-            runtime = movieDetail.runtime;
-            release = movieDetail.release_date;
+            release = movieDetail.first_air_date;
             overview = movieDetail.overview;
             production = getProduction();
         }
@@ -137,4 +152,4 @@ function Detail({ id }: { id: number | string }) {
     );
 }
 
-export default Detail;
+export default TVDetail;

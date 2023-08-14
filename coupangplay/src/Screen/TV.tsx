@@ -10,6 +10,7 @@ import CategoryBar from "./Components/CategoryBar";
 import TopTVs from "./Components/TopTVs";
 import Slider from "./Components/Slider";
 import Footer from "./Components/Footer";
+import TVBanner from "./Components/TV_Banner";
 
 function TV() {
     const MainTVs = useQuery(["mainTVs", "home"], () => getAiringTodayTV(1));
@@ -25,7 +26,7 @@ function TV() {
     return (
         <>
             {MainTVs.isLoading ? null : (
-                <Banner results={MainTVs.data.results}></Banner>
+                <TVBanner results={MainTVs.data.results}></TVBanner>
             )}
             <CategoryBar></CategoryBar>
             <TopTVs></TopTVs>
