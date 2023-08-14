@@ -23,15 +23,6 @@ function SwitchScreen() {
     const SearchMatch = Location.pathname.startsWith("/Search/result");
     const SearchKeyword = SearchMatch ? Location.pathname.split("/")[3] : "n/a";
 
-    const LikeMovies = useRecoilValue(LikeMovieState);
-    const LikeTVs = useRecoilValue(LiveTVState);
-
-    console.log("Like Movies");
-    console.log(LikeMovies);
-    console.log("Like TVs");
-    console.log(LikeTVs);
-    console.log(Location);
-
     return (
         <>
             <Header />

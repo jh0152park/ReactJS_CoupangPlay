@@ -10,6 +10,8 @@ import CategoryBar from "./Components/CategoryBar";
 import TopMovies from "./Components/TopMovies";
 import Slider from "./Components/Slider";
 import Footer from "./Components/Footer";
+import { DisplayBox, Wrapper } from "./Styled/BannerStyled";
+import { LOADING_URL } from "../GlobalFeatures";
 
 function Home() {
     const MainMovies = useQuery(["mainMovies", "home"], () =>
@@ -33,7 +35,11 @@ function Home() {
 
     return (
         <>
-            {MainMovies.isLoading ? null : (
+            {MainMovies.isLoading ? (
+                <Wrapper>
+                    <DisplayBox BGPhoto={LOADING_URL}></DisplayBox>
+                </Wrapper>
+            ) : (
                 <Banner results={MainMovies.data.results}></Banner>
             )}
             <CategoryBar></CategoryBar>

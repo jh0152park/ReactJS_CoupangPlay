@@ -11,6 +11,8 @@ import TopTVs from "./Components/TopTVs";
 import Slider from "./Components/Slider";
 import Footer from "./Components/Footer";
 import TVBanner from "./Components/TV_Banner";
+import { DisplayBox, Wrapper } from "./Styled/BannerStyled";
+import { LOADING_URL } from "../GlobalFeatures";
 
 function TV() {
     const MainTVs = useQuery(["mainTVs", "home"], () => getAiringTodayTV(1));
@@ -25,7 +27,11 @@ function TV() {
 
     return (
         <>
-            {MainTVs.isLoading ? null : (
+            {MainTVs.isLoading ? (
+                <Wrapper>
+                    <DisplayBox BGPhoto={LOADING_URL}></DisplayBox>
+                </Wrapper>
+            ) : (
                 <TVBanner results={MainTVs.data.results}></TVBanner>
             )}
             <CategoryBar></CategoryBar>

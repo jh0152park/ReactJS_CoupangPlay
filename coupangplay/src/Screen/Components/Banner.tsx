@@ -17,7 +17,12 @@ import {
 } from "../Styled/BannerStyled";
 import { useEffect, useState } from "react";
 import { useQuery } from "react-query";
-import { IData, LEFT_ARROW_URL, RIGHT_ARROW_URL } from "../../GlobalFeatures";
+import {
+    IData,
+    LEFT_ARROW_URL,
+    LOADING_URL,
+    RIGHT_ARROW_URL,
+} from "../../GlobalFeatures";
 import { useHistory } from "react-router-dom";
 import Detail from "./BannerMovieDetail";
 import { useRecoilState, useSetRecoilState } from "recoil";
@@ -123,7 +128,11 @@ function Banner({ results }: IData) {
     getMoreInfo();
     return (
         <>
-            {detail.isLoading ? null : (
+            {detail.isLoading ? (
+                <Wrapper>
+                    <DisplayBox BGPhoto={LOADING_URL}></DisplayBox>
+                </Wrapper>
+            ) : (
                 <Wrapper>
                     <AnimatePresence
                         initial={false}
