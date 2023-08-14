@@ -48,7 +48,11 @@ function InfoBar({ movieId }: { movieId: number }) {
                 genre = "시리즈";
             }
             runtime = detail.data.runtime;
-            release = detail.data.release_date.split("-")[0];
+            try {
+                release = detail.data.release_date.split("-")[0];
+            } catch {
+                release = "1234-56-78";
+            }
         }
     }
 

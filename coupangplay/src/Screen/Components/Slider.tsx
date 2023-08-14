@@ -3,6 +3,7 @@ import {
     IResult,
     ITVResult,
     LEFT_ARROW_URL,
+    NOT_FOUND_URL,
     RIGHT_ARROW_URL,
 } from "../../GlobalFeatures";
 import {
@@ -89,6 +90,10 @@ function Slider({
         console.log(Location);
     }, [Location]);
 
+    if (results.length === 0) {
+        return null;
+    }
+
     return (
         <Container>
             <LeftArrow
@@ -120,11 +125,13 @@ function Slider({
                         .map((result, index) => (
                             <Frame
                                 key={index}
-                                BGPhoto={createImagePath(
-                                    result.backdrop_path
-                                        ? result.backdrop_path
-                                        : result.poster_path
-                                )}
+                                BGPhoto={
+                                    result.backdrop_path != null
+                                        ? createImagePath(result.backdrop_path)
+                                        : result.poster_path != null
+                                        ? createImagePath(result.poster_path)
+                                        : NOT_FOUND_URL
+                                }
                                 variants={FrameVariants}
                                 whileHover="hover"
                                 transition={{ type: "tween" }}
@@ -133,6 +140,13 @@ function Slider({
                                         type === "movie"
                                             ? `/movies/details/${result.id}`
                                             : `/tvs/details/${result.id}`
+                                    );
+                                    console.log(
+                                        result.backdrop_path != null
+                                            ? result.backdrop_path
+                                            : result.poster_path != null
+                                            ? result.poster_path
+                                            : NOT_FOUND_URL
                                     );
                                 }}
                             >
