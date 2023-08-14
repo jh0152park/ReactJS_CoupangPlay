@@ -39,6 +39,9 @@ export const IG_LOGO_URL =
 export const TWITTER_LOGO_URL =
     "https://assets.coupangplay.com/images/socials/social-tw.png";
 
+export const ERROR_URL =
+    "https://images.unsplash.com/photo-1611890798517-07b0fcb4a811?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1171&q=80";
+
 export interface IResult {
     id: number;
     backdrop_path: string;

@@ -50,6 +50,7 @@ export const LeftArrow = styled.img`
     top: 0;
     bottom: 0;
     margin: auto 0;
+    padding-bottom: 30px;
 
     &:hover {
         cursor: pointer;
@@ -65,6 +66,7 @@ export const RightArrow = styled.img`
     top: 0;
     bottom: 0;
     margin: auto 0;
+    padding-bottom: 30px;
 
     &:hover {
         cursor: pointer;
