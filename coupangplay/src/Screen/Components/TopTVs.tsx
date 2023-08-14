@@ -43,7 +43,6 @@ function TopTVs() {
     function onLeftArrowClick() {
         if (moving) return;
 
-        console.log("left arrow clikced");
         switch (startIndex) {
             case 0:
                 setStartIndex(13);
@@ -67,7 +66,6 @@ function TopTVs() {
     function onRightArrowClick() {
         if (moving) return;
 
-        console.log("right arrow clikced");
         switch (startIndex) {
             case 0:
                 setStartIndex(7);

@@ -3,6 +3,7 @@ import {
     IResult,
     ITVResult,
     LEFT_ARROW_URL,
+    NOT_FOUND_URL,
     RIGHT_ARROW_URL,
 } from "../../GlobalFeatures";
 import {
@@ -37,7 +38,6 @@ function Slider({
     const [moving, setMoving] = useState<boolean>(false);
 
     const History = useHistory();
-    const Location = useLocation();
 
     function onRightArrowClick() {
         if (moving) return;
@@ -85,9 +85,9 @@ function Slider({
         setMoving(false);
     }
 
-    useEffect(() => {
-        console.log(Location);
-    }, [Location]);
+    if (results.length === 0) {
+        return null;
+    }
 
     return (
         <Container>
@@ -120,11 +120,13 @@ function Slider({
                         .map((result, index) => (
                             <Frame
                                 key={index}
-                                BGPhoto={createImagePath(
-                                    result.backdrop_path
-                                        ? result.backdrop_path
-                                        : result.poster_path
-                                )}
+                                BGPhoto={
+                                    result.backdrop_path != null
+                                        ? createImagePath(result.backdrop_path)
+                                        : result.poster_path != null
+                                        ? createImagePath(result.poster_path)
+                                        : NOT_FOUND_URL
+                                }
                                 variants={FrameVariants}
                                 whileHover="hover"
                                 transition={{ type: "tween" }}

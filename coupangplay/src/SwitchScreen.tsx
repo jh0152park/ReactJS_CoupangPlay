@@ -7,6 +7,9 @@ import TVDetail from "./Screen/TVDetail";
 import Unknown from "./Screen/Unknown";
 import Search from "./Screen/Search";
 import SearchResult from "./Screen/SearchResult";
+import { useRecoilValue } from "recoil";
+import { LikeMovieState, LiveTVState } from "./ProjectCommon";
+import LikeContents from "./Screen/LikeContents";
 
 function SwitchScreen() {
     const Location = useLocation();
@@ -19,6 +22,15 @@ function SwitchScreen() {
 
     const SearchMatch = Location.pathname.startsWith("/Search/result");
     const SearchKeyword = SearchMatch ? Location.pathname.split("/")[3] : "n/a";
+
+    const LikeMovies = useRecoilValue(LikeMovieState);
+    const LikeTVs = useRecoilValue(LiveTVState);
+
+    console.log("Like Movies");
+    console.log(LikeMovies);
+    console.log("Like TVs");
+    console.log(LikeTVs);
+    console.log(Location);
 
     return (
         <>
@@ -34,6 +46,10 @@ function SwitchScreen() {
 
                 <Route path={`/Search/result/${SearchKeyword}`}>
                     <SearchResult></SearchResult>
+                </Route>
+
+                <Route path={"/찜한 콘텐츠"}>
+                    <LikeContents></LikeContents>
                 </Route>
 
                 <Route path={["/스포츠", "/스토어", "/키즈", "/뉴스"]}>

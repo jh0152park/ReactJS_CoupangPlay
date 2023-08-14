@@ -25,9 +25,6 @@ function TVInfoBar({ movieId }: { movieId: number }) {
         getTVDetail(movieId)
     );
 
-    console.log("tv info bar");
-    console.log(detail.data);
-
     function updateDetilInfo() {
         if (!detail.isLoading && detail.data) {
             if (detail.data.success === false) {
@@ -52,9 +49,17 @@ function TVInfoBar({ movieId }: { movieId: number }) {
             }
             runtime = detail.data.runtime;
             try {
-                release = detail.data.last_air_date.split("-")[0];
+                try {
+                    release = detail.data.last_air_date.split("-")[0];
+                } catch {
+                    release = "1234-56-78";
+                }
             } catch {
-                release = detail.data.release_date.split("-")[0];
+                try {
+                    release = detail.data.release_date.split("-")[0];
+                } catch {
+                    release = "1234-56-78";
+                }
             }
         }
     }

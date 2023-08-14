@@ -87,7 +87,6 @@ function TVBanner({ results }: IData) {
 
     function getMoreInfo() {
         if (!detail.isLoading && detail.data) {
-            console.log(detail.data);
             if (detail.data.genres.length > 0)
                 genre = detail.data.genres[0].name;
             else genre = "TV쇼";

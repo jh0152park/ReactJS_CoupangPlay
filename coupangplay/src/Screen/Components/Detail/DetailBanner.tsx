@@ -4,6 +4,7 @@ import {
     IImages,
     LARGE_ADDED_BUTTON_URL,
     LARGE_ADD_BUTTON_URL,
+    NOT_FOUND_URL,
     SHARE_BUTTON_URL,
 } from "../../../GlobalFeatures";
 import {
@@ -112,12 +113,26 @@ function DetailBanner({ id }: { id: string | number }) {
         ) {
             backdrop_path = detail.data.backdrop_path;
             poster_path = detail.data.poster_path;
-            genre = detail.data.genres[0].name;
-            genres = getGenres();
+
+            if (detail.data.genres.length > 0) {
+                genre = detail.data.genres[0].name;
+                genres = getGenres();
+            } else {
+                genre = "영화";
+                genres = genre;
+            }
+
             homepage = detail.data.homepage;
             overview = detail.data.overview;
-            release_date = detail.data.release_date;
-            release_year = release_date.split("-")[0];
+
+            if (detail.data.release_date.length > 0) {
+                release_date = detail.data.release_date;
+                release_year = release_date.split("-")[0];
+            } else {
+                release_date = "1234-56-78";
+                release_year = release_date.split("-")[0];
+            }
+
             runtime = convertMinutesToHoursAndMinutes(detail.data.runtime);
             title = detail.data.title;
             vote_average = parseFloat(detail.data.vote_average.toFixed(1));
@@ -184,9 +199,13 @@ function DetailBanner({ id }: { id: string | number }) {
             image.isLoading ||
             detail_eng.isLoading ? null : (
                 <DisplayBox
-                    BGPhoto={createImagePath(
-                        backdrop_path ? backdrop_path : poster_path
-                    )}
+                    BGPhoto={
+                        backdrop_path != null
+                            ? createImagePath(backdrop_path)
+                            : poster_path != null
+                            ? createImagePath(poster_path)
+                            : NOT_FOUND_URL
+                    }
                 >
                     <Description>
                         <Logo>
@@ -254,11 +273,17 @@ function DetailBanner({ id }: { id: string | number }) {
                                 <VideoFrame layoutId={currntPath}>
                                     {videoKey === "n/a" ? (
                                         <BGImage
-                                            BGPhoto={createImagePath(
-                                                backdrop_path
-                                                    ? backdrop_path
-                                                    : poster_path
-                                            )}
+                                            BGPhoto={
+                                                backdrop_path != null
+                                                    ? createImagePath(
+                                                          backdrop_path
+                                                      )
+                                                    : poster_path != null
+                                                    ? createImagePath(
+                                                          poster_path
+                                                      )
+                                                    : NOT_FOUND_URL
+                                            }
                                         ></BGImage>
                                     ) : (
                                         <Youtube

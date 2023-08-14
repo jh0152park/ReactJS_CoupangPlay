@@ -28,14 +28,12 @@ function CategoryBar() {
         // updateIndex();
         setCategoryIndex((prev) => (prev === 0 ? 2 : prev - 1));
         setDirection(-1);
-        console.log("left arrow clicked");
     }
 
     function onRightArrowClick() {
         // updateIndex();
         setCategoryIndex((prev) => (prev === 2 ? 0 : prev + 1));
         setDirection(1);
-        console.log("right arrow clicked");
     }
 
     return (
