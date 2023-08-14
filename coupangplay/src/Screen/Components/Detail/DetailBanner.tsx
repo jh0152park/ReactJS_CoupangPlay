@@ -4,6 +4,7 @@ import {
     IImages,
     LARGE_ADDED_BUTTON_URL,
     LARGE_ADD_BUTTON_URL,
+    LOADING_URL,
     NOT_FOUND_URL,
     SHARE_BUTTON_URL,
 } from "../../../GlobalFeatures";
@@ -195,9 +196,9 @@ function DetailBanner({ id }: { id: string | number }) {
 
     return (
         <>
-            {detail.isLoading ||
-            image.isLoading ||
-            detail_eng.isLoading ? null : (
+            {detail.isLoading || image.isLoading || detail_eng.isLoading ? (
+                <DisplayBox BGPhoto={LOADING_URL}></DisplayBox>
+            ) : (
                 <DisplayBox
                     BGPhoto={
                         backdrop_path != null

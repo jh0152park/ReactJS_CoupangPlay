@@ -5,6 +5,7 @@ import {
     ITVDetail,
     LARGE_ADDED_BUTTON_URL,
     LARGE_ADD_BUTTON_URL,
+    LOADING_URL,
     NOT_FOUND_URL,
     SHARE_BUTTON_URL,
 } from "../../../GlobalFeatures";
@@ -196,9 +197,9 @@ function DetailTVBanner({ id }: { id: string | number }) {
 
     return (
         <>
-            {detail.isLoading ||
-            image.isLoading ||
-            detail_eng.isLoading ? null : (
+            {detail.isLoading || image.isLoading || detail_eng.isLoading ? (
+                <DisplayBox BGPhoto={LOADING_URL}></DisplayBox>
+            ) : (
                 <DisplayBox
                     BGPhoto={createImagePath(
                         backdrop_path ? backdrop_path : poster_path
