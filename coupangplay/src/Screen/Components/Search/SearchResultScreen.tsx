@@ -25,8 +25,6 @@ function SearchResultScreen() {
         SearchTV(searchKeyword, 2)
     );
 
-    console.log(MovieSearch2.data);
-
     return (
         <>
             {MovieSearch.isLoading ||

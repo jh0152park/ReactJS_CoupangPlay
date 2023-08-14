@@ -25,9 +25,6 @@ function TVInfoBar({ movieId }: { movieId: number }) {
         getTVDetail(movieId)
     );
 
-    console.log("tv info bar");
-    console.log(detail.data);
-
     function updateDetilInfo() {
         if (!detail.isLoading && detail.data) {
             if (detail.data.success === false) {

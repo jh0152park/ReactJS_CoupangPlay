@@ -77,12 +77,6 @@ function DetailTVBanner({ id }: { id: string | number }) {
         getTVImages(id)
     );
 
-    console.log("image");
-    console.log(image.data);
-
-    console.log("data");
-    console.log(detail.data);
-
     const [playVideo, setPlayVideo] = useState(false);
     const currntPath = useLocation().pathname.slice(1);
     const currentPathId = currntPath.split("/")[2];

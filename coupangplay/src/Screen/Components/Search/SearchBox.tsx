@@ -24,7 +24,6 @@ function SearchBox() {
         setSearchKeyword(search_keyword);
         setValue("input", "");
         History.push("/Search/result/" + search_keyword);
-        console.log("search keyworkd: " + search_keyword);
     }
 
     return (

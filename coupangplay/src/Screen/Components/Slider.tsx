@@ -38,7 +38,6 @@ function Slider({
     const [moving, setMoving] = useState<boolean>(false);
 
     const History = useHistory();
-    const Location = useLocation();
 
     function onRightArrowClick() {
         if (moving) return;
@@ -85,10 +84,6 @@ function Slider({
     function handleExitAnimation() {
         setMoving(false);
     }
-
-    useEffect(() => {
-        console.log(Location);
-    }, [Location]);
 
     if (results.length === 0) {
         return null;
@@ -140,13 +135,6 @@ function Slider({
                                         type === "movie"
                                             ? `/movies/details/${result.id}`
                                             : `/tvs/details/${result.id}`
-                                    );
-                                    console.log(
-                                        result.backdrop_path != null
-                                            ? result.backdrop_path
-                                            : result.poster_path != null
-                                            ? result.poster_path
-                                            : NOT_FOUND_URL
                                     );
                                 }}
                             >
