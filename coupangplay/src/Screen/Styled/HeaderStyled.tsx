@@ -80,6 +80,10 @@ export const Menu = styled.div<{ location: boolean }>`
 export const SearchLogo = styled.img`
     scale: 1.5;
     margin-right: 30px;
+    &:hover {
+        cursor: pointer;
+        scale: 1.7;
+    }
 `;
 
 export const ProfileBox = styled(motion.div)`
