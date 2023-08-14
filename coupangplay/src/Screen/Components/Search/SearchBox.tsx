@@ -4,7 +4,7 @@ import {
     Form,
     Input,
     SearchBoxContainer,
-} from "../../Styled/Search/SearchBoxStlyed";
+} from "../../Styled/Search/SearchBoxStyled";
 import { useSetRecoilState } from "recoil";
 import { SearchKeywordState } from "../../../ProjectCommon";
 import { useHistory } from "react-router-dom";

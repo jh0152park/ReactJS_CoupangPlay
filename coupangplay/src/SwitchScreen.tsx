@@ -6,6 +6,7 @@ import TV from "./Screen/TV";
 import TVDetail from "./Screen/TVDetail";
 import Unknown from "./Screen/Unknown";
 import Search from "./Screen/Search";
+import SearchResult from "./Screen/SearchResult";
 
 function SwitchScreen() {
     const Location = useLocation();
@@ -15,6 +16,9 @@ function SwitchScreen() {
 
     const TVDetailMatch = Location.pathname.startsWith("/tvs/details");
     const TVId = TVDetailMatch ? Location.pathname.split("/")[3] : "n/a";
+
+    const SearchMatch = Location.pathname.startsWith("/Search/result");
+    const SearchKeyword = SearchMatch ? Location.pathname.split("/")[3] : "n/a";
 
     return (
         <>
@@ -26,6 +30,10 @@ function SwitchScreen() {
 
                 <Route path={`/tvs/details/${TVId}`}>
                     <TVDetail id={TVId}></TVDetail>
+                </Route>
+
+                <Route path={`/Search/result/${SearchKeyword}`}>
+                    <SearchResult></SearchResult>
                 </Route>
 
                 <Route path={["/스포츠", "/스토어", "/키즈", "/뉴스"]}>
