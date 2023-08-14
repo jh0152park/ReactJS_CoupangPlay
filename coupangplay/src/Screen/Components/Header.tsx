@@ -70,7 +70,7 @@ function Header() {
             </LeftNavigation>
 
             <RightNavigation>
-                <Link to="/">
+                <Link to="/Search">
                     <SearchLogo src={SEARCH_URL} />
                 </Link>
                 <ProfileBox>

@@ -39,6 +39,7 @@ import {
 } from "../../Styled/Detail/DetailBannerStyled";
 import {
     LikeMovieState,
+    LiveTVState,
     convertMinutesToHoursAndMinutes,
 } from "../../../ProjectCommon";
 import { useState } from "react";
@@ -85,7 +86,7 @@ function DetailTVBanner({ id }: { id: string | number }) {
     const currntPath = useLocation().pathname.slice(1);
     const currentPathId = currntPath.split("/")[2];
 
-    const [likeMovieList, setLikeMovieList] = useRecoilState(LikeMovieState);
+    const [likeTVList, setLikeTVList] = useRecoilState(LiveTVState);
 
     let videoKey: string = "";
     const video = useQuery(["tv_detail_video", currentPathId], () =>
@@ -178,13 +179,13 @@ function DetailTVBanner({ id }: { id: string | number }) {
     }
 
     function handleLikeButtonClick() {
-        if (!likeMovieList.includes(id)) {
-            setLikeMovieList((prev) => [...prev, id]);
+        if (!likeTVList.includes(id)) {
+            setLikeTVList((prev) => [...prev, id]);
         }
     }
 
     function isAdded() {
-        return likeMovieList.includes(id);
+        return likeTVList.includes(id);
     }
 
     updateDetail();
