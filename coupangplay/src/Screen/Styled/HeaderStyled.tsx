@@ -65,10 +65,11 @@ export const Menu = styled.div<{ location: boolean }>`
     align-items: center;
     justify-content: center;
     margin-top: 11px;
-    font-size: 17px;
 
     color: ${(props) =>
         props.location ? props.theme.coupangBlue : props.theme.fontColor};
+    font-weight: ${(props) => (props.location ? "700" : "300")};
+    font-size: ${(props) => (props.location ? "22" : "17")}px;
 
     &:hover {
         cursor: pointer;

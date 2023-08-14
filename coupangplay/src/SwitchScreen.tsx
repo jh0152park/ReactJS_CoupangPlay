@@ -4,6 +4,7 @@ import Home from "./Screen/Home";
 import MovieDetail from "./Screen/MovieDetail";
 import TV from "./Screen/TV";
 import TVDetail from "./Screen/TVDetail";
+import Unknown from "./Screen/Unknown";
 
 function SwitchScreen() {
     const Location = useLocation();
@@ -24,6 +25,10 @@ function SwitchScreen() {
 
                 <Route path={`/tvs/details/${TVId}`}>
                     <TVDetail id={TVId}></TVDetail>
+                </Route>
+
+                <Route path={["/스포츠", "/스토어", "/키즈", "/뉴스"]}>
+                    <Unknown></Unknown>
                 </Route>
 
                 <Route path={"/TV"}>
