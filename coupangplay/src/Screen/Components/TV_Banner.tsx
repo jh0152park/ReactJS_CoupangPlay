@@ -1,5 +1,5 @@
 import { AnimatePresence, delay, useScroll } from "framer-motion";
-import { createImagePath, getMovieDetail } from "../../API";
+import { createImagePath, getMovieDetail, getTVDetail } from "../../API";
 import {
     Wrapper,
     DisplayBox,
@@ -27,8 +27,9 @@ import {
     BannerDetailState,
 } from "../../ProjectCommon";
 import { MovieDetail, Overlay } from "../Styled/BannerMovieDetailStyled";
+import TVDetail from "./BannerTVDetail";
 
-function Banner({ results }: IData) {
+function TVBanner({ results }: IData) {
     const setBannerClickMovieId = useSetRecoilState(BannerClickMovieState);
     const setBannerClickMovieBGLink = useSetRecoilState(BannerClickMovieBGLink);
 
@@ -37,8 +38,8 @@ function Banner({ results }: IData) {
     const [endIndex, setEndIndex] = useState(1);
     const [moving, setMoving] = useState(false);
     const [direction, setDirection] = useState(1);
-    const detail = useQuery(["b_detail_m"], () =>
-        getMovieDetail(results[startIndex].id)
+    const detail = useQuery("b_detail_v", () =>
+        getTVDetail(results[startIndex].id)
     );
 
     let genre = "";
@@ -86,8 +87,13 @@ function Banner({ results }: IData) {
 
     function getMoreInfo() {
         if (!detail.isLoading && detail.data) {
-            genre = detail.data.genres[0].name;
-            runtime = detail.data.runtime;
+            console.log(detail.data);
+            if (detail.data.genres.length > 0)
+                genre = detail.data.genres[0].name;
+            else genre = "TV쇼";
+            if (detail.data.episode_run_time.length > 0)
+                runtime = detail.data.episode_run_time[0];
+            else runtime = "10";
         }
     }
 
@@ -170,7 +176,6 @@ function Banner({ results }: IData) {
                                         variants={PlayVariants}
                                         whileHover="hover"
                                         layoutId={"main" + result.id + ""}
-                                        // layoutId="test"
                                         onClick={() =>
                                             handlePlayButtonClick(
                                                 result.id,
@@ -216,7 +221,9 @@ function Banner({ results }: IData) {
                                                     type: "tween",
                                                 }}
                                             >
-                                                <Detail id={result.id}></Detail>
+                                                <TVDetail
+                                                    id={result.id}
+                                                ></TVDetail>
                                             </MovieDetail>
                                         </Overlay>
                                     </AnimatePresence>
@@ -235,4 +242,4 @@ function Banner({ results }: IData) {
     );
 }
 
-export default Banner;
+export default TVBanner;
